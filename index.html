@@ -1,664 +1,86 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Licores Medellín — Domicilios de Licores a Toda Hora</title>
-    <meta name="description" content="Licores a domicilio en Medellín. Aguardiente, whisky, ron, tequila, vodka, vinos y cervezas. Envíos rápidos a toda Medellín. Los mejores precios.">
-    <meta name="keywords" content="licores a domicilio Medellín, aguardiente, whisky, ron, tequila, cervezas, vinos, domicilios licor">
-    <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://wroso1.github.io/licores-medellin/">
-    <meta property="og:title" content="Licores Medellín — Domicilios a Toda Hora">
-    <meta property="og:description" content="Aguardiente, whisky, ron, tequila, vinos y cervezas a domicilio en Medellín.">
-    <meta property="og:url" content="https://wroso1.github.io/licores-medellin/">
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="es_CO">
-    <link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥃</text></svg>">
-    <link rel="preconnect" href="https://wa.me">
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Store",
-        "name": "Licores Medellín",
-        "description": "Domicilios de licores en Medellín",
-        "url": "https://wroso1.github.io/licores-medellin/",
-        "telephone": "+57 300 451 5809",
-        "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Medellín",
-            "addressRegion": "Antioquia",
-            "addressCountry": "CO"
-        },
-        "priceRange": "$"
-    }
-    </script>
-    <style>
-        :root {
-            --primary: #b45309;
-            --primary-dark: #92400e;
-            --accent: #dc2626;
-            --bg: #faf7f2;
-            --card: #ffffff;
-            --text: #1c1917;
-            --text-light: #78716c;
-            --border: #e7e0d8;
-            --whatsapp: #25D366;
-            --whatsapp-dark: #128C7E;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-        }
-        .header {
-            position: relative;
-            color: white;
-            padding: 0;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.25);
-            background: linear-gradient(135deg, #1c1917 0%, #292524 60%, #3f2d10 100%);
-            width: 100%;
-            padding: 18px 16px;
-            transition: transform 0.4s ease, opacity 0.4s ease;
-        }
-        .header.hidden {
-            transform: translateY(-100%);
-            opacity: 0;
-        }
-        .header-content { position: relative; z-index: 2; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
-        .header h1 { font-size: 1.6em; margin-bottom: 2px; letter-spacing: 0.5px; }
-        .header p { font-size: 0.82em; opacity: 0.95; margin-bottom: 8px; }
-        .whatsapp-header {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--whatsapp);
-            color: white;
-            padding: 7px 18px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.82em;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            transition: transform 0.2s;
-        }
-        .whatsapp-header:hover { transform: scale(1.05); }
-
-        .legal-strip {
-            background: var(--accent);
-            color: white;
-            text-align: center;
-            font-size: 0.72em;
-            font-weight: 600;
-            padding: 6px 10px;
-            letter-spacing: 0.3px;
-        }
-
-        @media (max-width: 600px) {
-            .header h1 { font-size: 1.3em; }
-            .header p { font-size: 0.72em; }
-            .whatsapp-header { font-size: 0.75em; padding: 6px 14px; }
-        }
-        .container { max-width: 1200px; margin: 0 auto; padding: 12px; }
-
-        .delivery-banner {
-            background: #1c1917;
-            color: #fbbf24;
-            text-align: center;
-            font-size: 0.85em;
-            font-weight: 600;
-            padding: 10px 16px;
-            margin-bottom: 4px;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-        .delivery-banner span {
-            display: inline-block;
-            animation: pulse-glow 2s ease-in-out infinite;
-        }
-        @keyframes pulse-glow {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.6; }
-        }
-
-        .category-tabs {
-            display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            padding: 12px 0;
-            margin-bottom: 8px;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none;
-        }
-        .category-tabs::-webkit-scrollbar { display: none; }
-        .cat-tab {
-            flex-shrink: 0;
-            padding: 8px 16px;
-            border-radius: 20px;
-            border: 2px solid var(--primary);
-            background: white;
-            color: var(--primary);
-            font-weight: 600;
-            font-size: 0.82em;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .cat-tab.active { background: var(--primary); color: white; }
-        .cat-tab:hover { background: var(--primary); color: white; }
-
-        /* ─── MENÚ LATERAL DESPLEGABLE ─── */
-        .menu-toggle {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            padding: 10px 18px;
-            font-size: 0.95em;
-            font-weight: 600;
-            cursor: pointer;
-            margin: 10px 0 4px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-            transition: transform 0.2s;
-        }
-        .menu-toggle:hover { transform: scale(1.03); }
-        .menu-toggle .burger {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-        .menu-toggle .burger span {
-            width: 18px;
-            height: 2.5px;
-            background: white;
-            border-radius: 2px;
-        }
-        .side-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 280px;
-            max-width: 80vw;
-            height: 100vh;
-            background: #1c1917;
-            z-index: 1000;
-            transform: translateX(-100%);
-            transition: transform 0.3s ease;
-            overflow-y: auto;
-            padding: 20px 0;
-            box-shadow: 4px 0 20px rgba(0,0,0,0.4);
-        }
-        .side-menu.open { transform: translateX(0); }
-        .menu-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0,0,0,0.5);
-            z-index: 999;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s;
-        }
-        .menu-overlay.open { opacity: 1; pointer-events: auto; }
-        .side-menu h3 {
-            color: #fbbf24;
-            font-size: 1em;
-            padding: 0 22px 12px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            border-bottom: 1px solid rgba(255,255,255,0.15);
-            margin-bottom: 10px;
-        }
-        .side-menu .menu-close {
-            position: absolute;
-            top: 10px;
-            right: 12px;
-            background: none;
-            border: none;
-            color: #fbbf24;
-            font-size: 1.6em;
-            cursor: pointer;
-            line-height: 1;
-            padding: 5px;
-        }
-        .menu-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            width: 100%;
-            padding: 13px 22px;
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 0.95em;
-            text-align: left;
-            cursor: pointer;
-            transition: background 0.2s, border-left 0.2s;
-            border-left: 4px solid transparent;
-        }
-        .menu-item:hover { background: rgba(255,255,255,0.08); }
-        .menu-item.active {
-            background: rgba(251,191,36,0.15);
-            border-left: 4px solid #fbbf24;
-            color: #fbbf24;
-            font-weight: 700;
-        }
-        .menu-item .m-emoji { font-size: 1.25em; width: 26px; text-align: center; }
-
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 12px;
-            margin-top: 8px;
-        }
-        .product-card {
-            background: var(--card);
-            border-radius: 12px;
-            padding: 0;
-            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-            border: 1px solid var(--border);
-            transition: transform 0.2s, box-shadow 0.2s;
-            overflow: hidden;
-            position: relative;
-        }
-        .product-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-        }
-        .stock-badge {
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            background: #28a745;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 0.7em;
-            font-weight: 600;
-            z-index: 2;
-        }
-        .product-emoji {
-            width: 100%;
-            aspect-ratio: 1/1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4em;
-            background: linear-gradient(160deg, #faf7f2 0%, #f5e9d5 100%);
-        }
-        .no-results {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-light);
-            display: none;
-        }
-        .no-results.visible { display: block; }
-        .no-results p { font-size: 1.1em; margin-bottom: 12px; }
-        .no-results .btn-reset {
-            padding: 10px 24px;
-            border: 2px solid var(--primary);
-            border-radius: 25px;
-            background: white;
-            color: var(--primary);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-        .no-results .btn-reset:hover {
-            background: var(--primary);
-            color: white;
-        }
-        .loading-spinner {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 40px;
-            color: var(--text-light);
-        }
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid var(--border);
-            border-top-color: var(--primary);
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            margin: 0 auto 12px;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .product-info { padding: 12px 14px 14px; }
-        .product-type {
-            font-size: 0.7em;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-light);
-            margin-bottom: 4px;
-        }
-        .product-name {
-            font-size: 0.95em;
-            font-weight: 600;
-            margin-bottom: 4px;
-            min-height: 2.4em;
-        }
-        .product-ml {
-            font-size: 0.78em;
-            color: var(--primary);
-            font-weight: 500;
-            margin-bottom: 2px;
-        }
-        .product-price {
-            font-size: 1.4em;
-            font-weight: 800;
-            color: var(--primary-dark);
-            margin: 6px 0 10px;
-        }
-        .btn-whatsapp {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            width: 100%;
-            padding: 9px;
-            border-radius: 8px;
-            background: var(--whatsapp);
-            color: white;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.85em;
-            border: none;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .btn-whatsapp:hover { background: var(--whatsapp-dark); }
-
-        .search-bar {
-            width: 100%;
-            padding: 10px 16px;
-            border-radius: 25px;
-            border: 2px solid var(--border);
-            font-size: 0.95em;
-            margin: 8px 0;
-            outline: none;
-            transition: border 0.2s;
-        }
-        .search-bar:focus { border-color: var(--primary); }
-
-        .footer {
-            text-align: center;
-            padding: 24px 16px;
-            color: var(--text-light);
-            font-size: 0.85em;
-            border-top: 1px solid var(--border);
-            margin-top: 24px;
-        }
-        .legal-warning {
-            background: #1c1917;
-            color: #fbbf24;
-            text-align: center;
-            font-size: 0.78em;
-            font-weight: 600;
-            padding: 12px 16px;
-            line-height: 1.5;
-        }
-
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 10px 0;
-            font-size: 0.85em;
-            color: var(--text-light);
-        }
-
-        @media (max-width: 600px) {
-            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-            .product-card { padding: 0; }
-            .product-name { font-size: 0.85em; min-height: 2em; }
-            .product-price { font-size: 1.2em; }
-            .product-emoji { font-size: 3em; }
-        }
-
-        /* Touch targets mejorados para mobile */
-        .cat-tab, .btn-whatsapp, .btn-reset {
-            min-height: 44px;
-            min-width: 44px;
-            cursor: pointer;
-        }
-        .btn-whatsapp {
-            -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#11100f">
+  <meta name="description" content="Licores a domicilio en Medellín. Aguardiente, whisky, ron, hielo y productos para tu fiesta. Pedidos por WhatsApp en minutos.">
+  <title>Licores Medellín | Domicilios de Licores</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <div class="header" id="mainHeader">
-        <div class="header-content">
-            <h1>🥃 Licores Medellín</h1>
-            <p>🇨🇴 Domicilios de licor en Medellín • Envío en menos de 60 minutos</p>
-            <a class="whatsapp-header" href="https://wa.me/573004515809?text=Hola%21+Quiero+hacer+un+pedido" target="_blank" rel="noopener noreferrer">
-                💬 Pedir por WhatsApp
-            </a>
-        </div>
-    </div>
-    <div class="legal-strip">
-        ⚠️ Prohíbase el expendio de bebidas embriagantes a menores de edad y mujeres embarazadas
-    </div>
-
-    <div class="delivery-banner">
-        <span>🛵 DOMICILIOS A TODA MEDELLÍN • PAGAS AL RECIBIR • NEQUI · DAVIPLATA · EFECTIVO</span>
-    </div>
-
-<div class="container">
-
-    <input class="search-bar" id="search" type="text" placeholder="🔍 Buscar licor (ej: aguardiente, Buchanan's, vino tinto...)">
-
-    <button class="menu-toggle" onclick="toggleMenu()">
-        <span class="burger"><span></span><span></span><span></span></span>
-        Menú de categorías
-    </button>
-
-    <div class="menu-overlay" id="menuOverlay" onclick="closeMenu()"></div>
-
-    <nav class="side-menu" id="sideMenu">
-        <button class="menu-close" onclick="closeMenu()">×</button>
-        <h3>🥃 Categorías</h3>
-        <button class="menu-item active" data-cat="todas" onclick="menuFilter('todas')"><span class="m-emoji">🔥</span> Todas</button>
-        <button class="menu-item" data-cat="aguardiente" onclick="menuFilter('aguardiente')"><span class="m-emoji">🍯</span> Aguardiente</button>
-        <button class="menu-item" data-cat="whisky" onclick="menuFilter('whisky')"><span class="m-emoji">🥃</span> Whisky</button>
-        <button class="menu-item" data-cat="ron" onclick="menuFilter('ron')"><span class="m-emoji">🧴</span> Ron</button>
-        <button class="menu-item" data-cat="tequila" onclick="menuFilter('tequila')"><span class="m-emoji">🍸</span> Tequila</button>
-        <button class="menu-item" data-cat="vodka" onclick="menuFilter('vodka')"><span class="m-emoji">🥂</span> Vodka</button>
-        <button class="menu-item" data-cat="vino" onclick="menuFilter('vino')"><span class="m-emoji">🍷</span> Vinos</button>
-        <button class="menu-item" data-cat="cerveza" onclick="menuFilter('cerveza')"><span class="m-emoji">🍺</span> Cervezas</button>
-        <button class="menu-item" data-cat="snacks" onclick="menuFilter('snacks')"><span class="m-emoji">🍿</span> Snacks</button>
-        <button class="menu-item" data-cat="gaseosa" onclick="menuFilter('gaseosa')"><span class="m-emoji">🥤</span> Gaseosas</button>
-        <button class="menu-item" data-cat="energizante" onclick="menuFilter('energizante')"><span class="m-emoji">⚡</span> Energizantes</button>
-        <button class="menu-item" data-cat="mezclador" onclick="menuFilter('mezclador')"><span class="m-emoji">🧊</span> Hielo y Mezcladores</button>
+  <div class="topbar">PEDIDOS POR WHATSAPP · DOMICILIOS EN MEDELLÍN Y BELLO</div>
+  <header class="header">
+    <a class="brand" href="#" aria-label="Licores Medellín, inicio">
+      <span class="brand-mark">L<span>+</span></span>
+      <span class="brand-name">LICORES <small>MEDELLÍN</small></span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+    <nav id="nav">
+      <a href="#catalogo">Catálogo</a><a href="#combos">Combos</a><a href="#domicilios">Domicilios</a>
     </nav>
+    <a class="cart-link" href="#catalogo">Ver productos <span>↗</span></a>
+  </header>
 
-    <div class="current-cat" id="currentCat" style="font-size:0.9em;color:var(--text-light);margin:6px 2px 10px;">
-        Mostrando: <strong style="color:var(--primary);">Todas las categorías</strong>
-    </div>
+  <main>
+    <section class="hero">
+      <div class="hero-content">
+        <p class="eyebrow">QUE NO FALTE NADA EN LA FIESTA</p>
+        <h1>La fiesta<br>empieza <em>en casa.</em></h1>
+        <p class="hero-copy">Licores, hielo y esenciales para compartir. Pide fácil por WhatsApp y prepara el plan sin salir de casa.</p>
+        <div class="hero-actions"><a class="btn btn-gold" href="#catalogo">Explorar catálogo <span>↓</span></a><a class="text-link" href="#domicilios">Cómo pedir →</a></div>
+        <div class="hero-note"><span class="dot"></span> Atención directa por WhatsApp</div>
+      </div>
+      <div class="hero-art" role="img" aria-label="Ilustración decorativa de una celebración">
+        <div class="halo"></div><div class="orb orb1"></div><div class="orb orb2"></div>
+        <div class="bottle bottle-back"><div class="neck"></div><div class="label">NOCHE<br><small>RESERVA</small></div></div>
+        <div class="bottle bottle-front"><div class="neck"></div><div class="label label-light">BUEN<br><small>PLAN</small></div></div>
+        <div class="ice ice1"></div><div class="ice ice2"></div><div class="ice ice3"></div>
+        <div class="art-caption">BUENOS MOMENTOS<br><span>SE COMPARTEN</span></div>
+      </div>
+    </section>
 
-    <div class="stats">
-        <span id="countDisplay">0 productos</span>
-    </div>
+    <section class="trust-strip">
+      <div><span>01</span><b>Catálogo sencillo</b><small>Encuentra lo que buscas</small></div>
+      <div><span>02</span><b>Pedido directo</b><small>Confirma por WhatsApp</small></div>
+      <div><span>03</span><b>Atención cercana</b><small>Consulta cobertura y horario</small></div>
+    </section>
 
-    <div class="product-grid" id="productGrid">
-        <div class="loading-spinner" id="loadingSpinner">
-            <div class="spinner"></div>
-            <p>Cargando catálogo...</p>
-        </div>
-    </div>
+    <section class="section" id="catalogo">
+      <div class="section-heading"><div><p class="eyebrow">ELIGE TU PLAN</p><h2>Explora el catálogo</h2></div><p>Precios de ejemplo editables. Confirma disponibilidad antes de pagar.</p></div>
+      <div class="filters" id="filters">
+        <button class="filter active" data-category="todos">Todo</button>
+        <button class="filter" data-category="licores">Licores</button>
+        <button class="filter" data-category="hielo">Hielo</button>
+        <button class="filter" data-category="fiesta">Para la fiesta</button>
+      </div>
+      <div class="product-grid" id="productGrid"></div>
+    </section>
 
-    <div class="no-results" id="noResults">
-        <p>🔍 No encontramos ese producto. Escríbenos por WhatsApp — lo conseguimos</p>
-        <button class="btn-reset" onclick="resetFilters()">Ver todo el catálogo</button>
-    </div>
+    <section class="combo-banner" id="combos">
+      <div><p class="eyebrow">PARA ARMAR EL PLAN</p><h2>¿Noche de amigos,<br>reunión o celebración?</h2><p>Pregúntanos por combos personalizados de acuerdo con tu presupuesto.</p><a class="btn btn-light" href="#" id="comboBtn">Cotizar un combo por WhatsApp ↗</a></div>
+      <div class="combo-stamp"><span>ARMA</span><b>TU<br>PLAN</b><small>A TU MEDIDA</small></div>
+    </section>
 
-    <div class="footer">
-        <p><strong>Licores Medellín</strong> — Medellín, Colombia</p>
-        <p>🛵 Domicilios a toda Medellín • 💳 Efectivo, Nequi, Daviplata, Bancolombia</p>
-        <p style="margin-top:8px;font-size:0.8em">
-            📱 <a href="https://wa.me/573004515809" target="_blank" style="color:var(--whatsapp-dark);font-weight:600;">+57 300 451 5809</a>
-        </p>
-    </div>
-</div>
+    <section class="how section" id="domicilios">
+      <div class="section-heading"><div><p class="eyebrow">ASÍ DE FÁCIL</p><h2>¿Cómo hacer tu pedido?</h2></div></div>
+      <div class="steps">
+        <div><span>1</span><h3>Elige</h3><p>Agrega al pedido los productos que te interesan.</p></div>
+        <div><span>2</span><h3>Escríbenos</h3><p>Enviaremos tu lista a WhatsApp para confirmar precios y disponibilidad.</p></div>
+        <div><span>3</span><h3>Confirma</h3><p>Acuerda cobertura, costo del domicilio, pago y tiempo estimado.</p></div>
+      </div>
+      <div class="delivery-note"><b>¿Llegamos a tu zona?</b><span>Consulta cobertura y horarios directamente por WhatsApp.</span><a href="#" id="zoneBtn">Consultar zona ↗</a></div>
+    </section>
+  </main>
 
-<div class="legal-warning">
-    ⚖️ PROHÍBASE EL EXPENDIO DE BEBIDAS EMBRIAGANTES A MENORES DE EDAD Y MUJERES EMBARAZADAS. LEY 124 DE 1994.<br>
-    Ley 1994 de enero 16 — Resolución 285 de 2006
-</div>
-
-<script>
-    const WHATSAPP_NUMBER = '573004515809';
-    let productos;
-
-    try {
-        productos = JSON.parse('[{"nombre": "Aguardiente Antioqueño", "categoria": "aguardiente", "tipo": "Aguardiente", "ml": "750 ml", "emoji": "🍯", "precio": 52000}, {"nombre": "Aguardiente Antioqueño Sin Azúcar", "categoria": "aguardiente", "tipo": "Aguardiente", "ml": "750 ml", "emoji": "🍯", "precio": 54000}, {"nombre": "Aguardiente Néctar", "categoria": "aguardiente", "tipo": "Aguardiente", "ml": "750 ml", "emoji": "🍯", "precio": 53000}, {"nombre": "Aguardiente Cristal", "categoria": "aguardiente", "tipo": "Aguardiente", "ml": "750 ml", "emoji": "🍯", "precio": 51000}, {"nombre": "Aguardiente Rojo", "categoria": "aguardiente", "tipo": "Aguardiente", "ml": "750 ml", "emoji": "🍯", "precio": 48000}, {"nombre": "Antioqueño Botellita", "categoria": "aguardiente", "tipo": "Aguardiente", "ml": "375 ml", "emoji": "🍯", "precio": 27000}, {"nombre": "Buchanan\'s Master", "categoria": "whisky", "tipo": "Whisky", "ml": "750 ml", "emoji": "🥃", "precio": 145000}, {"nombre": "Buchanan\'s 18 Años", "categoria": "whisky", "tipo": "Whisky Premium", "ml": "750 ml", "emoji": "🥃", "precio": 310000}, {"nombre": "Old Parr 12 Años", "categoria": "whisky", "tipo": "Whisky", "ml": "750 ml", "emoji": "🥃", "precio": 135000}, {"nombre": "Jack Daniel\'s", "categoria": "whisky", "tipo": "Whisky", "ml": "750 ml", "emoji": "🥃", "precio": 115000}, {"nombre": "Old Kentucky", "categoria": "whisky", "tipo": "Whisky", "ml": "750 ml", "emoji": "🥃", "precio": 45000}, {"nombre": "Whisky Juanicó", "categoria": "whisky", "tipo": "Whisky", "ml": "750 ml", "emoji": "🥃", "precio": 65000}, {"nombre": "Ron Medellín 8 Años", "categoria": "ron", "tipo": "Ron", "ml": "750 ml", "emoji": "🧴", "precio": 75000}, {"nombre": "Ron Medellín 3 Fuegos", "categoria": "ron", "tipo": "Ron Premium", "ml": "750 ml", "emoji": "🧴", "precio": 130000}, {"nombre": "Ron Santa Fe", "categoria": "ron", "tipo": "Ron", "ml": "750 ml", "emoji": "🧴", "precio": 65000}, {"nombre": "Bacardí Carta Blanca", "categoria": "ron", "tipo": "Ron", "ml": "750 ml", "emoji": "🧴", "precio": 70000}, {"nombre": "Dictador 20 Años", "categoria": "ron", "tipo": "Ron Premium", "ml": "750 ml", "emoji": "🧴", "precio": 380000}, {"nombre": "Jose Cuervo Especial", "categoria": "tequila", "tipo": "Tequila", "ml": "750 ml", "emoji": "🍸", "precio": 85000}, {"nombre": "Olmeca Altos", "categoria": "tequila", "tipo": "Tequila", "ml": "750 ml", "emoji": "🍸", "precio": 95000}, {"nombre": "Smirnoff", "categoria": "vodka", "tipo": "Vodka", "ml": "750 ml", "emoji": "🥂", "precio": 68000}, {"nombre": "Absolut", "categoria": "vodka", "tipo": "Vodka", "ml": "750 ml", "emoji": "🥂", "precio": 95000}, {"nombre": "Gato Negro Cabernet", "categoria": "vino", "tipo": "Vino Tinto", "ml": "750 ml", "emoji": "🍷", "precio": 45000}, {"nombre": "Casillero del Diablo", "categoria": "vino", "tipo": "Vino Tinto", "ml": "750 ml", "emoji": "🍷", "precio": 55000}, {"nombre": "Gato Negro Chardonnay", "categoria": "vino", "tipo": "Vino Blanco", "ml": "750 ml", "emoji": "🥂", "precio": 45000}, {"nombre": "Cerveza Poker (Sixpack)", "categoria": "cerveza", "tipo": "Cerveza", "ml": "6 × 330 ml", "emoji": "🍺", "precio": 18500}, {"nombre": "Cerveza Águila (Sixpack)", "categoria": "cerveza", "tipo": "Cerveza", "ml": "6 × 330 ml", "emoji": "🍺", "precio": 17500}, {"nombre": "Club Colombia (Sixpack)", "categoria": "cerveza", "tipo": "Cerveza Premium", "ml": "6 × 330 ml", "emoji": "🍺", "precio": 21000}, {"nombre": "Corona (Sixpack)", "categoria": "cerveza", "tipo": "Cerveza Premium", "ml": "6 × 330 ml", "emoji": "🍺", "precio": 28000}, {"nombre": "Cerveza Costeña (Sixpack)", "categoria": "cerveza", "tipo": "Cerveza", "ml": "6 × 330 ml", "emoji": "🍺", "precio": 19000}, {"nombre":"Papas Margarita","categoria":"snacks","tipo":"Snack","ml":"105 g","emoji":"🍟","precio":4500},{"nombre":"Papas Rusticas","categoria":"snacks","tipo":"Snack","ml":"150 g","emoji":"🥔","precio":6500},{"nombre":"Maní Salado","categoria":"snacks","tipo":"Snack","ml":"200 g","emoji":"🥜","precio":5000},{"nombre":"Maní Chilimango","categoria":"snacks","tipo":"Snack","ml":"100 g","emoji":"🌶️","precio":5500},{"nombre":"Chicharrón Frito","categoria":"snacks","tipo":"Snack","ml":"80 g","emoji":"🥓","precio":7000},{"nombre":"Choclitos","categoria":"snacks","tipo":"Snack","ml":"80 g","emoji":"🌽","precio":4500},{"nombre":"Tostacos","categoria":"snacks","tipo":"Snack","ml":"150 g","emoji":"🌮","precio":5500},{"nombre":"Mazorca Tostada","categoria":"snacks","tipo":"Snack","ml":"120 g","emoji":"🍿","precio":5000},{"nombre":"Coca-Cola","categoria":"gaseosa","tipo":"Gaseosa","ml":"400 ml","emoji":"🥤","precio":3750},{"nombre":"Coca-Cola 1.5L","categoria":"gaseosa","tipo":"Gaseosa","ml":"1.5 L","emoji":"🥤","precio":7500},{"nombre":"Canada Dry","categoria":"gaseosa","tipo":"Gaseosa","ml":"400 ml","emoji":"🥤","precio":3300},{"nombre":"Manzana Postobón","categoria":"gaseosa","tipo":"Gaseosa","ml":"400 ml","emoji":"🍎","precio":3000},{"nombre":"Uva Postobón","categoria":"gaseosa","tipo":"Gaseosa","ml":"400 ml","emoji":"🍇","precio":3000},{"nombre":"Colombiana","categoria":"gaseosa","tipo":"Gaseosa","ml":"400 ml","emoji":"🥤","precio":3000},{"nombre":"Pepsi","categoria":"gaseosa","tipo":"Gaseosa","ml":"400 ml","emoji":"🥤","precio":3000},{"nombre":"Agua Sin Gas","categoria":"gaseosa","tipo":"Agua","ml":"600 ml","emoji":"💧","precio":2000},{"nombre":"Agua Con Gas","categoria":"gaseosa","tipo":"Agua","ml":"600 ml","emoji":"💨","precio":2500},{"nombre":"Tónica","categoria":"mezclador","tipo":"Mezclador","ml":"400 ml","emoji":"🫧","precio":3500},{"nombre":"Jugo Hit","categoria":"mezclador","tipo":"Mezclador","ml":"500 ml","emoji":"🧃","precio":3750},{"nombre":"Bolsa de Hielo","categoria":"mezclador","tipo":"Hielo","ml":"5 kg","emoji":"🧊","precio":8000},{"nombre":"Hielo en Vaso","categoria":"mezclador","tipo":"Hielo","ml":"10 vasos","emoji":"🥶","precio":5000},{"nombre":"Margarita Sal","categoria":"mezclador","tipo":"Mezclador","ml":"100 g","emoji":"🧂","precio":6000},{"nombre":"Red Bull","categoria":"energizante","tipo":"Energizante","ml":"250 ml","emoji":"⚡","precio":7500},{"nombre":"Monster","categoria":"energizante","tipo":"Energizante","ml":"473 ml","emoji":"⚡","precio":8000},{"nombre":"Electrolit","categoria":"energizante","tipo":"Hidratante","ml":"625 ml","emoji":"🔋","precio":11250},{"nombre":"Gatorade","categoria":"energizante","tipo":"Hidratante","ml":"625 ml","emoji":"🧴","precio":4605}]');
-        document.getElementById('countDisplay').textContent = productos.length + ' productos';
-        document.getElementById('loadingSpinner').style.display = 'none';
-        renderProducts();
-    } catch(e) {
-        document.getElementById('countDisplay').textContent = '❌ Error: ' + e.message;
-    }
-
-    function formatPrice(n) {
-        return '$' + n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-    }
-
-    function renderProducts(filter = 'todas', search = '') {
-        const grid = document.getElementById('productGrid');
-        const noResults = document.getElementById('noResults');
-        grid.innerHTML = '';
-        let count = 0;
-
-        const loading = document.createElement('div');
-        loading.className = 'loading-spinner';
-        loading.innerHTML = '<div class="spinner"></div><p>Filtrando productos...</p>';
-        grid.appendChild(loading);
-
-        requestAnimationFrame(() => {
-            grid.innerHTML = '';
-            const filtered = productos.filter(p => {
-                const matchCategory = filter === 'todas' || p.categoria === filter;
-                const q = search.toLowerCase();
-                const matchSearch = !search ||
-                    p.nombre.toLowerCase().includes(q) ||
-                    p.tipo.toLowerCase().includes(q) ||
-                    p.categoria.toLowerCase().includes(q);
-                return matchCategory && matchSearch;
-            });
-
-            filtered.forEach(p => {
-                count++;
-                const card = document.createElement('div');
-                card.className = 'product-card visible';
-                const emojiBox = document.createElement('div');
-                emojiBox.className = 'product-emoji';
-                emojiBox.textContent = p.emoji;
-                card.appendChild(emojiBox);
-                const badge = document.createElement('div');
-                badge.className = 'stock-badge';
-                badge.textContent = '✓ Disponible';
-                card.appendChild(badge);
-                const info = document.createElement('div');
-                info.className = 'product-info';
-                info.innerHTML = `
-                    <div class="product-type">${p.tipo}</div>
-                    <div class="product-name">${p.nombre}</div>
-                    <div class="product-ml">📦 ${p.ml}</div>
-                    <div class="product-price">${formatPrice(p.precio)}</div>
-                    <a class="btn-whatsapp" href="https://wa.me/${WHATSAPP_NUMBER}?text=Hola%2C+quiero+pedir%3A%0A${encodeURIComponent(p.nombre + ' ' + p.ml)}%0APrecio%3A+${formatPrice(p.precio)}%0ACon+domicilio+a+Medell%C3%ADn" target="_blank" rel="noopener noreferrer">
-                        💬 Pedir por WhatsApp
-                    </a>
-                `;
-                card.appendChild(info);
-                grid.appendChild(card);
-            });
-
-            if (count === 0) {
-                noResults.classList.add('visible');
-            } else {
-                noResults.classList.remove('visible');
-            }
-
-            document.getElementById('countDisplay').textContent = count + ' productos';
-        });
-    }
-
-    function filterByCategory(cat) {
-        const search = document.getElementById('search').value;
-        renderProducts(cat, search);
-        window._currentCat = cat;
-        updateMenuActive(cat);
-    }
-
-    // ─── Menú lateral ───
-    function toggleMenu() {
-        document.getElementById('sideMenu').classList.toggle('open');
-        document.getElementById('menuOverlay').classList.toggle('open');
-    }
-    function closeMenu() {
-        document.getElementById('sideMenu').classList.remove('open');
-        document.getElementById('menuOverlay').classList.remove('open');
-    }
-    function menuFilter(cat) {
-        filterByCategory(cat);
-        closeMenu();
-        // Actualizar indicador de categoría actual
-        const names = {
-            'todas': 'Todas las categorías', 'aguardiente': 'Aguardiente', 'whisky': 'Whisky',
-            'ron': 'Ron', 'tequila': 'Tequila', 'vodka': 'Vodka', 'vino': 'Vinos',
-            'cerveza': 'Cervezas', 'snacks': 'Snacks', 'gaseosa': 'Gaseosas',
-            'energizante': 'Energizantes', 'mezclador': 'Hielo y Mezcladores'
-        };
-        document.getElementById('currentCat').innerHTML =
-            'Mostrando: <strong style="color:var(--primary);">' + (names[cat] || cat) + '</strong>';
-    }
-    function updateMenuActive(cat) {
-        document.querySelectorAll('.menu-item').forEach(m => {
-            m.classList.toggle('active', m.dataset.cat === cat);
-        });
-    }
-
-    document.getElementById('search').addEventListener('input', function() {
-        const cat = window._currentCat || 'todas';
-        renderProducts(cat, this.value);
-    });
-
-    function resetFilters() {
-        document.getElementById('search').value = '';
-        window._currentCat = 'todas';
-        filterByCategory('todas');
-        document.getElementById('currentCat').innerHTML =
-            'Mostrando: <strong style="color:var(--primary);">Todas las categorías</strong>';
-    }
-
-    // Scroll hide header
-    let lastScrollY = window.scrollY;
-    const header = document.getElementById('mainHeader');
-
-    function onScroll() {
-        const currentY = window.scrollY;
-        if (currentY > lastScrollY && currentY > 120) {
-            header.classList.add('hidden');
-        } else {
-            header.classList.remove('hidden');
-        }
-        lastScrollY = currentY;
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-</script>
+  <footer>
+    <a class="brand footer-brand" href="#"><span class="brand-mark">L<span>+</span></span><span class="brand-name">LICORES <small>MEDELLÍN</small></span></a>
+    <p>Licores · Hielo · Productos para fiestas · Bello y Medellín</p>
+    <div class="footer-links"><a href="#catalogo">Catálogo</a><a href="#domicilios">Domicilios</a><a href="#" id="footerWhatsApp">WhatsApp</a></div>
+    <small class="legal">Venta de bebidas alcohólicas únicamente a mayores de edad. Se podrá solicitar documento de identidad. Consume con responsabilidad. No se vende ni entrega alcohol a menores de 18 años. Cumple la normativa local aplicable.</small>
+    <small class="copyright">© <span id="year"></span> Licores Medellín</small>
+  </footer>
+  <a class="floating-wa" href="#" id="floatingWA" aria-label="Pedir por WhatsApp">WA <span>Haz tu pedido</span></a>
+  <script src="script.js"></script>
 </body>
 </html>
