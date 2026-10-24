@@ -3,7 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0B0B0F">
+<meta name="theme-color" content="#0A0A0E">
+<meta name="color-scheme" content="dark">
 <title>Licores Medellín · Domicilio de licor en Medellín y Bello</title>
 <meta name="description" content="Aguardiente, whisky, ron, tequila, vodka y cervezas con domicilio en Medellín y Bello. Pide por WhatsApp y paga al recibir. Solo mayores de 18 años.">
 <link rel="canonical" href="https://wroso1.github.io/licores-medellin/">
@@ -30,7 +31,7 @@
 <div class="gate" id="ageGate" hidden>
   <div class="gate-card" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
     <span class="gate-mark" aria-hidden="true">L</span>
-    <h1 class="gate-title" id="gateTitle">¿Tienes 18 años o más?</h1>
+    <h2 class="gate-title" id="gateTitle">¿Tienes 18 años o más?</h2>
     <p class="gate-text">Vendemos bebidas alcohólicas solo a mayores de edad. Al entrar confirmas que tienes 18 años o más y aceptas que se verifique tu documento al entregar.</p>
     <div class="gate-actions">
       <button class="btn btn-primary" id="gateYes">Sí, soy mayor de edad</button>
@@ -77,15 +78,33 @@
         <a class="btn btn-primary" href="#catalogo">Ver productos</a>
         <a class="btn btn-outline" href="#" data-wa data-wa-msg="Hola, quiero hacer un pedido de licores.">Escribir por WhatsApp</a>
       </div>
-      <ul class="hero-badges">
-        <li>Domicilio $5.000</li>
-        <li>Pago contra entrega</li>
-        <li>Solo mayores de 18</li>
-      </ul>
     </div>
     <div class="hero-art" aria-hidden="true">
       <div class="hero-glow"></div>
       <img src="img/guardo-real.jpg" alt="" width="810" height="891" fetchpriority="high">
+    </div>
+  </section>
+
+  <section class="trust" aria-label="Condiciones del servicio">
+    <div class="trust-inner">
+      <div class="trust-item">
+        <span class="trust-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3"/><circle cx="18.5" cy="17.5" r="3"/><path d="M8.5 17.5h7M2.5 17.5v-6l3-4h6l3 4h3.5v6"/></svg>
+        </span>
+        <span><b>Domicilio $5.000</b><br>Medellín y Bello</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10.5h19"/></svg>
+        </span>
+        <span><b>Pagas al recibir</b><br>Efectivo o transferencia</span>
+      </div>
+      <div class="trust-item">
+        <span class="trust-ico" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6.5v5c0 4.4 3.1 8.3 7.5 9.5 4.4-1.2 7.5-5.1 7.5-9.5v-5L12 3Z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg>
+        </span>
+        <span><b>Solo mayores de 18</b><br>Documento al entregar</span>
+      </div>
     </div>
   </section>
 
@@ -119,17 +138,17 @@
     <h2 class="info-title" id="infoTitle">Cómo funciona</h2>
     <div class="info-grid">
       <article class="info-card">
-        <span class="info-ico" aria-hidden="true">🛵</span>
+        <span class="info-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="5.5" cy="17.5" r="3"/><circle cx="18.5" cy="17.5" r="3"/><path d="M8.5 17.5h7M2.5 17.5v-6l3-4h6l3 4h3.5v6"/></svg></span>
         <h3>Domicilio en Medellín y Bello</h3>
         <p>$5.000 dentro de la zona. Fuera de la zona te cotizamos por WhatsApp antes de despachar.</p>
       </article>
       <article class="info-card">
-        <span class="info-ico" aria-hidden="true">💳</span>
+        <span class="info-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"/><path d="M2.5 10.5h19"/></svg></span>
         <h3>Pagas al recibir</h3>
         <p>Efectivo o transferencia contra entrega. También puedes transferir por adelantado si lo prefieres.</p>
       </article>
       <article class="info-card">
-        <span class="info-ico" aria-hidden="true">🔒</span>
+        <span class="info-ico" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6.5v5c0 4.4 3.1 8.3 7.5 9.5 4.4-1.2 7.5-5.1 7.5-9.5v-5L12 3Z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg></span>
         <h3>Solo mayores de 18</h3>
         <p>Se pide documento al entregar bebidas alcohólicas. Si no lo presentas, no se entrega el pedido.</p>
       </article>
@@ -139,16 +158,25 @@
 
 <footer class="site-footer">
   <div class="footer-inner">
-    <a class="brand" href="#">
-      <span class="brand-mark" aria-hidden="true">L</span>
-      <span class="brand-text">Licores<small>Medellín</small></span>
-    </a>
-    <p class="footer-line">Licores, hielo y productos para la fiesta · Medellín y Bello</p>
-    <p class="footer-contact">
-      <a href="#" data-wa data-wa-msg="Hola, quiero hacer un pedido de licores.">WhatsApp 300 451 5809</a>
-    </p>
+    <div class="footer-about">
+      <a class="brand" href="#" aria-label="Licores Medellín, inicio">
+        <span class="brand-mark" aria-hidden="true">L</span>
+        <span class="brand-text">Licores<small>Medellín</small></span>
+      </a>
+      <p class="footer-line">Licores, hielo y todo para la fiesta. Entregamos el mismo día en Medellín y Bello.</p>
+    </div>
+
+    <div class="footer-contact">
+      <span class="footer-contact-label">Pedidos por WhatsApp</span>
+      <a href="#" data-wa data-wa-msg="Hola, quiero hacer un pedido de licores.">300 451 5809</a>
+    </div>
+
     <p class="legal">Venta de bebidas alcohólicas únicamente a mayores de 18 años. Se podrá solicitar documento de identidad al momento de la entrega. Prohibida la venta a menores — Ley 124 de 1994. Consume con responsabilidad. Precios sujetos a disponibilidad.</p>
-    <p class="copyright">© <span id="year">2026</span> Licores Medellín</p>
+
+    <p class="copyright">
+      <span>© <span id="year">2026</span> Licores Medellín</span>
+      <span>Precios en pesos colombianos</span>
+    </p>
   </div>
 </footer>
 
