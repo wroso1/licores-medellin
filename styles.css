@@ -349,7 +349,6 @@ body.ready .display .line:nth-child(4) > * { transition-delay: .29s; }
   margin-bottom: clamp(20px, 3vw, 30px);
 }
 .shop-head .kicker { margin-bottom: 6px; }
-.shop-title { font-size: clamp(1.7rem, 4vw, 2.5rem); letter-spacing: -.03em; }
 .count { margin-top: 2px; font-size: 12.5px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
 
 .sort {
