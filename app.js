@@ -220,7 +220,6 @@
     }
 
     $("#tSubtotal").textContent = money(subtotal());
-    $("#tDelivery").textContent = delivery() === 0 ? "Gratis" : money(delivery());
     $("#tTotal").textContent = money(total());
 
     $("#cartBarCount").textContent = count;
@@ -315,7 +314,6 @@
 
     lines.push("");
     lines.push("Subtotal: " + money(subtotal()));
-    lines.push("Domicilio: " + (delivery() === 0 ? "Gratis" : money(delivery())));
     lines.push("*TOTAL: " + money(total()) + "*");
     lines.push("");
     lines.push("Te paso los datos de entrega por aquí: nombre, celular, barrio y dirección.");

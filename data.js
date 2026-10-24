@@ -9,7 +9,7 @@ var CONFIG = {
   whatsapp: "573004515809",
   whatsappLabel: "300 451 5809",
 
-  deliveryFee: 5000,
+  deliveryFee: 0,
   // Entrega gratis desde este subtotal. 0 = nunca.
   freeDeliveryFrom: 0,
   currency: "COP",
