@@ -38,7 +38,7 @@ var CATEGORIES = [
    img: "" = sin foto, se dibuja una ficha tipográfica                       */
 var PRODUCTS = [
   { id: 1,  name: "Aguardiente Antioqueño Real", cat: "aguardiente", size: "750 ml", price: 75400,  tag: "Popular",  img: "img/guardo-real.jpg",        desc: "El amarillo Real de siempre." },
-  { id: 2,  name: "Aguardiente Amarillo",        cat: "aguardiente", size: "750 ml", price: 75400,  tag: "",         img: "img/guardo-amarillo.jpg",    desc: "Botella de 750 ml." },
+  { id: 2,  name: "Aguardiente Amarillo",        cat: "aguardiente", size: "750 ml", price: 75400,  tag: "",         img: "img/guardo-amarillo-manzanares.jpg", desc: "Amarillo de Manzanares, 750 ml." },
   { id: 3,  name: "Media Aguardiente Rojo",      cat: "aguardiente", size: "375 ml", price: 37500,  tag: "Media",    img: "img/guardo-media-rojo.jpg",  desc: "Tapa roja, media botella." },
   { id: 4,  name: "Aguardiente Litro",           cat: "aguardiente", size: "1000 ml", price: 87525, tag: "Litro",    img: "",                           desc: "Azul o verde, la referencia que prefieras." },
 
