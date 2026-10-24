@@ -205,12 +205,26 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* --------------------------------- portada ------------------------------- */
 .hero {
-  max-width: var(--max); margin: 0 auto;
-  padding: clamp(30px, 6vw, 80px) var(--gut) clamp(34px, 6vw, 64px);
-  display: grid; gap: clamp(30px, 5vw, 60px);
-  align-items: center;
+  position: relative;
+  display: flex; align-items: center;
+  min-height: clamp(460px, 72svh, 700px);
+  padding: clamp(44px, 8vw, 92px) var(--gut) clamp(48px, 9vw, 104px);
+  background: #06060A url("img/barra-whisky.jpg") 74% 44% / cover no-repeat;
+  border-bottom: 1px solid rgba(231, 178, 95, .22);
+  isolation: isolate;
 }
-@media (min-width: 900px) { .hero { grid-template-columns: 1.08fr .92fr; } }
+
+/* el velo hunde el texto a la izquierda y deja la botella a la derecha */
+.hero::before {
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(5, 5, 8, .97) 0%, rgba(5, 5, 8, .92) 34%,
+                            rgba(5, 5, 8, .58) 62%, rgba(5, 5, 8, .34) 84%, rgba(5, 5, 8, .62) 100%),
+    linear-gradient(180deg, rgba(5, 5, 8, .55) 0%, rgba(5, 5, 8, 0) 30%, rgba(5, 5, 8, .5) 100%);
+}
+
+.hero-copy { width: 100%; max-width: var(--max); margin: 0 auto; }
 
 .kicker {
   font-size: 10.5px; font-weight: 750;
@@ -220,10 +234,14 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 
 .display {
-  font-size: clamp(2.85rem, 9.4vw, 5.1rem);
-  line-height: .92;
-  letter-spacing: -.035em;
-  margin-bottom: 20px;
+  font-family: var(--sans);
+  font-weight: 800;
+  text-transform: uppercase;
+  max-width: 16ch;
+  font-size: clamp(2.35rem, 8.4vw, 4.7rem);
+  line-height: .94;
+  letter-spacing: -.028em;
+  margin-bottom: 18px;
 }
 .display .line { display: block; overflow: hidden; }
 .display .line > span,
@@ -238,51 +256,32 @@ body.ready .display .line > em { transform: none; }
 body.ready .display .line:nth-child(1) > * { transition-delay: .05s; }
 body.ready .display .line:nth-child(2) > * { transition-delay: .13s; }
 body.ready .display .line:nth-child(3) > * { transition-delay: .21s; }
+body.ready .display .line:nth-child(4) > * { transition-delay: .29s; }
 
 .lead {
-  max-width: 42ch;
-  font-size: clamp(15px, 1.7vw, 17px);
-  line-height: 1.65;
-  color: var(--ink-3);
+  max-width: 34ch;
+  font-size: clamp(15px, 1.8vw, 17.5px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, .82);
 }
 
-.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
 
-/* lámina de la foto */
-.hero-plate { margin: 0; max-width: 430px; justify-self: center; width: 100%; }
-
-.plate {
-  position: relative;
-  padding: 12px;
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 4px;
-  box-shadow: 18px 18px 0 -1px rgba(231, 178, 95, .16), 0 30px 60px -40px #000;
-  animation: float 8s ease-in-out infinite;
+.btn-red {
+  background: #D93428; color: #fff; border-color: #D93428;
+  text-transform: uppercase; letter-spacing: .1em;
+  font-size: 13px; font-weight: 750;
+  padding: 0 26px;
 }
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-@media (prefers-reduced-motion: reduce) { .plate { animation: none; } }
+.btn-red:hover { background: #C02C21; border-color: #C02C21; }
 
-.plate img { width: 100%; aspect-ratio: 4 / 5; object-fit: contain; background: #FBFAF6; }
-
-.plate-chip {
-  position: absolute;
-  left: -6px; bottom: 22px;
-  background: var(--wine); color: var(--on-solid);
-  font-size: 9.5px; font-weight: 750;
-  letter-spacing: .18em; text-transform: uppercase;
-  padding: 7px 11px;
+@media (max-width: 700px) {
+  .hero { background-position: 78% 40%; min-height: clamp(420px, 68svh, 560px); }
+  .hero::before {
+    background:
+      linear-gradient(90deg, rgba(5, 5, 8, .96) 0%, rgba(5, 5, 8, .88) 58%, rgba(5, 5, 8, .62) 100%);
+  }
 }
-
-.hero-plate figcaption {
-  display: flex; align-items: center; gap: 10px;
-  margin-top: 16px;
-  font-size: 12px; color: var(--ink-3);
-}
-.plate-rule { width: 22px; height: 1px; background: var(--gold); flex: none; }
 
 /* --------------------------------- catálogo ------------------------------ */
 .shop {
@@ -856,7 +855,5 @@ body.motion .card.in-view {
   .nav-link span { display: none; }
   .nav-link { padding: 10px; }
   .btn-sm span { display: none; }
-  .display { letter-spacing: -.03em; }
-  .hero-plate figcaption { display: none; }
-  .plate { box-shadow: 10px 10px 0 -1px rgba(231, 178, 95, .16), 0 18px 40px -34px #000; }
+  .display { letter-spacing: -.03em; font-size: clamp(2.05rem, 8vw, 2.6rem); }
 }
