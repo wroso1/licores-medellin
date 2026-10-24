@@ -286,12 +286,43 @@
     syncQuick();
     quickBack.classList.remove("is-out");
     quickBack.hidden = false;
+    startRotate();
     document.body.style.overflow = "hidden";
     $("#quickClose").focus();
   }
 
+  var rotTimer = null;
+
+  function puedeRotar() {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return false;
+    var p = catalog[quickId];
+    return !!(p && p.variants && p.variants.length > 1);
+  }
+
+  function rotar() {
+    var p = catalog[quickId];
+    if (!p || !p.variants) return;
+    var i = -1;
+    p.variants.forEach(function (v, n) { if (v.sku === quickPick) i = n; });
+    var sig = p.variants[(i + 1) % p.variants.length];
+    quickPick = sig.sku;
+    syncQuick();
+  }
+
+  function stopRotate() {
+    if (rotTimer) clearInterval(rotTimer);
+    rotTimer = null;
+  }
+
+  function startRotate() {
+    stopRotate();
+    if (!puedeRotar()) return;
+    rotTimer = setInterval(rotar, 1000);
+  }
+
   function closeQuick() {
     if (quickBack.hidden) return;
+    stopRotate();
     quickBack.classList.add("is-out");
     setTimeout(function () {
       quickBack.hidden = true;
@@ -490,6 +521,7 @@
       var b = e.target.closest("[data-variant]");
       if (!b) return;
       quickPick = b.dataset.variant;
+      stopRotate();
       syncQuick();
     });
     $("#quickAdd").addEventListener("click", function () {

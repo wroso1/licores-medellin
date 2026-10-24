@@ -44,7 +44,7 @@ var PRODUCTS = [
     variants: [
       { key: "rojo",  name: "Rojo",  color: "#C0392B", img: "img/guardo-media-rojo.jpg" },
       { key: "verde", name: "Verde", color: "#1F7A46", img: "img/guardo-media-verde.jpg" },
-      { key: "azul",  name: "Azul",  color: "#1B4FA0", img: "" }
+      { key: "azul",  name: "Azul",  color: "#1B4FA0", img: "img/guardo-media-azul.jpg" }
     ] },
   { id: 4,  name: "Aguardiente Litro",           cat: "aguardiente", size: "1000 ml", price: 87525, tag: "Litro",    img: "",                           desc: "Azul o verde, la referencia que prefieras." },
 

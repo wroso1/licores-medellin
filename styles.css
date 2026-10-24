@@ -615,7 +615,10 @@ body.ready .display .line:nth-child(4) > * { transition-delay: .29s; }
 .quick-media img {
   width: auto; max-width: 100%; max-height: min(38svh, 320px);
   object-fit: contain; display: block;
+  animation: quick-photo .45s var(--ease);
 }
+@keyframes quick-photo { from { opacity: .35; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .quick-media img { animation: none; } }
 .quick-media .ph-lg {
   font-family: var(--serif); font-size: 64px; color: #C9BFA8;
 }
