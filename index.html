@@ -21,7 +21,7 @@
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B0B10'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='36' font-weight='700' fill='%23E7B25F' text-anchor='middle'%3EL%3C/text%3E%3C/svg%3E">
 <link rel="preload" as="image" href="img/hero-black-label.webp" type="image/webp">
-<link rel="stylesheet" href="styles.css?v=20261024p">
+<link rel="stylesheet" href="styles.css?v=20261024q">
 </head>
 <body>
 
@@ -185,75 +185,7 @@
         </div>
 
         <form id="checkout" novalidate>
-          <h3 class="form-title">Datos de entrega</h3>
-
-          <div class="field">
-            <label for="fName">Nombre completo</label>
-            <input id="fName" name="name" autocomplete="name" placeholder="Tu nombre" required>
-            <p class="err" data-err="name" hidden></p>
-          </div>
-
-          <div class="field">
-            <label for="fPhone">Celular</label>
-            <input id="fPhone" name="phone" type="tel" inputmode="numeric" autocomplete="tel" placeholder="300 123 4567" required>
-            <p class="err" data-err="phone" hidden></p>
-          </div>
-
-          <div class="field-row">
-            <div class="field">
-              <label for="fZone">Barrio</label>
-              <input id="fZone" name="zone" list="zones" autocomplete="address-level3" placeholder="Tu barrio" required>
-              <datalist id="zones">
-                <option value="El Poblado"></option>
-                <option value="Laureles"></option>
-                <option value="Belén"></option>
-                <option value="La América"></option>
-                <option value="Robledo"></option>
-                <option value="Castilla"></option>
-                <option value="Aranjuez"></option>
-                <option value="Buenos Aires"></option>
-                <option value="Villa Hermosa"></option>
-                <option value="Manrique"></option>
-                <option value="San Javier"></option>
-                <option value="Guayabal"></option>
-                <option value="Centro"></option>
-                <option value="Niquía"></option>
-                <option value="Cabañas"></option>
-                <option value="Suárez"></option>
-                <option value="París"></option>
-                <option value="Zamora"></option>
-                <option value="Manchester"></option>
-              </datalist>
-              <p class="err" data-err="zone" hidden></p>
-            </div>
-
-            <div class="field">
-              <label for="fAddress">Dirección</label>
-              <input id="fAddress" name="address" autocomplete="street-address" placeholder="Calle 10 #40-20, apto 302" required>
-              <p class="err" data-err="address" hidden></p>
-            </div>
-          </div>
-
-          <fieldset class="pay-group">
-            <legend>Forma de pago</legend>
-            <label class="pay">
-              <input type="radio" name="payment" value="Efectivo contraentrega" checked>
-              <span class="pay-body"><b>Efectivo contraentrega</b><small>Pagas cuando llega el pedido.</small></span>
-            </label>
-            <label class="pay">
-              <input type="radio" name="payment" value="Transferencia contraentrega">
-              <span class="pay-body"><b>Transferencia contraentrega</b><small>Nequi, Daviplata o Bancolombia al recibir.</small></span>
-            </label>
-            <label class="pay">
-              <input type="radio" name="payment" value="Transferencia anticipada">
-              <span class="pay-body"><b>Transferencia anticipada</b><small>Te pasamos los datos por WhatsApp.</small></span>
-            </label>
-          </fieldset>
-
-          <div class="field">
-            <label for="fNotes">Notas <span class="opt">(opcional)</span></label>
-            <textarea id="fNotes" name="notes" rows="2" placeholder="Torre, color del edificio, indicaciones para llegar…"></textarea>
-          </div>
+          <p class="form-hint">Al pulsar el botón se abre WhatsApp con tu pedido escrito. Ahí mismo nos pasas nombre, celular, barrio y dirección.</p>
 
           <label class="check">
             <input type="checkbox" name="adult" id="fAdult" required>
@@ -262,7 +194,7 @@
           <p class="err" data-err="adult" hidden></p>
 
           <button class="btn btn-wa btn-block" type="submit" id="sendOrder">Enviar pedido por WhatsApp</button>
-          <p class="form-legal">Al enviar se abre WhatsApp con el pedido escrito. No se cobra nada en la página.</p>
+          <p class="form-legal">No se cobra nada en la página. Pagas al recibir.</p>
         </form>
       </div>
 
@@ -303,8 +235,8 @@
   "areaServed": ["Medellín", "Bello"]
 }
 </script>
-<script src="data.js?v=20261024p"></script>
-<script src="app.js?v=20261024p"></script>
-<script src="motion.js?v=20261024p"></script>
+<script src="data.js?v=20261024q"></script>
+<script src="app.js?v=20261024q"></script>
+<script src="motion.js?v=20261024q"></script>
 </body>
 </html>

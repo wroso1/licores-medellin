@@ -30,7 +30,6 @@
   };
 
   var K_CART = "lm.cart.v1";
-  var K_DATA = "lm.cliente.v1";
   var K_AGE = "lm.edad.v1";
 
   /* ---------------------------- estado ---------------------------- */
@@ -301,7 +300,7 @@
     return "LM-" + String(d.getFullYear()).slice(2) + p(d.getMonth() + 1) + p(d.getDate()) + "-" + p(d.getHours()) + p(d.getMinutes());
   }
 
-  function buildOrder(id, data) {
+  function buildOrder(id) {
     var lines = [];
     lines.push("🥃 *PEDIDO — " + CONFIG.shopName.toUpperCase() + "*");
     lines.push("Pedido: " + id);
@@ -319,12 +318,7 @@
     lines.push("Domicilio: " + (delivery() === 0 ? "Gratis" : money(delivery())));
     lines.push("*TOTAL: " + money(total()) + "*");
     lines.push("");
-    lines.push("👤 " + data.name);
-    lines.push("📱 " + data.phone);
-    lines.push("📍 " + data.zone);
-    lines.push("🏠 " + data.address);
-    lines.push("💳 " + data.payment);
-    if (data.notes) lines.push("📝 " + data.notes);
+    lines.push("Te paso los datos de entrega por aquí: nombre, celular, barrio y dirección.");
     lines.push("");
     lines.push("Confirmo que tengo 18 años o más.");
     return lines.join("\n");
@@ -343,30 +337,12 @@
     input.setAttribute("aria-invalid", invalid ? "true" : "false");
   }
 
-  function validate(data, fields) {
-    var ok = true;
-    var firstBad = null;
-
-    var checks = [
-      ["name", "Escribe tu nombre.", data.name.trim().length >= 2, fields.name],
-      ["phone", "Celular de 10 dígitos que empiece por 3.", /^3\d{9}$/.test(data.phone.replace(/\D/g, "")), fields.phone],
-      ["zone", "Dinos el barrio para calcular la entrega.", data.zone.trim().length >= 3, fields.zone],
-      ["address", "Escribe la dirección con número.", data.address.trim().length >= 5, fields.address]
-    ];
-
-    checks.forEach(function (c) {
-      fieldError(c[0], c[2] ? "" : c[1]);
-      markInvalid(c[3], !c[2]);
-      if (!c[2]) { ok = false; if (!firstBad) firstBad = c[3]; }
-    });
-
+  function validate(fields) {
     var adult = !!(fields.adult && fields.adult.checked);
     fieldError("adult", adult ? "" : "Debes confirmar que eres mayor de 18 años.");
     markInvalid(fields.adult, !adult);
-    if (!adult) { ok = false; if (!firstBad) firstBad = fields.adult; }
-
-    if (firstBad && firstBad.focus) firstBad.focus();
-    return ok;
+    if (!adult && fields.adult && fields.adult.focus) fields.adult.focus();
+    return adult;
   }
 
   /* ---------------------------- eventos ---------------------------- */
@@ -480,43 +456,16 @@
 
     // Formulario
     var form = $("#checkout");
-    var fields = {
-      name: $("#fName"),
-      phone: $("#fPhone"),
-      zone: $("#fZone"),
-      address: $("#fAddress"),
-      notes: $("#fNotes"),
-      adult: $("#fAdult")
-    };
-
-    // Recordar datos del cliente
-    var saved = STORE.get(K_DATA, null);
-    if (saved) {
-      ["name", "phone", "zone", "address"].forEach(function (k) {
-        if (saved[k] && fields[k]) fields[k].value = saved[k];
-      });
-    }
+    var fields = { adult: $("#fAdult") };
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (!cart.size) { toast("Agrega al menos un producto"); return; }
 
-      var radio = form.querySelector('input[name="payment"]:checked');
-      var data = {
-        name: (fields.name.value || "").trim(),
-        phone: (fields.phone.value || "").trim(),
-        zone: (fields.zone.value || "").trim(),
-        address: (fields.address.value || "").trim(),
-        notes: (fields.notes.value || "").trim(),
-        payment: (radio && radio.value) || "Efectivo contraentrega"
-      };
-
-      if (!validate(data, fields)) { toast("Revisa los datos marcados"); return; }
-
-      STORE.set(K_DATA, { name: data.name, phone: data.phone, zone: data.zone, address: data.address });
+      if (!validate(fields)) { toast("Confirma que eres mayor de edad"); return; }
 
       var id = orderId();
-      lastOrderText = buildOrder(id, data);
+      lastOrderText = buildOrder(id);
       var url = openWhatsApp(lastOrderText);
 
       // El pedido ya salió: se vacía el carrito pero se conserva el resumen.

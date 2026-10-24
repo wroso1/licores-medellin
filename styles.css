@@ -744,56 +744,15 @@ body.ready .display .line:nth-child(4) > * { transition-delay: .29s; }
 /* ------------------------------- formulario ------------------------------ */
 #checkout { padding-top: 22px; }
 
-.form-title {
-  font-family: var(--sans);
-  font-size: 10.5px; font-weight: 800; letter-spacing: .2em; text-transform: uppercase;
-  color: var(--ink-3); margin-bottom: 14px;
-}
 
-.field { margin-bottom: 12px; }
-.field-row { display: grid; gap: 0; }
 @media (min-width: 420px) { .field-row { grid-template-columns: 1fr 1fr; gap: 10px; } }
 
-.field label { display: block; font-size: 12px; font-weight: 650; color: var(--ink-2); margin-bottom: 5px; }
 
-.field input, .field textarea {
-  width: 100%;
-  padding: 12px 13px;
-  border: 1px solid var(--line);
-  border-radius: 3px;
-  background: var(--paper);
-  color: var(--ink);
-  font-size: 15px;
-  transition: border-color .18s var(--ease), box-shadow .18s var(--ease);
-}
-.field textarea { resize: vertical; min-height: 56px; line-height: 1.5; }
-.field input::placeholder, .field textarea::placeholder { color: #A79E8C; }
-.field input:focus, .field textarea:focus {
-  outline: 0; border-color: var(--ink);
-  box-shadow: 0 0 0 3px rgba(231, 178, 95, .14);
-}
-.field input.invalid, .field textarea.invalid { border-color: var(--err); box-shadow: 0 0 0 3px rgba(163, 35, 28, .09); }
 
-.opt { color: var(--ink-3); font-weight: 500; }
 .err { margin-top: 5px; font-size: 11.5px; line-height: 1.45; color: var(--err); }
 
-.pay-group { margin: 4px 0 14px; padding: 0; border: 0; }
-.pay-group legend { padding: 0; margin-bottom: 7px; font-size: 12px; font-weight: 650; color: var(--ink-2); }
 
-.pay {
-  display: flex; align-items: flex-start; gap: 10px;
-  padding: 10px 12px; margin-bottom: 7px;
-  border: 1px solid var(--line);
-  background: var(--paper);
-  cursor: pointer;
-  transition: border-color .18s var(--ease), background .18s var(--ease);
-}
-.pay:hover { border-color: var(--ink-3); }
 .pay:has(input:checked) { border-color: var(--wine); background: rgba(231, 178, 95, .09); }
-.pay input { width: 18px; height: 18px; margin: 1px 0 0; flex: none; accent-color: var(--wine); cursor: pointer; }
-.pay-body { display: flex; flex-direction: column; line-height: 1.35; }
-.pay-body b { font-size: 13.5px; font-weight: 650; }
-.pay-body small { font-size: 11.5px; color: var(--ink-3); }
 
 .check {
   display: flex; align-items: flex-start; gap: 10px;
@@ -807,6 +766,11 @@ body.ready .display .line:nth-child(4) > * { transition-delay: .29s; }
 .check b { color: var(--ink); font-weight: 700; }
 
 #sendOrder { margin-top: 14px; }
+.form-hint {
+  font-size: 13px; line-height: 1.6;
+  color: var(--ink-2);
+  margin-bottom: 16px;
+}
 .form-legal { margin-top: 10px; font-size: 11px; line-height: 1.55; color: var(--ink-3); text-align: center; }
 
 .done { text-align: center; padding: 26px 4px 10px; }
