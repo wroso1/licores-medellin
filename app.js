@@ -324,27 +324,6 @@
     return lines.join("\n");
   }
 
-  function fieldError(name, message) {
-    var el = document.querySelector('[data-err="' + name + '"]');
-    if (!el) return;
-    if (message) { el.textContent = message; el.hidden = false; }
-    else { el.textContent = ""; el.hidden = true; }
-  }
-
-  function markInvalid(input, invalid) {
-    if (!input) return;
-    input.classList.toggle("invalid", !!invalid);
-    input.setAttribute("aria-invalid", invalid ? "true" : "false");
-  }
-
-  function validate(fields) {
-    var adult = !!(fields.adult && fields.adult.checked);
-    fieldError("adult", adult ? "" : "Debes confirmar que eres mayor de 18 años.");
-    markInvalid(fields.adult, !adult);
-    if (!adult && fields.adult && fields.adult.focus) fields.adult.focus();
-    return adult;
-  }
-
   /* ---------------------------- eventos ---------------------------- */
   function bindStatic() {
     // Carrito
@@ -456,13 +435,10 @@
 
     // Formulario
     var form = $("#checkout");
-    var fields = { adult: $("#fAdult") };
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       if (!cart.size) { toast("Agrega al menos un producto"); return; }
-
-      if (!validate(fields)) { toast("Confirma que eres mayor de edad"); return; }
 
       var id = orderId();
       lastOrderText = buildOrder(id);
