@@ -303,8 +303,8 @@ body.ready .display .line:nth-child(4) > * { transition-delay: .29s; }
 @media (max-width: 700px) {
   .hero {
     display: flex; flex-direction: column; justify-content: center;
-    min-height: clamp(500px, 78svh, 620px);
-    padding-bottom: clamp(22px, 4.5vw, 36px);
+    min-height: clamp(440px, 68svh, 580px);
+    padding: clamp(18px, 4vw, 28px) var(--gut) clamp(22px, 4.5vw, 36px);
   }
   .hero-copy { align-self: stretch; }
   /* velo sobre la botella, solo del lado del texto, para poder subirlo al centro */
@@ -316,8 +316,16 @@ body.ready .display .line:nth-child(4) > * { transition-delay: .29s; }
   }
   /* en el móvil la botella se asoma por detrás del texto, como en la referencia */
   .hero-shot {
-    position: absolute; right: -14vw; top: 4vh; bottom: auto;
-    width: 92vw; z-index: 0; opacity: .92;
+    position: absolute; inset: 0; z-index: 0; opacity: 1;
+    width: 100%;
+  }
+  /* la foto llena la banda entera: se cortan las franjas negras de arriba y abajo */
+  .hero-shot img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: 50% 42%;
+    -webkit-mask-image: none; mask-image: none;
+    filter: saturate(108%);
   }
   .hero::before {
     background:
