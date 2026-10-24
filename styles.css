@@ -209,28 +209,25 @@ button, input, select, textarea { font: inherit; color: inherit; }
   display: flex; flex-direction: column; justify-content: center; align-items: stretch;
   min-height: clamp(520px, 70svh, 640px);
   padding: clamp(20px, 5vw, 34px) 0 clamp(38px, 8vw, 64px);
-  background: #07070A;
+  background: #07070A url("img/hero-black-label.webp") center 24% / cover no-repeat;
   border-bottom: 1px solid rgba(231, 178, 95, .22);
   overflow: hidden;
   isolation: isolate;
 }
 
-/* la foto llena la banda y el velo hunde la mitad de abajo para el texto */
+/* el velo oscurece solo donde va el texto: izquierda y pie de la banda */
 .hero::before {
   content: "";
   position: absolute; inset: 0; z-index: 1;
   background:
-    linear-gradient(180deg, rgba(6, 6, 9, .58) 0%, rgba(6, 6, 9, .22) 18%,
-                            rgba(6, 6, 9, .55) 36%, rgba(6, 6, 9, .88) 56%,
-                            rgba(7, 7, 10, .97) 76%, #07070A 94%);
+    linear-gradient(100deg, rgba(6, 6, 9, .93) 0%, rgba(6, 6, 9, .8) 36%,
+                            rgba(6, 6, 9, .34) 64%, rgba(6, 6, 9, .04) 86%),
+    linear-gradient(180deg, rgba(6, 6, 9, .42) 0%, rgba(6, 6, 9, 0) 22%,
+                            rgba(6, 6, 9, .18) 58%, rgba(6, 6, 9, .78) 88%, #07070A 100%);
 }
 
-.hero-shot { position: absolute; inset: 0; margin: 0; z-index: 0; }
-.hero-shot img {
-  width: 100%; height: 100%; display: block;
-  object-fit: cover;
-  object-position: 50% 30%;
-}
+/* en el móvil la foto ya es el fondo: la figura solo existe en escritorio */
+.hero-shot { display: none; }
 
 .hero-copy {
   position: relative; z-index: 2;
@@ -302,12 +299,13 @@ body.ready .display .line:nth-child(4) > * { transition-delay: .29s; }
       radial-gradient(30% 40% at 88% 78%, rgba(217, 52, 40, .12), transparent 74%),
       linear-gradient(180deg, rgba(5, 5, 8, .5) 0%, rgba(5, 5, 8, 0) 34%, rgba(5, 5, 8, .62) 100%);
   }
+  .hero { background: #07070A; }
   .hero-copy { max-width: 620px; justify-self: end; padding: 0; text-align: left; }
   .hero .kicker { margin-bottom: 16px; }
   .lead { margin: 0; }
   .actions { justify-content: flex-start; margin-top: 28px; }
   .display { margin: 0 0 18px; }
-  .hero-shot { position: static; inset: auto; width: min(38vw, 460px); justify-self: start; align-self: center; }
+  .hero-shot { display: block; margin: 0; width: min(38vw, 460px); justify-self: start; align-self: center; }
   .hero-shot img {
     width: 100%; height: min(62svh, 620px);
     object-fit: contain; object-position: center;
