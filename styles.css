@@ -206,67 +206,55 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* --------------------------------- portada ------------------------------- */
 .hero {
   position: relative;
-  display: grid; align-items: center;
-  gap: clamp(18px, 4vw, 48px);
-  min-height: clamp(470px, 72svh, 700px);
-  padding: clamp(36px, 7vw, 84px) var(--gut) clamp(40px, 7vw, 88px);
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  min-height: clamp(520px, 70svh, 640px);
+  padding: clamp(20px, 5vw, 34px) 0 clamp(38px, 8vw, 64px);
   background: #07070A;
   border-bottom: 1px solid rgba(231, 178, 95, .22);
   overflow: hidden;
   isolation: isolate;
 }
 
-/* brasa cálida detrás de la botella, para que no flote en un negro plano */
+/* la foto llena la banda y el velo hunde la mitad de abajo para el texto */
 .hero::before {
   content: "";
-  position: absolute; inset: 0; z-index: -1;
+  position: absolute; inset: 0; z-index: 1;
   background:
-    radial-gradient(46% 62% at 74% 46%, rgba(231, 178, 95, .2), transparent 72%),
-    radial-gradient(30% 40% at 88% 78%, rgba(217, 52, 40, .12), transparent 74%),
-    linear-gradient(180deg, rgba(5, 5, 8, .5) 0%, rgba(5, 5, 8, 0) 34%, rgba(5, 5, 8, .62) 100%);
+    linear-gradient(180deg, rgba(6, 6, 9, .58) 0%, rgba(6, 6, 9, .22) 18%,
+                            rgba(6, 6, 9, .55) 36%, rgba(6, 6, 9, .88) 56%,
+                            rgba(7, 7, 10, .97) 76%, #07070A 94%);
 }
 
-.hero-copy { width: 100%; max-width: var(--max); margin: 0 auto; position: relative; z-index: 1; }
-
-.hero-shot {
-  margin: 0; justify-self: center; align-self: end;
-  position: absolute; right: -6vw; bottom: 0; z-index: 0;
-  width: min(86vw, 420px);
-  pointer-events: none;
-}
+.hero-shot { position: absolute; inset: 0; margin: 0; z-index: 0; }
 .hero-shot img {
-  width: 100%; height: auto; display: block;
-  -webkit-mask-image: radial-gradient(112% 96% at 52% 44%, #000 52%, rgba(0, 0, 0, .6) 74%, transparent 92%);
-  mask-image: radial-gradient(112% 96% at 52% 44%, #000 52%, rgba(0, 0, 0, .6) 74%, transparent 92%);
-  filter: drop-shadow(0 26px 50px rgba(0, 0, 0, .75)) saturate(108%);
+  width: 100%; height: 100%; display: block;
+  object-fit: cover;
+  object-position: 50% 30%;
 }
 
-@media (min-width: 880px) {
-  .hero { grid-template-columns: minmax(0, 1.02fr) minmax(0, .98fr); max-width: none; }
-  .hero-copy { max-width: 620px; justify-self: end; padding-left: 0; }
-  .hero-shot {
-    position: static; right: auto; bottom: auto;
-    width: min(38vw, 460px); align-self: center; justify-self: start;
-    z-index: 0;
-  }
+.hero-copy {
+  position: relative; z-index: 2;
+  width: 100%; max-width: var(--max); margin: 0 auto;
+  padding: 0 var(--gut);
+  text-align: center;
 }
 
 .kicker {
   font-size: 10.5px; font-weight: 750;
   letter-spacing: .22em; text-transform: uppercase;
   color: var(--wine);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .display {
   font-family: var(--sans);
   font-weight: 800;
   text-transform: uppercase;
-  max-width: 16ch;
-  font-size: clamp(2.35rem, 8.4vw, 4.7rem);
+  max-width: 15ch;
+  margin: 0 auto 16px;
+  font-size: clamp(2.2rem, 8vw, 4.6rem);
   line-height: .94;
   letter-spacing: -.028em;
-  margin-bottom: 18px;
 }
 .display .line { display: block; overflow: hidden; }
 .display .line > span,
@@ -284,13 +272,14 @@ body.ready .display .line:nth-child(3) > * { transition-delay: .21s; }
 body.ready .display .line:nth-child(4) > * { transition-delay: .29s; }
 
 .lead {
-  max-width: 34ch;
+  max-width: 30ch;
+  margin: 0 auto;
   font-size: clamp(15px, 1.8vw, 17.5px);
-  line-height: 1.6;
-  color: rgba(255, 255, 255, .82);
+  line-height: 1.55;
+  color: rgba(255, 255, 255, .84);
 }
 
-.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; justify-content: center; }
 
 .btn-red {
   background: #D93428; color: #fff; border-color: #D93428;
@@ -300,22 +289,31 @@ body.ready .display .line:nth-child(4) > * { transition-delay: .29s; }
 }
 .btn-red:hover { background: #C02C21; border-color: #C02C21; }
 
-@media (max-width: 700px) {
+@media (min-width: 880px) {
   .hero {
-    display: flex; flex-direction: column; justify-content: flex-end;
-    min-height: clamp(500px, 78svh, 620px);
-    padding-bottom: clamp(34px, 7vw, 54px);
-  }
-  .hero-copy { align-self: stretch; }
-  /* en el móvil la botella se asoma por detrás del texto, como en la referencia */
-  .hero-shot {
-    position: absolute; right: -14vw; top: 4vh; bottom: auto;
-    width: 92vw; z-index: 0; opacity: .92;
+    display: grid; grid-template-columns: minmax(0, 1.02fr) minmax(0, .98fr);
+    align-items: center; gap: clamp(24px, 4vw, 56px);
+    min-height: clamp(500px, 74svh, 720px);
+    padding: clamp(36px, 6vw, 84px) var(--gut);
   }
   .hero::before {
     background:
-      radial-gradient(52% 46% at 72% 26%, rgba(231, 178, 95, .22), transparent 70%),
-      linear-gradient(180deg, rgba(6, 6, 9, .28) 0%, rgba(6, 6, 9, .72) 42%, rgba(6, 6, 9, .96) 100%);
+      radial-gradient(46% 62% at 74% 46%, rgba(231, 178, 95, .2), transparent 72%),
+      radial-gradient(30% 40% at 88% 78%, rgba(217, 52, 40, .12), transparent 74%),
+      linear-gradient(180deg, rgba(5, 5, 8, .5) 0%, rgba(5, 5, 8, 0) 34%, rgba(5, 5, 8, .62) 100%);
+  }
+  .hero-copy { max-width: 620px; justify-self: end; padding: 0; text-align: left; }
+  .hero .kicker { margin-bottom: 16px; }
+  .lead { margin: 0; }
+  .actions { justify-content: flex-start; margin-top: 28px; }
+  .display { margin: 0 0 18px; }
+  .hero-shot { position: static; inset: auto; width: min(38vw, 460px); justify-self: start; align-self: center; }
+  .hero-shot img {
+    width: 100%; height: min(62svh, 620px);
+    object-fit: contain; object-position: center;
+    -webkit-mask-image: radial-gradient(112% 96% at 52% 44%, #000 52%, rgba(0, 0, 0, .6) 74%, transparent 92%);
+    mask-image: radial-gradient(112% 96% at 52% 44%, #000 52%, rgba(0, 0, 0, .6) 74%, transparent 92%);
+    filter: drop-shadow(0 26px 50px rgba(0, 0, 0, .75)) saturate(108%);
   }
 }
 
