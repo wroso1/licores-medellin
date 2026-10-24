@@ -548,7 +548,7 @@ body.ready .display .line:nth-child(4) > * { transition-delay: .29s; }
 }
 
 /* ---------------------------------- pie ---------------------------------- */
-.foot { background: var(--wine); color: var(--on-solid); }
+.foot { background: #D93428; color: #fff; }
 .foot-inner {
   max-width: var(--max); margin: 0 auto;
   padding: clamp(30px, 5vw, 56px) var(--gut) 28px;
@@ -556,22 +556,23 @@ body.ready .display .line:nth-child(4) > * { transition-delay: .29s; }
 .foot-top {
   display: grid; gap: 14px;
   padding-bottom: 24px;
-  border-bottom: 1px solid rgba(243, 240, 232, .12);
+  border-bottom: 1px solid rgba(255, 255, 255, .24);
 }
 @media (min-width: 720px) { .foot-top { grid-template-columns: 1fr 1fr; align-items: start; gap: 40px; } }
 
-.brand-foot .brand-mark { background: var(--wine); color: var(--on-solid); }
-.foot-line { font-size: 13px; color: rgba(244, 239, 228, .66); max-width: 40ch; }
+.brand-foot .brand-mark { background: #fff; color: #D93428; }
+.brand-foot .brand-name, .brand-foot .brand-name b { color: #fff; }
+.foot-line { font-size: 13px; color: rgba(255, 255, 255, .92); max-width: 40ch; }
 
 .legal {
   margin-top: 20px;
   font-size: 11px; line-height: 1.7;
-  color: rgba(244, 239, 228, .5);
+  color: rgba(255, 255, 255, .88);
 }
 .copyright {
   margin-top: 16px;
   display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap;
-  font-size: 11px; color: rgba(244, 239, 228, .5);
+  font-size: 11px; color: rgba(255, 255, 255, .88);
 }
 
 /* ------------------------------ barra pedido ----------------------------- */
