@@ -189,7 +189,8 @@
         : '<span class="price">' + money(p.price) + '<small> c/u</small></span>';
 
     return '<article class="card">' +
-      '<div class="card-media" data-quick="' + p.id + '" role="button" tabindex="0" ' +
+      '<div class="card-media" data-quick="' + p.key + '" role="button" tabindex="0" ' +
+        (p.variants ? 'data-rotate="' + p.key + '" data-n="0" ' : "") +
         'aria-label="Ver ' + p.name + ' de cerca">' +
         (p.tag ? '<span class="tag">' + p.tag + "</span>" : "") +
         mediaHTML(p) +
@@ -211,6 +212,34 @@
     resultsEl.textContent = items.length
       ? items.length + (items.length === 1 ? " producto" : " productos")
       : "Sin resultados para \u201c" + state.query + "\u201d";
+  }
+
+  /* ------------------- rotación de fotos en el catálogo -------------------- */
+  var gridRot = null;
+
+  function tickGrid() {
+    if (document.hidden) return;
+    $$('#grid .card-media[data-rotate]').forEach(function (el) {
+      var p = catalog[el.dataset.rotate];
+      if (!p || !p.variants) return;
+      var n = (parseInt(el.dataset.n, 10) + 1) % p.variants.length;
+      el.dataset.n = n;
+      var v = p.variants[n];
+      var img = el.querySelector("img");
+      if (img && v.img && img.getAttribute("src") !== v.img) {
+        img.src = v.img;
+        img.classList.remove("swap");
+        void img.offsetWidth;
+        img.classList.add("swap");
+      }
+    });
+  }
+
+  function startGridRotate() {
+    if (gridRot) clearInterval(gridRot);
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    if (!list.some(function (p) { return p.variants; })) return;
+    gridRot = setInterval(tickGrid, 1000);
   }
 
   /* ---------------------------- vista rápida ------------------------------ */
@@ -756,6 +785,7 @@
     setupAgeGate();
     setupServiceWorker();
     setupInstall();
+    startGridRotate();
   }
 
   if (document.readyState === "loading") {

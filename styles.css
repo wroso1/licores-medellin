@@ -409,6 +409,9 @@ body.ready .display .line:nth-child(4) > * { transition-delay: .29s; }
   object-fit: contain;
   transition: transform .5s var(--ease);
 }
+.card-media img.swap { animation: photo-swap .45s var(--ease); }
+@keyframes photo-swap { from { opacity: .3; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .card-media img.swap { animation: none; } }
 
 .tag {
   position: absolute; top: 10px; left: 10px; z-index: 2;
