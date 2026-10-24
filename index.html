@@ -1,86 +1,61 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#11100f">
-  <meta name="description" content="Licores a domicilio en Medellín. Aguardiente, whisky, ron, hielo y productos para tu fiesta. Pedidos por WhatsApp en minutos.">
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#191715">
+  <meta name="description" content="Licores a domicilio en Medellín y Bello. Aguardiente, whisky, ron, hielo y más. Pide por WhatsApp en minutos.">
   <title>Licores Medellín | Domicilios de Licores</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="topbar">PEDIDOS POR WHATSAPP · DOMICILIOS EN MEDELLÍN Y BELLO</div>
   <header class="header">
-    <a class="brand" href="#" aria-label="Licores Medellín, inicio">
-      <span class="brand-mark">L<span>+</span></span>
-      <span class="brand-name">LICORES <small>MEDELLÍN</small></span>
-    </a>
+    <a class="brand" href="#"><span class="brand-mark">L<span>+</span></span><span class="brand-name">LICORES <small>MEDELLÍN</small></span></a>
     <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
-    <nav id="nav">
-      <a href="#catalogo">Catálogo</a><a href="#combos">Combos</a><a href="#domicilios">Domicilios</a>
-    </nav>
-    <a class="cart-link" href="#catalogo">Ver productos <span>↗</span></a>
+    <nav id="nav"><a href="#catalogo">Catálogo</a><a href="#combos">Combos</a><a href="#domicilios">Domicilios</a></nav>
+    <a class="cart-link" href="#catalogo">Comprar ahora <span>↗</span></a>
   </header>
-
   <main>
     <section class="hero">
-      <div class="hero-content">
-        <p class="eyebrow">QUE NO FALTE NADA EN LA FIESTA</p>
-        <h1>La fiesta<br>empieza <em>en casa.</em></h1>
-        <p class="hero-copy">Licores, hielo y esenciales para compartir. Pide fácil por WhatsApp y prepara el plan sin salir de casa.</p>
+      <div class="hero-content"><p class="eyebrow">QUE NO FALTE NADA EN LA FIESTA</p><h1>La fiesta<br>empieza <em>en casa.</em></h1>
+        <p class="hero-copy">Licores, hielo y esenciales para compartir. Elige tus productos, completa tus datos y envía tu pedido por WhatsApp.</p>
         <div class="hero-actions"><a class="btn btn-gold" href="#catalogo">Explorar catálogo <span>↓</span></a><a class="text-link" href="#domicilios">Cómo pedir →</a></div>
-        <div class="hero-note"><span class="dot"></span> Atención directa por WhatsApp</div>
+        <div class="hero-note"><span class="dot"></span> Compra fácil desde tu celular</div>
       </div>
-      <div class="hero-art" role="img" aria-label="Ilustración decorativa de una celebración">
-        <div class="halo"></div><div class="orb orb1"></div><div class="orb orb2"></div>
-        <div class="bottle bottle-back"><div class="neck"></div><div class="label">NOCHE<br><small>RESERVA</small></div></div>
-        <div class="bottle bottle-front"><div class="neck"></div><div class="label label-light">BUEN<br><small>PLAN</small></div></div>
-        <div class="ice ice1"></div><div class="ice ice2"></div><div class="ice ice3"></div>
-        <div class="art-caption">BUENOS MOMENTOS<br><span>SE COMPARTEN</span></div>
-      </div>
+      <div class="hero-art" role="img" aria-label="Ilustración decorativa de productos para celebrar"><div class="halo"></div><div class="orb orb1"></div><div class="orb orb2"></div><div class="bottle bottle-back"><div class="neck"></div><div class="label">NOCHE<br><small>RESERVA</small></div></div><div class="bottle bottle-front"><div class="neck"></div><div class="label label-light">BUEN<br><small>PLAN</small></div></div><div class="ice ice1"></div><div class="ice ice2"></div><div class="ice ice3"></div><div class="art-caption">BUENOS MOMENTOS<br><span>SE COMPARTEN</span></div></div>
     </section>
-
-    <section class="trust-strip">
-      <div><span>01</span><b>Catálogo sencillo</b><small>Encuentra lo que buscas</small></div>
-      <div><span>02</span><b>Pedido directo</b><small>Confirma por WhatsApp</small></div>
-      <div><span>03</span><b>Atención cercana</b><small>Consulta cobertura y horario</small></div>
-    </section>
-
+    <section class="trust-strip"><div><span>01</span><b>Elige tus productos</b><small>Catálogo claro y sencillo</small></div><div><span>02</span><b>Confirma tu pedido</b><small>Por WhatsApp</small></div><div><span>03</span><b>Recibe en casa</b><small>Consulta cobertura</small></div></section>
     <section class="section" id="catalogo">
-      <div class="section-heading"><div><p class="eyebrow">ELIGE TU PLAN</p><h2>Explora el catálogo</h2></div><p>Precios de ejemplo editables. Confirma disponibilidad antes de pagar.</p></div>
-      <div class="filters" id="filters">
-        <button class="filter active" data-category="todos">Todo</button>
-        <button class="filter" data-category="licores">Licores</button>
-        <button class="filter" data-category="hielo">Hielo</button>
-        <button class="filter" data-category="fiesta">Para la fiesta</button>
-      </div>
+      <div class="section-heading"><div><p class="eyebrow">ELIGE TU PLAN</p><h2>Explora el catálogo</h2></div><p>Precios de ejemplo. Confirma disponibilidad al hacer tu pedido.</p></div>
+      <div class="filters" id="filters"><button class="filter active" data-category="todos">Todo</button><button class="filter" data-category="licores">Licores</button><button class="filter" data-category="hielo">Hielo</button><button class="filter" data-category="fiesta">Para la fiesta</button></div>
       <div class="product-grid" id="productGrid"></div>
     </section>
-
-    <section class="combo-banner" id="combos">
-      <div><p class="eyebrow">PARA ARMAR EL PLAN</p><h2>¿Noche de amigos,<br>reunión o celebración?</h2><p>Pregúntanos por combos personalizados de acuerdo con tu presupuesto.</p><a class="btn btn-light" href="#" id="comboBtn">Cotizar un combo por WhatsApp ↗</a></div>
-      <div class="combo-stamp"><span>ARMA</span><b>TU<br>PLAN</b><small>A TU MEDIDA</small></div>
-    </section>
-
-    <section class="how section" id="domicilios">
-      <div class="section-heading"><div><p class="eyebrow">ASÍ DE FÁCIL</p><h2>¿Cómo hacer tu pedido?</h2></div></div>
-      <div class="steps">
-        <div><span>1</span><h3>Elige</h3><p>Agrega al pedido los productos que te interesan.</p></div>
-        <div><span>2</span><h3>Escríbenos</h3><p>Enviaremos tu lista a WhatsApp para confirmar precios y disponibilidad.</p></div>
-        <div><span>3</span><h3>Confirma</h3><p>Acuerda cobertura, costo del domicilio, pago y tiempo estimado.</p></div>
-      </div>
-      <div class="delivery-note"><b>¿Llegamos a tu zona?</b><span>Consulta cobertura y horarios directamente por WhatsApp.</span><a href="#" id="zoneBtn">Consultar zona ↗</a></div>
+    <section class="combo-banner" id="combos"><div><p class="eyebrow">PARA ARMAR EL PLAN</p><h2>¿Reunión o<br>celebración?</h2><p>Arma un combo personalizado según tu presupuesto y el tamaño de tu plan.</p><button class="btn btn-light" id="comboBtn">Cotizar un combo por WhatsApp ↗</button></div><div class="combo-stamp"><span>ARMA</span><b>TU<br>PLAN</b><small>A TU MEDIDA</small></div></section>
+    <section class="section how" id="domicilios"><div class="section-heading"><div><p class="eyebrow">ASÍ DE FÁCIL</p><h2>Compra en tres pasos</h2></div></div>
+      <div class="steps"><div><span>1</span><h3>Agrega al carrito</h3><p>Escoge productos y ajusta las cantidades.</p></div><div><span>2</span><h3>Completa tus datos</h3><p>Déjanos tu dirección y forma de pago.</p></div><div><span>3</span><h3>Envía por WhatsApp</h3><p>Revisa el resumen y envía tu pedido para confirmar.</p></div></div>
+      <div class="delivery-note"><b>Domicilio con tarifa fija</b><span>Configura el valor del domicilio en el archivo script.js. Confirma cobertura antes de despachar.</span><a href="#catalogo">Ver catálogo ↗</a></div>
     </section>
   </main>
-
-  <footer>
-    <a class="brand footer-brand" href="#"><span class="brand-mark">L<span>+</span></span><span class="brand-name">LICORES <small>MEDELLÍN</small></span></a>
-    <p>Licores · Hielo · Productos para fiestas · Bello y Medellín</p>
-    <div class="footer-links"><a href="#catalogo">Catálogo</a><a href="#domicilios">Domicilios</a><a href="#" id="footerWhatsApp">WhatsApp</a></div>
-    <small class="legal">Venta de bebidas alcohólicas únicamente a mayores de edad. Se podrá solicitar documento de identidad. Consume con responsabilidad. No se vende ni entrega alcohol a menores de 18 años. Cumple la normativa local aplicable.</small>
-    <small class="copyright">© <span id="year"></span> Licores Medellín</small>
-  </footer>
-  <a class="floating-wa" href="#" id="floatingWA" aria-label="Pedir por WhatsApp">WA <span>Haz tu pedido</span></a>
+  <footer><a class="brand footer-brand" href="#"><span class="brand-mark">L<span>+</span></span><span class="brand-name">LICORES <small>MEDELLÍN</small></span></a><p>Licores · Hielo · Productos para fiestas · Bello y Medellín</p><div class="footer-links"><a href="#catalogo">Catálogo</a><a href="#domicilios">Domicilios</a><a href="#" id="footerWhatsApp">WhatsApp</a></div><small class="legal">Venta de bebidas alcohólicas únicamente a mayores de 18 años. Se podrá solicitar documento de identidad. Consume con responsabilidad. No se vende ni entrega alcohol a menores de 18 años. Cumple la normativa local aplicable.</small><small class="copyright">© <span id="year"></span> Licores Medellín</small></footer>
+  <button class="view-cart" id="viewCart"><span>🛒 <b>Ver mi pedido</b><small id="cartSummary">0 productos · $0</small></span><strong id="cartButtonTotal">$0</strong><span class="cart-count" id="cartCount">0</span></button>
+  <div class="modal-backdrop" id="cartBackdrop" aria-hidden="true">
+    <section class="cart-modal" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="modal-head"><div><p class="eyebrow">TU COMPRA</p><h2 id="cartTitle">Mi pedido</h2></div><button class="close-modal" id="closeCart" aria-label="Cerrar">×</button></div>
+      <div id="cartItems" class="cart-items"></div>
+      <div class="cart-totals"><div><span>Subtotal</span><b id="subtotal">$0</b></div><div><span>Domicilio fijo</span><b id="deliveryCost">$0</b></div><div class="grand-total"><span>Total estimado</span><b id="grandTotal">$0</b></div></div>
+      <p class="form-note">El total es estimado y se confirmará por WhatsApp según disponibilidad y cobertura.</p>
+      <form id="checkoutForm">
+        <h3>Datos para la entrega</h3>
+        <label>Nombre completo<input name="name" autocomplete="name" required placeholder="Tu nombre"></label>
+        <div class="form-row"><label>Celular<input name="phone" autocomplete="tel" type="tel" required placeholder="Tu número"></label><label>Barrio<input name="neighborhood" required placeholder="Tu barrio"></label></div>
+        <label>Dirección de entrega<input name="address" autocomplete="street-address" required placeholder="Calle, carrera, número, apto..."></label>
+        <label>Forma de pago<select name="payment" required><option value="">Selecciona una opción</option><option value="Efectivo contraentrega">Efectivo contraentrega</option><option value="Transferencia al recibir">Transferencia al recibir</option><option value="Transferencia anticipada">Transferencia anticipada</option></select></label>
+        <label>Notas (opcional)<textarea name="notes" rows="2" placeholder="Indicaciones para llegar o detalles del pedido"></textarea></label>
+        <label class="age-check"><input type="checkbox" name="adult" required><span>Confirmo que tengo 18 años o más y entiendo que se verificará la edad al entregar bebidas alcohólicas.</span></label>
+        <button class="btn btn-gold send-order" type="submit">Enviar pedido por WhatsApp ↗</button>
+      </form>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
   <script src="script.js"></script>
-</body>
-</html>
+</body></html>
