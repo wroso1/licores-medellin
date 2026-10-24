@@ -62,7 +62,7 @@ img { max-width: 100%; height: auto; display: block; }
 button, input, select, textarea { font: inherit; color: inherit; }
 
 :focus-visible { outline: 2px solid var(--wine); outline-offset: 3px; border-radius: 4px; }
-::selection { background: rgba(107, 27, 40, .16); }
+::selection { background: rgba(231, 178, 95, .28); }
 
 .skip {
   position: fixed; top: 8px; left: 8px; z-index: 90;
@@ -418,7 +418,7 @@ body.ready .display .line:nth-child(3) > * { transition-delay: .21s; }
   font-size: 20px; line-height: 1; cursor: pointer;
   transition: background .2s var(--ease), transform .2s var(--ease), color .2s var(--ease);
 }
-.add:hover { background: var(--wine); border-color: var(--wine); }
+.add:hover { background: var(--wine-2); border-color: var(--wine-2); }
 .add:active { transform: scale(.9); }
 
 .stepper {
@@ -569,7 +569,8 @@ body.ready .display .line:nth-child(3) > * { transition-delay: .21s; }
 .drawer {
   display: grid; grid-template-rows: auto 1fr;
   width: 100%; max-height: 92dvh;
-  background: var(--cream);
+  background: var(--paper);
+  border-top: 1px solid rgba(231, 178, 95, .3);
   border-radius: 6px 6px 0 0;
   box-shadow: 0 -30px 70px -40px #000;
   animation: sheet .32s var(--ease);
@@ -780,7 +781,7 @@ body.ready .display .line:nth-child(3) > * { transition-delay: .21s; }
 .gate-card {
   width: 100%; max-width: 430px;
   padding: clamp(24px, 5vw, 38px);
-  background: var(--cream);
+  background: var(--paper);
   border-top: 3px solid var(--wine);
   box-shadow: 0 40px 90px -50px #000;
   text-align: center;
