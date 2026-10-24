@@ -224,14 +224,20 @@
       return "<li>" + x + "</li>";
     }).join("");
     syncQuick();
+    quickBack.classList.remove("is-out");
     quickBack.hidden = false;
     document.body.style.overflow = "hidden";
     $("#quickClose").focus();
   }
 
   function closeQuick() {
-    quickBack.hidden = true;
-    document.body.style.overflow = "";
+    if (quickBack.hidden) return;
+    quickBack.classList.add("is-out");
+    setTimeout(function () {
+      quickBack.hidden = true;
+      quickBack.classList.remove("is-out");
+      document.body.style.overflow = "";
+    }, 250);
   }
 
   /* ---------------------------- render carrito ---------------------------- */
@@ -428,7 +434,7 @@
         return;
       }
       addToCart(quickId);
-      syncQuick();
+      closeQuick();
     });
 
     // Delegación en el carrito

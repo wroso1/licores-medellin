@@ -593,6 +593,13 @@ body.ready .display .line:nth-child(4) > * { transition-delay: .29s; }
   animation: quick-in .32s var(--ease);
 }
 @keyframes quick-in { from { transform: translateY(22px); opacity: 0; } to { transform: none; opacity: 1; } }
+.quick-back.is-out { animation: quick-back-out .25s var(--ease) forwards; }
+.quick-back.is-out .quick { animation: quick-out .25s var(--ease) forwards; }
+@keyframes quick-out { to { transform: translateY(100%); } }
+@keyframes quick-back-out { to { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) {
+  .quick, .quick-back.is-out, .quick-back.is-out .quick { animation: none; }
+}
 .quick-close {
   position: absolute; top: 8px; right: 8px; z-index: 2;
   width: 36px; height: 36px; border: 0; border-radius: 50%;
