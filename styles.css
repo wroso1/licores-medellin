@@ -101,8 +101,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 /* --------------------------------- cinta --------------------------------- */
 .ticker {
-  background: var(--wine);
-  color: var(--on-solid);
+  background: #2E2E36;
+  color: #FFFFFF;
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
   overflow: hidden;
   height: 34px;
   display: flex;
@@ -121,9 +122,9 @@ button, input, select, textarea { font: inherit; color: inherit; }
   font-weight: 650;
   letter-spacing: .18em;
   text-transform: uppercase;
-  opacity: .92;
+  opacity: 1;
 }
-.ticker-track i { color: var(--on-solid); opacity: .45; font-style: normal; }
+.ticker-track i { color: #FFFFFF; opacity: .4; font-style: normal; }
 @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .ticker-track { animation: none; } }
 
