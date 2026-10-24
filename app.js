@@ -44,7 +44,7 @@
   });
 
   var cart = new Map();
-  var state = { cat: "todos", query: "", sort: "default" };
+  var state = { query: "", sort: "default" };
 
   // Recuperar carrito guardado (ignorando productos que ya no existen)
   (function restoreCart() {
@@ -109,7 +109,6 @@
 
   /* ---------------------------- render catálogo ---------------------------- */
   var grid = $("#grid");
-  var chipsEl = $("#chips");
   var emptyEl = $("#empty");
   var resultsEl = $("#results");
 
@@ -120,10 +119,7 @@
 
   function visibleProducts() {
     var q = normalize(state.query);
-    var out = list.filter(function (p) {
-      if (state.cat !== "todos" && p.cat !== state.cat) return false;
-      return matchesSearch(p, q);
-    });
+    var out = list.filter(function (p) { return matchesSearch(p, q); });
     if (state.sort === "price-asc") {
       out.sort(function (a, b) { return (a.price == null ? Infinity : a.price) - (b.price == null ? Infinity : b.price); });
     } else if (state.sort === "price-desc") {
@@ -138,7 +134,7 @@
     if (p.img) {
       return '<img src="' + p.img + '" alt="' + p.name + '" width="810" height="891" loading="lazy" decoding="async">';
     }
-    return '<div class="ph" aria-hidden="true"><span class="ph-initial">' + initialOf(p.name) + '</span><span class="ph-cat">' + catName(p.cat) + "</span></div>";
+    return '<div class="ph" aria-hidden="true"><span class="ph-initial">' + initialOf(p.name) + "</span></div>";
   }
 
   function controlHTML(p) {
@@ -167,19 +163,11 @@
         mediaHTML(p) +
       "</div>" +
       '<div class="card-body">' +
-        '<span class="card-cat">' + catName(p.cat) + "</span>" +
         '<h3 class="card-name">' + p.name + "</h3>" +
         '<span class="card-size">' + (p.size || "") + "</span>" +
         '<div class="card-foot">' + priceHTML + controlHTML(p) + "</div>" +
       "</div>" +
     "</article>";
-  }
-
-  function renderChips() {
-    chipsEl.innerHTML = CATEGORIES.map(function (c) {
-      return '<button class="chip" data-cat="' + c.id + '" aria-pressed="' + (state.cat === c.id) + '">' +
-        '<span class="chip-ico" aria-hidden="true">' + c.ico + "</span>" + c.name + "</button>";
-    }).join("");
   }
 
   function renderGrid() {
@@ -188,11 +176,9 @@
     emptyEl.hidden = items.length > 0;
     grid.hidden = items.length === 0;
 
-    var label = state.cat === "todos" ? "Todo el catálogo" : catName(state.cat);
     resultsEl.textContent = items.length
-      ? label + " · " + items.length + (items.length === 1 ? " producto" : " productos")
+      ? items.length + (items.length === 1 ? " producto" : " productos")
       : "Sin resultados para \u201c" + state.query + "\u201d";
-    $("#shopTitle").textContent = state.cat === "todos" ? "Catálogo" : catName(state.cat);
   }
 
   /* ---------------------------- render carrito ---------------------------- */
@@ -417,16 +403,6 @@
       if (t.dataset.dec) return changeQty(Number(t.dataset.dec), -1);
     });
 
-    // Categorías
-    chipsEl.addEventListener("click", function (e) {
-      var chip = e.target.closest("[data-cat]");
-      if (!chip) return;
-      state.cat = chip.dataset.cat;
-      renderChips();
-      renderGrid();
-      $("#catalogo").scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-
     // Orden
     $("#sort").addEventListener("change", function (e) {
       state.sort = e.target.value;
@@ -590,7 +566,6 @@
   /* ---------------------------- arranque ---------------------------- */
   function init() {
     bindStatic();
-    renderChips();
     renderAll();
     setupAgeGate();
   }
