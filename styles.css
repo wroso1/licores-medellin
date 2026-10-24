@@ -206,25 +206,50 @@ button, input, select, textarea { font: inherit; color: inherit; }
 /* --------------------------------- portada ------------------------------- */
 .hero {
   position: relative;
-  display: flex; align-items: center;
-  min-height: clamp(460px, 72svh, 700px);
-  padding: clamp(44px, 8vw, 92px) var(--gut) clamp(48px, 9vw, 104px);
-  background: #06060A url("img/barra-whisky.jpg") 74% 44% / cover no-repeat;
+  display: grid; align-items: center;
+  gap: clamp(18px, 4vw, 48px);
+  min-height: clamp(470px, 72svh, 700px);
+  padding: clamp(36px, 7vw, 84px) var(--gut) clamp(40px, 7vw, 88px);
+  background: #07070A;
   border-bottom: 1px solid rgba(231, 178, 95, .22);
+  overflow: hidden;
   isolation: isolate;
 }
 
-/* el velo hunde el texto a la izquierda y deja la botella a la derecha */
+/* brasa cálida detrás de la botella, para que no flote en un negro plano */
 .hero::before {
   content: "";
   position: absolute; inset: 0; z-index: -1;
   background:
-    linear-gradient(90deg, rgba(5, 5, 8, .97) 0%, rgba(5, 5, 8, .92) 34%,
-                            rgba(5, 5, 8, .58) 62%, rgba(5, 5, 8, .34) 84%, rgba(5, 5, 8, .62) 100%),
-    linear-gradient(180deg, rgba(5, 5, 8, .55) 0%, rgba(5, 5, 8, 0) 30%, rgba(5, 5, 8, .5) 100%);
+    radial-gradient(46% 62% at 74% 46%, rgba(231, 178, 95, .2), transparent 72%),
+    radial-gradient(30% 40% at 88% 78%, rgba(217, 52, 40, .12), transparent 74%),
+    linear-gradient(180deg, rgba(5, 5, 8, .5) 0%, rgba(5, 5, 8, 0) 34%, rgba(5, 5, 8, .62) 100%);
 }
 
-.hero-copy { width: 100%; max-width: var(--max); margin: 0 auto; }
+.hero-copy { width: 100%; max-width: var(--max); margin: 0 auto; position: relative; z-index: 1; }
+
+.hero-shot {
+  margin: 0; justify-self: center; align-self: end;
+  position: absolute; right: -6vw; bottom: 0; z-index: 0;
+  width: min(86vw, 420px);
+  pointer-events: none;
+}
+.hero-shot img {
+  width: 100%; height: auto; display: block;
+  -webkit-mask-image: radial-gradient(112% 96% at 52% 44%, #000 52%, rgba(0, 0, 0, .6) 74%, transparent 92%);
+  mask-image: radial-gradient(112% 96% at 52% 44%, #000 52%, rgba(0, 0, 0, .6) 74%, transparent 92%);
+  filter: drop-shadow(0 26px 50px rgba(0, 0, 0, .75)) saturate(108%);
+}
+
+@media (min-width: 880px) {
+  .hero { grid-template-columns: minmax(0, 1.02fr) minmax(0, .98fr); max-width: none; }
+  .hero-copy { max-width: 620px; justify-self: end; padding-left: 0; }
+  .hero-shot {
+    position: static; right: auto; bottom: auto;
+    width: min(38vw, 460px); align-self: center; justify-self: start;
+    z-index: 0;
+  }
+}
 
 .kicker {
   font-size: 10.5px; font-weight: 750;
@@ -276,10 +301,21 @@ body.ready .display .line:nth-child(4) > * { transition-delay: .29s; }
 .btn-red:hover { background: #C02C21; border-color: #C02C21; }
 
 @media (max-width: 700px) {
-  .hero { background-position: 78% 40%; min-height: clamp(420px, 68svh, 560px); }
+  .hero {
+    display: flex; flex-direction: column; justify-content: flex-end;
+    min-height: clamp(500px, 78svh, 620px);
+    padding-bottom: clamp(34px, 7vw, 54px);
+  }
+  .hero-copy { align-self: stretch; }
+  /* en el móvil la botella se asoma por detrás del texto, como en la referencia */
+  .hero-shot {
+    position: absolute; right: -14vw; top: 4vh; bottom: auto;
+    width: 92vw; z-index: 0; opacity: .92;
+  }
   .hero::before {
     background:
-      linear-gradient(90deg, rgba(5, 5, 8, .96) 0%, rgba(5, 5, 8, .88) 58%, rgba(5, 5, 8, .62) 100%);
+      radial-gradient(52% 46% at 72% 26%, rgba(231, 178, 95, .22), transparent 70%),
+      linear-gradient(180deg, rgba(6, 6, 9, .28) 0%, rgba(6, 6, 9, .72) 42%, rgba(6, 6, 9, .96) 100%);
   }
 }
 
