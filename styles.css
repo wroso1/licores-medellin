@@ -427,46 +427,6 @@ button, input, select, textarea { font: inherit; color: inherit; }
   filter: blur(14px);
 }
 
-/* ============================== 5. Beneficios =========================== */
-.trust {
-  border-block: 1px solid var(--line-soft);
-  background: linear-gradient(180deg, rgba(255, 255, 255, .022), transparent);
-}
-
-.trust-inner {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 18px var(--gut);
-  display: grid;
-  gap: 14px;
-  grid-template-columns: 1fr;
-}
-
-@media (min-width: 640px) {
-  .trust-inner { grid-template-columns: repeat(3, 1fr); gap: 20px; }
-}
-
-.trust-item {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  font-size: 13.5px;
-  color: var(--muted);
-}
-.trust-item b { color: var(--text); font-weight: 650; }
-
-.trust-ico {
-  display: grid;
-  place-items: center;
-  width: 34px;
-  height: 34px;
-  flex: none;
-  border-radius: 10px;
-  border: 1px solid rgba(231, 178, 95, .22);
-  background: rgba(231, 178, 95, .08);
-  color: var(--gold);
-}
-
 /* =============================== 6. Catálogo ============================ */
 .shop {
   max-width: var(--container);
