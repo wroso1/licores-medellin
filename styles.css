@@ -575,6 +575,78 @@ body.ready .display .line:nth-child(4) > * { transition-delay: .29s; }
   font-size: 11px; color: rgba(255, 255, 255, .88);
 }
 
+/* ---------------------------- vista rápida ------------------------------ */
+.quick-back {
+  position: fixed; inset: 0; z-index: 70;
+  display: flex; align-items: flex-end; justify-content: center;
+  background: rgba(5, 5, 8, .74);
+  backdrop-filter: blur(3px);
+}
+.quick {
+  position: relative;
+  width: 100%; max-width: 460px; max-height: 92svh;
+  overflow-y: auto; overscroll-behavior: contain;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px 12px 0 0;
+  padding-bottom: max(18px, env(safe-area-inset-bottom));
+  animation: quick-in .32s var(--ease);
+}
+@keyframes quick-in { from { transform: translateY(22px); opacity: 0; } to { transform: none; opacity: 1; } }
+.quick-close {
+  position: absolute; top: 8px; right: 8px; z-index: 2;
+  width: 36px; height: 36px; border: 0; border-radius: 50%;
+  background: rgba(11, 11, 16, .72); color: var(--ink);
+  font-size: 22px; line-height: 1; cursor: pointer;
+}
+.quick-media {
+  display: grid; place-items: center;
+  min-height: 200px; padding: 22px;
+  background: #FBFAF6;
+  border-radius: 12px 12px 0 0;
+}
+.quick-media img {
+  width: auto; max-width: 100%; max-height: min(38svh, 320px);
+  object-fit: contain; display: block;
+}
+.quick-media .ph-lg {
+  font-family: var(--serif); font-size: 64px; color: #C9BFA8;
+}
+.quick-body { padding: 18px var(--gut) 4px; }
+.quick-name {
+  font-family: var(--serif); font-weight: 600;
+  font-size: clamp(1.24rem, 4.6vw, 1.6rem); line-height: 1.2;
+  letter-spacing: -.02em; margin: 0 0 6px; color: var(--ink);
+}
+.quick-price {
+  font-size: 1.05rem; font-weight: 750; color: var(--wine);
+  margin: 0 0 14px;
+}
+.quick-specs {
+  list-style: none; margin: 0 0 16px; padding: 0;
+  display: grid; gap: 7px;
+}
+.quick-specs li {
+  position: relative; padding-left: 15px;
+  font-size: 13px; line-height: 1.5; color: var(--ink-2);
+}
+.quick-specs li::before {
+  content: ""; position: absolute; left: 0; top: .55em;
+  width: 5px; height: 5px; border-radius: 50%; background: var(--wine);
+}
+.quick-qty {
+  font-size: 12.5px; color: var(--ink-3); margin: 0 0 10px;
+}
+.quick-note {
+  font-size: 11.5px; color: var(--ink-3);
+  margin: 10px 0 0; text-align: center;
+}
+@media (min-width: 720px) {
+  .quick-back { align-items: center; }
+  .quick { border-radius: 12px; margin: 0; }
+  .quick-media { border-radius: 12px 12px 0 0; }
+}
+
 /* --------------------------- invitar a instalar -------------------------- */
 .install {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;

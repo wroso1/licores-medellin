@@ -157,7 +157,8 @@
         : '<span class="price">' + money(p.price) + '<small> c/u</small></span>';
 
     return '<article class="card">' +
-      '<div class="card-media">' +
+      '<div class="card-media" data-quick="' + p.id + '" role="button" tabindex="0" ' +
+        'aria-label="Ver ' + p.name + ' de cerca">' +
         (p.tag ? '<span class="tag">' + p.tag + "</span>" : "") +
         mediaHTML(p) +
       "</div>" +
@@ -178,6 +179,59 @@
     resultsEl.textContent = items.length
       ? items.length + (items.length === 1 ? " producto" : " productos")
       : "Sin resultados para \u201c" + state.query + "\u201d";
+  }
+
+  /* ---------------------------- vista rápida ------------------------------ */
+  var quickBack = $("#quickBack");
+  var quickId = 0;
+
+  function specsOf(p) {
+    var out = [];
+    if (p.size) out.push("Contenido: " + p.size);
+    var cat = (CATEGORIES.filter(function (c) { return c.id === p.cat; })[0] || {}).name;
+    if (cat) out.push("Categoría: " + cat);
+    if (p.desc) out.push(p.desc);
+    return out.slice(0, 3);
+  }
+
+  function syncQuick() {
+    var p = catalog[quickId];
+    if (!p) return;
+    var n = cart.get(quickId) || 0;
+    var qty = $("#quickQty");
+    if (n > 0) {
+      qty.hidden = false;
+      qty.textContent = "Ya llevas " + n + " en el pedido.";
+    } else {
+      qty.hidden = true;
+    }
+    var add = $("#quickAdd");
+    add.textContent = p.quote ? "Pedir cotización" : n > 0 ? "Agregar otro" : "Agregar al pedido";
+  }
+
+  function openQuick(id) {
+    var p = catalog[id];
+    if (!p) return;
+    quickId = id;
+    $("#quickName").textContent = p.name;
+    $("#quickPrice").textContent = p.quote
+      ? "A cotizar"
+      : p.price != null ? money(p.price) : "Consultar precio";
+    $("#quickMedia").innerHTML = p.img
+      ? '<img src="' + p.img + '" alt="' + p.name + '" width="810" height="891">'
+      : '<div class="ph-lg" aria-hidden="true">' + initialOf(p.name) + "</div>";
+    $("#quickSpecs").innerHTML = specsOf(p).map(function (x) {
+      return "<li>" + x + "</li>";
+    }).join("");
+    syncQuick();
+    quickBack.hidden = false;
+    document.body.style.overflow = "hidden";
+    $("#quickClose").focus();
+  }
+
+  function closeQuick() {
+    quickBack.hidden = true;
+    document.body.style.overflow = "";
   }
 
   /* ---------------------------- render carrito ---------------------------- */
@@ -331,11 +385,17 @@
       if (e.target === drawerBack) closeCart();
     });
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && !drawerBack.hidden) closeCart();
+      if (e.key !== "Escape") return;
+      if (!quickBack.hidden) return closeQuick();
+      if (!drawerBack.hidden) closeCart();
     });
 
     // Delegación en el catálogo
     grid.addEventListener("click", function (e) {
+      var abre = e.target.closest("[data-quick]");
+      if (abre && !e.target.closest("[data-add],[data-inc],[data-dec],[data-quote]")) {
+        return openQuick(Number(abre.dataset.quick));
+      }
       var t = e.target.closest("[data-add],[data-inc],[data-dec],[data-quote]");
       if (!t) return;
       if (t.dataset.quote) {
@@ -345,6 +405,30 @@
       if (t.dataset.add) return addToCart(Number(t.dataset.add));
       if (t.dataset.inc) return changeQty(Number(t.dataset.inc), 1);
       if (t.dataset.dec) return changeQty(Number(t.dataset.dec), -1);
+    });
+
+    grid.addEventListener("keydown", function (e) {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      var abre = e.target.closest("[data-quick]");
+      if (!abre) return;
+      e.preventDefault();
+      openQuick(Number(abre.dataset.quick));
+    });
+
+    // Vista rápida
+    $("#quickClose").addEventListener("click", closeQuick);
+    quickBack.addEventListener("click", function (e) {
+      if (e.target === quickBack) closeQuick();
+    });
+    $("#quickAdd").addEventListener("click", function () {
+      var p = catalog[quickId];
+      if (!p) return;
+      if (p.quote) {
+        openWhatsApp("Hola, quiero cotizar " + p.name + ".");
+        return;
+      }
+      addToCart(quickId);
+      syncQuick();
     });
 
     // Delegación en el carrito

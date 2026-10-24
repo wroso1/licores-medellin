@@ -27,7 +27,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="preload" as="image" href="img/hero-black-label.webp" type="image/webp">
-<link rel="stylesheet" href="styles.css?v=20261024t">
+<link rel="stylesheet" href="styles.css?v=20261024u">
 </head>
 <body>
 
@@ -162,6 +162,22 @@
   </div>
 </footer>
 
+<!-- vista rápida del producto -->
+<div class="quick-back" id="quickBack" hidden>
+  <div class="quick" role="dialog" aria-modal="true" aria-labelledby="quickName">
+    <button class="quick-close" id="quickClose" type="button" aria-label="Cerrar">×</button>
+    <div class="quick-media" id="quickMedia"></div>
+    <div class="quick-body">
+      <h2 class="quick-name" id="quickName"></h2>
+      <p class="quick-price" id="quickPrice"></p>
+      <ul class="quick-specs" id="quickSpecs"></ul>
+      <p class="quick-qty" id="quickQty" hidden></p>
+      <button class="btn btn-wa btn-block" id="quickAdd" type="button">Agregar al pedido</button>
+      <p class="quick-note">Pago contraentrega. Llega el mismo día en Medellín y Bello.</p>
+    </div>
+  </div>
+</div>
+
 <!-- invitar a instalar la app -->
 <div class="install" id="installBar" hidden>
   <div class="install-inner">
@@ -246,8 +262,8 @@
   "areaServed": ["Medellín", "Bello"]
 }
 </script>
-<script src="data.js?v=20261024t"></script>
-<script src="app.js?v=20261024t"></script>
-<script src="motion.js?v=20261024t"></script>
+<script src="data.js?v=20261024u"></script>
+<script src="app.js?v=20261024u"></script>
+<script src="motion.js?v=20261024u"></script>
 </body>
 </html>
