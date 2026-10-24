@@ -445,12 +445,31 @@ body.ready .display .line:nth-child(3) > * { transition-delay: .21s; }
 
 /* --------------------------------- cierre -------------------------------- */
 .outro {
+  position: relative;
+  margin-top: clamp(20px, 4vw, 48px);
+  padding: clamp(56px, 9vw, 112px) 0 clamp(56px, 9vw, 104px);
+  border-top: 1px solid rgba(231, 178, 95, .42);
+  border-bottom: 1px solid rgba(231, 178, 95, .42);
+  background: #0A0A0C url("img/barra-whisky.jpg") 68% 44% / cover no-repeat;
+  isolation: isolate;
+}
+
+/* el velo deja respirar la copa a la derecha y hunde el texto a la izquierda */
+.outro::before {
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(6, 6, 9, .96) 0%, rgba(6, 6, 9, .9) 38%,
+                            rgba(6, 6, 9, .52) 66%, rgba(6, 6, 9, .66) 100%),
+    linear-gradient(180deg, rgba(6, 6, 9, .45), rgba(6, 6, 9, 0) 34%);
+}
+
+.outro-inner {
   max-width: var(--max); margin: 0 auto;
-  padding: clamp(30px, 6vw, 70px) var(--gut) clamp(40px, 8vw, 90px);
-  text-align: center;
-  border-top: 1px solid var(--line);
+  padding: 0 var(--gut);
 }
 .outro-line {
+  text-align: left;
   font-family: var(--serif);
   font-size: clamp(1.6rem, 5.2vw, 3rem);
   line-height: 1.06;
@@ -469,6 +488,14 @@ body.ready .display .line:nth-child(3) > * { transition-delay: .21s; }
   transition: color .2s var(--ease), border-color .2s var(--ease);
 }
 .outro-link:hover { color: var(--wine); border-color: var(--wine); }
+
+@media (max-width: 640px) {
+  .outro { background-position: 72% 46%; }
+  .outro::before {
+    background:
+      linear-gradient(90deg, rgba(6, 6, 9, .97) 0%, rgba(6, 6, 9, .9) 62%, rgba(6, 6, 9, .74) 100%);
+  }
+}
 
 /* ---------------------------------- pie ---------------------------------- */
 .foot { background: var(--wine); color: var(--on-solid); }
