@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wroso1.github.io/licores-medellin/sitemap.xml
