@@ -486,11 +486,88 @@
     });
   }
 
+  /* ------------------------ instalar como app ------------------------ */
+  function esStandalone() {
+    var pantalla = window.matchMedia && window.matchMedia("(display-mode: standalone)").matches;
+    return !!pantalla || window.navigator.standalone === true;
+  }
+
+  function setupServiceWorker() {
+    if (!("serviceWorker" in navigator)) return;
+    if (location.protocol === "file:") return;
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("sw.js").catch(function () {});
+    });
+  }
+
+  function setupInstall() {
+    var bar = $("#installBar");
+    if (!bar) return;
+
+    if (esStandalone() || STORE.get("lm.instalada", false)) return;
+
+    var yes = $("#installYes");
+    var no = $("#installNo");
+    var nota = $("#installNote");
+    var prompt = null;
+    var abierta = false;
+    var ios = /iPad|iPhone|iPod/.test(navigator.userAgent);
+
+    function mostrar(texto, boton) {
+      if (abierta) return;
+      abierta = true;
+      if (texto) nota.textContent = texto;
+      if (boton) yes.textContent = boton;
+      bar.hidden = false;
+      document.body.classList.add("install-on");
+      setTimeout(function () { bar.classList.add("is-in"); }, 20);
+    }
+
+    function ocultar(recordar) {
+      bar.classList.remove("is-in");
+      document.body.classList.remove("install-on");
+      if (recordar) STORE.set("lm.instalada", true);
+      setTimeout(function () { bar.hidden = true; }, 360);
+    }
+
+    window.addEventListener("beforeinstallprompt", function (e) {
+      e.preventDefault();
+      prompt = e;
+      mostrar();
+    });
+
+    window.addEventListener("appinstalled", function () {
+      STORE.set("lm.instalada", true);
+      ocultar(false);
+      toast("Listo: ya la tienes instalada");
+    });
+
+    if (ios) {
+      setTimeout(function () {
+        mostrar("Toca Compartir y elige «Añadir a pantalla de inicio».");
+        yes.textContent = "Ver cómo";
+      }, 7000);
+    }
+
+    yes.addEventListener("click", function () {
+      if (prompt) {
+        prompt.prompt();
+        prompt.userChoice.then(function () { prompt = null; ocultar(false); });
+      } else if (ios) {
+        nota.textContent = "En Safari: Compartir (el cuadro con la flecha) y luego «Añadir a pantalla de inicio».";
+      }
+    });
+
+    no.addEventListener("click", function () { ocultar(true); });
+  }
+
   /* ---------------------------- arranque ---------------------------- */
   function init() {
     bindStatic();
     renderAll();
     setupAgeGate();
+    setupServiceWorker();
+    setupInstall();
   }
 
   if (document.readyState === "loading") {
