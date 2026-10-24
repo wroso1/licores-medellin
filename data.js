@@ -39,7 +39,13 @@ var CATEGORIES = [
 var PRODUCTS = [
   { id: 1,  name: "Aguardiente Antioqueño Real", cat: "aguardiente", size: "750 ml", price: 75400,  tag: "Popular",  img: "img/guardo-real.jpg",        desc: "El amarillo Real de siempre." },
   { id: 2,  name: "Aguardiente Amarillo",        cat: "aguardiente", size: "750 ml", price: 75400,  tag: "",         img: "img/guardo-amarillo-manzanares.jpg", desc: "Amarillo de Manzanares, 750 ml." },
-  { id: 3,  name: "Media Aguardiente Rojo",      cat: "aguardiente", size: "375 ml", price: 37500,  tag: "Media",    img: "img/guardo-media-rojo.jpg",  desc: "Tapa roja, media botella." },
+  { id: 3,  name: "Media de Aguardiente",        cat: "aguardiente", size: "375 ml", price: 37500,  tag: "Media",    img: "img/guardo-media-rojo.jpg",  desc: "Media botella, 375 ml.",
+    /* Variantes: la foto cambia según la tapa que elija el cliente */
+    variants: [
+      { key: "rojo",  name: "Rojo",  color: "#C0392B", img: "img/guardo-media-rojo.jpg" },
+      { key: "verde", name: "Verde", color: "#1F7A46", img: "img/guardo-media-verde.jpg" },
+      { key: "azul",  name: "Azul",  color: "#1B4FA0", img: "" }
+    ] },
   { id: 4,  name: "Aguardiente Litro",           cat: "aguardiente", size: "1000 ml", price: 87525, tag: "Litro",    img: "",                           desc: "Azul o verde, la referencia que prefieras." },
 
   { id: 6,  name: "Ron Medellín 5 Años",         cat: "ron",         size: "750 ml", price: 85440,  tag: "",         img: "",                           desc: "Suave, para mezclar o solo." },

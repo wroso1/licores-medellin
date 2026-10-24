@@ -38,9 +38,32 @@
 
   PRODUCTS.forEach(function (p) {
     if (p.hidden) return;
-    catalog[p.id] = p;
+    p.key = String(p.id);
+    catalog[p.key] = p;
     list.push(p);
+
+    // Un producto con variantes (tapas de color) se vende por separado:
+    // cada color es su propia línea del pedido, con su foto.
+    if (p.variants) {
+      p.variants.forEach(function (v) {
+        var sk = p.key + "|" + v.key;
+        v.sku = sk;
+        catalog[sk] = {
+          id: p.id, key: sk, short: v.name, color: v.color || "",
+          name: p.name + " · " + v.name,
+          cat: p.cat, size: p.size, price: p.price,
+          desc: p.desc, img: v.img || ""
+        };
+      });
+    }
   });
+
+  function sellable(key) {
+    var p = catalog[key];
+    if (!p) return null;
+    if (!p.variants) return p;
+    return catalog[p.key + "|" + p.variants[0].key] || null;
+  }
 
   var cart = new Map();
   var state = { query: "", sort: "default" };
@@ -48,9 +71,14 @@
   // Recuperar carrito guardado (ignorando productos que ya no existen)
   (function restoreCart() {
     var saved = STORE.get(K_CART, {});
-    Object.keys(saved).forEach(function (id) {
-      var qty = parseInt(saved[id], 10);
-      if (catalog[id] && qty > 0) cart.set(Number(id), qty);
+    Object.keys(saved).forEach(function (key) {
+      var qty = parseInt(saved[key], 10);
+      if (!(qty > 0)) return;
+      var p = catalog[key];
+      if (!p) return;
+      // carritos viejos guardados por id numérico
+      var target = p.variants ? sellable(key) : p;
+      if (target) cart.set(target.key, qty);
     });
   })();
 
@@ -137,15 +165,19 @@
   }
 
   function controlHTML(p) {
-    if (p.quote) return '<button class="add" data-quote="' + p.id + '" aria-label="Cotizar ' + p.name + '">?</button>';
-    var qty = cart.get(p.id) || 0;
+    if (p.quote) return '<button class="add" data-quote="' + p.key + '" aria-label="Cotizar ' + p.name + '">?</button>';
+    if (p.variants) {
+      return '<button class="add add-pick" data-quick="' + p.key + '" ' +
+        'aria-label="Elegir el color de ' + p.name + '">+</button>';
+    }
+    var qty = cart.get(p.key) || 0;
     if (!qty) {
-      return '<button class="add" data-add="' + p.id + '" aria-label="Agregar ' + p.name + ' al pedido">+</button>';
+      return '<button class="add" data-add="' + p.key + '" aria-label="Agregar ' + p.name + ' al pedido">+</button>';
     }
     return '<div class="stepper">' +
-      '<button data-dec="' + p.id + '" aria-label="Quitar uno de ' + p.name + '">−</button>' +
+      '<button data-dec="' + p.key + '" aria-label="Quitar uno de ' + p.name + '">−</button>' +
       '<span class="qty" aria-live="polite">' + qty + "</span>" +
-      '<button data-inc="' + p.id + '" aria-label="Agregar otro ' + p.name + '">+</button>' +
+      '<button data-inc="' + p.key + '" aria-label="Agregar otro ' + p.name + '">+</button>' +
       "</div>";
   }
 
@@ -183,7 +215,8 @@
 
   /* ---------------------------- vista rápida ------------------------------ */
   var quickBack = $("#quickBack");
-  var quickId = 0;
+  var quickId = "";   // producto que se está mirando
+  var quickPick = ""; // presentación elegida (color)
 
   function specsOf(p) {
     var out = [];
@@ -196,33 +229,60 @@
 
   function syncQuick() {
     var p = catalog[quickId];
-    if (!p) return;
-    var n = cart.get(quickId) || 0;
+    var sel = catalog[quickPick];
+    if (!p || !sel) return;
+
+    $("#quickMedia").innerHTML = sel.img
+      ? '<img src="' + sel.img + '" alt="' + sel.name + '" width="810" height="891">'
+      : sel.short
+        ? '<div class="ph-color" aria-hidden="true"><i style="background:' + (sel.color || "#C9BFA8") +
+          '"></i><b>' + sel.short + "</b></div>"
+        : '<div class="ph-lg" aria-hidden="true">' + initialOf(sel.name) + "</div>";
+
+    $("#quickPrice").textContent = sel.quote
+      ? "A cotizar"
+      : sel.price != null ? money(sel.price) : "Consultar precio";
+
+    $$("#quickVariants .swatch").forEach(function (b) {
+      var on = b.dataset.variant === quickPick;
+      b.classList.toggle("is-on", on);
+      b.setAttribute("aria-pressed", String(on));
+    });
+
+    var n = cart.get(quickPick) || 0;
     var qty = $("#quickQty");
-    if (n > 0) {
-      qty.hidden = false;
-      qty.textContent = "Ya llevas " + n + " en el pedido.";
-    } else {
-      qty.hidden = true;
-    }
-    var add = $("#quickAdd");
-    add.textContent = p.quote ? "Pedir cotización" : n > 0 ? "Agregar otro" : "Agregar al pedido";
+    qty.hidden = n === 0;
+    if (n > 0) qty.textContent = "Ya llevas " + n + " en el pedido.";
+
+    $("#quickAdd").textContent = p.quote
+      ? "Pedir cotización"
+      : n > 0 ? "Agregar otro" : "Agregar al pedido";
   }
 
-  function openQuick(id) {
-    var p = catalog[id];
+  function openQuick(key) {
+    var p = catalog[key];
     if (!p) return;
-    quickId = id;
+    quickId = p.key;
+    quickPick = p.variants ? p.key + "|" + p.variants[0].key : p.key;
+
     $("#quickName").textContent = p.name;
-    $("#quickPrice").textContent = p.quote
-      ? "A cotizar"
-      : p.price != null ? money(p.price) : "Consultar precio";
-    $("#quickMedia").innerHTML = p.img
-      ? '<img src="' + p.img + '" alt="' + p.name + '" width="810" height="891">'
-      : '<div class="ph-lg" aria-hidden="true">' + initialOf(p.name) + "</div>";
+
+    var box = $("#quickVariants");
+    if (p.variants) {
+      box.hidden = false;
+      box.innerHTML = p.variants.map(function (v) {
+        return '<button class="swatch" type="button" data-variant="' + v.sku + '" aria-pressed="false">' +
+          '<i style="background:' + v.color + '"></i>' + v.name + "</button>";
+      }).join("");
+    } else {
+      box.hidden = true;
+      box.innerHTML = "";
+    }
+
     $("#quickSpecs").innerHTML = specsOf(p).map(function (x) {
       return "<li>" + x + "</li>";
     }).join("");
+
     syncQuick();
     quickBack.classList.remove("is-out");
     quickBack.hidden = false;
@@ -252,13 +312,13 @@
       '<div class="ci-body">' +
         "<h4>" + p.name + "</h4>" +
         "<p>" + (p.size || "") + " · " + (p.price != null ? money(p.price) + " c/u" : "precio por confirmar") + "</p>" +
-        '<button class="ci-del" data-remove="' + p.id + '">Quitar</button>' +
+        '<button class="ci-del" data-remove="' + p.key + '">Quitar</button>' +
       "</div>" +
       '<div class="ci-right">' +
         '<div class="stepper">' +
-          '<button data-dec="' + p.id + '" aria-label="Quitar uno de ' + p.name + '">−</button>' +
+          '<button data-dec="' + p.key + '" aria-label="Quitar uno de ' + p.name + '">−</button>' +
           '<span class="qty">' + qty + "</span>" +
-          '<button data-inc="' + p.id + '" aria-label="Agregar otro ' + p.name + '">+</button>' +
+          '<button data-inc="' + p.key + '" aria-label="Agregar otro ' + p.name + '">+</button>' +
         "</div>" +
         '<span class="ci-price">' + line + "</span>" +
       "</div>" +
@@ -400,7 +460,7 @@
     grid.addEventListener("click", function (e) {
       var abre = e.target.closest("[data-quick]");
       if (abre && !e.target.closest("[data-add],[data-inc],[data-dec],[data-quote]")) {
-        return openQuick(Number(abre.dataset.quick));
+        return openQuick(abre.dataset.quick);
       }
       var t = e.target.closest("[data-add],[data-inc],[data-dec],[data-quote]");
       if (!t) return;
@@ -408,9 +468,9 @@
         openWhatsApp("Hola, quiero cotizar un combo para mi reunión. ¿Qué me recomiendan?");
         return;
       }
-      if (t.dataset.add) return addToCart(Number(t.dataset.add));
-      if (t.dataset.inc) return changeQty(Number(t.dataset.inc), 1);
-      if (t.dataset.dec) return changeQty(Number(t.dataset.dec), -1);
+      if (t.dataset.add) return addToCart(t.dataset.add);
+      if (t.dataset.inc) return changeQty(t.dataset.inc, 1);
+      if (t.dataset.dec) return changeQty(t.dataset.dec, -1);
     });
 
     grid.addEventListener("keydown", function (e) {
@@ -418,7 +478,7 @@
       var abre = e.target.closest("[data-quick]");
       if (!abre) return;
       e.preventDefault();
-      openQuick(Number(abre.dataset.quick));
+      openQuick(abre.dataset.quick);
     });
 
     // Vista rápida
@@ -426,14 +486,20 @@
     quickBack.addEventListener("click", function (e) {
       if (e.target === quickBack) closeQuick();
     });
+    $("#quickVariants").addEventListener("click", function (e) {
+      var b = e.target.closest("[data-variant]");
+      if (!b) return;
+      quickPick = b.dataset.variant;
+      syncQuick();
+    });
     $("#quickAdd").addEventListener("click", function () {
-      var p = catalog[quickId];
+      var p = catalog[quickPick];
       if (!p) return;
       if (p.quote) {
         openWhatsApp("Hola, quiero cotizar " + p.name + ".");
         return;
       }
-      addToCart(quickId);
+      addToCart(quickPick);
       closeQuick();
     });
 
@@ -441,9 +507,9 @@
     cartItemsEl.addEventListener("click", function (e) {
       var t = e.target.closest("[data-inc],[data-dec],[data-remove]");
       if (!t) return;
-      if (t.dataset.remove) return removeItem(Number(t.dataset.remove));
-      if (t.dataset.inc) return changeQty(Number(t.dataset.inc), 1);
-      if (t.dataset.dec) return changeQty(Number(t.dataset.dec), -1);
+      if (t.dataset.remove) return removeItem(t.dataset.remove);
+      if (t.dataset.inc) return changeQty(t.dataset.inc, 1);
+      if (t.dataset.dec) return changeQty(t.dataset.dec, -1);
     });
 
     // Orden
