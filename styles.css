@@ -209,21 +209,31 @@ button, input, select, textarea { font: inherit; color: inherit; }
   display: flex; flex-direction: column; justify-content: center; align-items: stretch;
   min-height: clamp(520px, 70svh, 640px);
   padding: clamp(20px, 5vw, 34px) 0 clamp(38px, 8vw, 64px);
-  background: #07070A url("img/hero-black-label.webp") center 24% / cover no-repeat;
+  background: #0B0906 url("img/hero-black-label.webp") 5% 24% / 132% auto no-repeat;
   border-bottom: 1px solid rgba(231, 178, 95, .22);
   overflow: hidden;
   isolation: isolate;
 }
 
-/* el velo oscurece solo donde va el texto: izquierda y pie de la banda */
+/* velo corto: solo la esquina del texto, el resto de la foto respira */
 .hero::before {
   content: "";
   position: absolute; inset: 0; z-index: 1;
   background:
-    linear-gradient(100deg, rgba(6, 6, 9, .93) 0%, rgba(6, 6, 9, .8) 36%,
-                            rgba(6, 6, 9, .34) 64%, rgba(6, 6, 9, .04) 86%),
-    linear-gradient(180deg, rgba(6, 6, 9, .42) 0%, rgba(6, 6, 9, 0) 22%,
-                            rgba(6, 6, 9, .18) 58%, rgba(6, 6, 9, .78) 88%, #07070A 100%);
+    radial-gradient(125% 95% at 0% 74%, rgba(6, 6, 9, .9) 0%, rgba(6, 6, 9, .58) 34%,
+                                              rgba(6, 6, 9, .12) 62%, rgba(6, 6, 9, 0) 80%),
+    linear-gradient(180deg, rgba(6, 6, 9, .28) 0%, rgba(6, 6, 9, 0) 26%,
+                            rgba(6, 6, 9, .1) 62%, rgba(6, 6, 9, .55) 90%, #07070A 100%);
+}
+
+/* una brasa cálida levanta la foto, que de por sí viene oscura */
+.hero::after {
+  content: "";
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background:
+    radial-gradient(58% 48% at 72% 38%, rgba(236, 160, 74, .2), rgba(236, 160, 74, 0) 72%),
+    radial-gradient(40% 40% at 88% 74%, rgba(255, 170, 90, .12), rgba(255, 170, 90, 0) 70%);
+  mix-blend-mode: screen;
 }
 
 /* en el móvil la foto ya es el fondo: la figura solo existe en escritorio */
@@ -300,6 +310,7 @@ body.ready .display .line:nth-child(4) > * { transition-delay: .29s; }
       linear-gradient(180deg, rgba(5, 5, 8, .5) 0%, rgba(5, 5, 8, 0) 34%, rgba(5, 5, 8, .62) 100%);
   }
   .hero { background: #07070A; }
+  .hero::after { display: none; }
   .hero-copy { max-width: 620px; justify-self: end; padding: 0; text-align: left; }
   .hero .kicker { margin-bottom: 16px; }
   .lead { margin: 0; }
