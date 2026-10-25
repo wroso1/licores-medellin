@@ -262,13 +262,14 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .estampa {
   position: absolute; z-index: 3;
   right: clamp(10px, 4vw, 40px); bottom: clamp(14px, 4vw, 34px);
-  width: clamp(118px, 30vw, 176px); height: auto;
+  width: clamp(126px, 32vw, 182px);
   pointer-events: none;
   opacity: 0;
-  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, .5));
+  filter: drop-shadow(0 6px 14px rgba(0, 0, 0, .65));
   transform-origin: 50% 55%;
   animation: estampar .78s cubic-bezier(.22, .9, .24, 1) .45s both;
 }
+.estampa svg { display: block; width: 100%; height: auto; }
 @keyframes estampar {
   0%   { opacity: 0; transform: translateY(-28px) rotate(-18deg) scale(1.85); }
   38%  { opacity: 1; transform: translateY(0) rotate(-9deg) scale(1.02); }
