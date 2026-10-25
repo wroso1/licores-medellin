@@ -245,12 +245,12 @@ button, input, select, textarea { font: inherit; color: inherit; }
 .sello {
   position: absolute; z-index: 3;
   top: clamp(8px, 2.6vw, 22px); right: clamp(8px, 3.2vw, 34px);
-  width: clamp(76px, 21vw, 112px);
+  width: clamp(114px, 31.5vw, 168px);
   pointer-events: none;
   opacity: 0;
   transform: translateY(-8px) scale(.86);
   filter: drop-shadow(0 12px 24px rgba(0, 0, 0, .6));
-  transition: opacity .75s ease, transform .75s cubic-bezier(.2, .7, .2, 1);
+  transition: opacity .5s ease, transform .5s cubic-bezier(.2, .7, .2, 1);
 }
 .sello svg { display: block; width: 100%; height: auto; }
 .sello.is-in { opacity: 1; transform: none; }

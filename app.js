@@ -792,7 +792,7 @@
   function setupSello() {
     var sello = document.querySelector(".sello");
     if (!sello) return;
-    setTimeout(function () { sello.classList.add("is-in"); }, 11000);
+    setTimeout(function () { sello.classList.add("is-in"); }, 5000);
   }
 
   if (document.readyState === "loading") {
