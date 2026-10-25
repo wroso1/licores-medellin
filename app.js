@@ -786,6 +786,13 @@
     setupServiceWorker();
     setupInstall();
     startGridRotate();
+    setupSello();
+  }
+
+  function setupSello() {
+    var sello = document.querySelector(".sello");
+    if (!sello) return;
+    setTimeout(function () { sello.classList.add("is-in"); }, 11000);
   }
 
   if (document.readyState === "loading") {
