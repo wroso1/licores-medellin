@@ -81,9 +81,6 @@ var PRODUCTS = [
 
   { id: 25, name: "Hielo en bolsa",              cat: "hielo",       size: "5 kg",   price: 8000,   tag: "Esencial", img: "img/hielo.png", desc: "Listo para el plan." },
 
-  { id: 26, name: "Vasos desechables",           cat: "fiesta",      size: "Paquete", price: 5000,  tag: "",         img: "",                           desc: "Para la reunión." },
   { id: 27, name: "Coca-Cola",                   cat: "fiesta",      size: "400 ml", price: 3750,   tag: "Mezclador", img: "img/coca-cola.png", desc: "El mezclador clásico." },
-  { id: 28, name: "Gaseosas surtidas",           cat: "fiesta",      size: "400 ml", price: 3250,   tag: "",         img: "",                           desc: "Manzana, uva o colombiana." },
   { id: 29, name: "Agua",                        cat: "fiesta",      size: "600 ml", price: 2000,   tag: "",         img: "img/agua-cristal.png", desc: "Para hidratarse." },
-  { id: 30, name: "Combo fiesta",                cat: "fiesta",      size: "A tu medida", price: null, tag: "Cotizar", img: "",                          desc: "Armamos el combo para tu reunión.", quote: true }
 ];

@@ -165,7 +165,6 @@
   }
 
   function controlHTML(p) {
-    if (p.quote) return '<button class="add" data-quote="' + p.key + '" aria-label="Cotizar ' + p.name + '">?</button>';
     if (p.variants) {
       return '<button class="add add-pick" data-quick="' + p.key + '" ' +
         'aria-label="Elegir el color de ' + p.name + '">+</button>';
@@ -182,11 +181,9 @@
   }
 
   function cardHTML(p) {
-    var priceHTML = p.quote
-      ? '<span class="ask">A cotizar</span>'
-      : p.price == null
-        ? '<span class="ask">Consultar</span>'
-        : '<span class="price">' + money(p.price) + '<small> c/u</small></span>';
+    var priceHTML = p.price == null
+      ? '<span class="ask">Consultar</span>'
+      : '<span class="price">' + money(p.price) + '<small> c/u</small></span>';
 
     return '<article class="card">' +
       '<div class="card-media" data-quick="' + p.key + '" role="button" tabindex="0" ' +
@@ -268,9 +265,7 @@
           '"></i><b>' + sel.short + "</b></div>"
         : '<div class="ph-lg" aria-hidden="true">' + initialOf(sel.name) + "</div>";
 
-    $("#quickPrice").textContent = sel.quote
-      ? "A cotizar"
-      : sel.price != null ? money(sel.price) : "Consultar precio";
+    $("#quickPrice").textContent = sel.price != null ? money(sel.price) : "Consultar precio";
 
     $$("#quickVariants .swatch").forEach(function (b) {
       var on = b.dataset.variant === quickPick;
@@ -283,9 +278,7 @@
     qty.hidden = n === 0;
     if (n > 0) qty.textContent = "Ya llevas " + n + " en el pedido.";
 
-    $("#quickAdd").textContent = p.quote
-      ? "Pedir cotización"
-      : n > 0 ? "Agregar otro" : "Agregar al pedido";
+    $("#quickAdd").textContent = n > 0 ? "Agregar otro" : "Agregar al pedido";
   }
 
   function openQuick(key) {
@@ -519,15 +512,11 @@
     // Delegación en el catálogo
     grid.addEventListener("click", function (e) {
       var abre = e.target.closest("[data-quick]");
-      if (abre && !e.target.closest("[data-add],[data-inc],[data-dec],[data-quote]")) {
+      if (abre && !e.target.closest("[data-add],[data-inc],[data-dec]")) {
         return openQuick(abre.dataset.quick);
       }
-      var t = e.target.closest("[data-add],[data-inc],[data-dec],[data-quote]");
+      var t = e.target.closest("[data-add],[data-inc],[data-dec]");
       if (!t) return;
-      if (t.dataset.quote) {
-        openWhatsApp("Hola, quiero cotizar un combo para mi reunión. ¿Qué me recomiendan?");
-        return;
-      }
       if (t.dataset.add) return addToCart(t.dataset.add);
       if (t.dataset.inc) return changeQty(t.dataset.inc, 1);
       if (t.dataset.dec) return changeQty(t.dataset.dec, -1);
@@ -556,10 +545,6 @@
     $("#quickAdd").addEventListener("click", function () {
       var p = catalog[quickPick];
       if (!p) return;
-      if (p.quote) {
-        openWhatsApp("Hola, quiero cotizar " + p.name + ".");
-        return;
-      }
       addToCart(quickPick);
       closeQuick();
     });
