@@ -54,7 +54,7 @@ var PRODUCTS = [
     ] },
 
   { id: 6,  name: "Ron Medellín 5 Años",         cat: "ron",         size: "750 ml", price: 85440,  tag: "",         img: "",                           desc: "Suave, para mezclar o solo." },
-  { id: 5,  name: "Ron Medellín 8 Años",         cat: "ron",         size: "750 ml", price: 108603, tag: "Premium",  img: "",                           desc: "El clásico añejo de la casa." },
+  { id: 5,  name: "Ron Medellín 8 Años",         cat: "ron",         size: "750 ml", price: 108603, tag: "Premium",  img: "img/ron-medellin-8.jpg",     desc: "El clásico añejo de la casa." },
   { id: 8,  name: "Ron Viejo de Caldas 5 Años",  cat: "ron",         size: "750 ml", price: 90695,  tag: "",         img: "img/ron-caldas-5.jpg",       desc: "Caldas cinco años." },
   { id: 10, name: "Ron Esencial Litro",          cat: "ron",         size: "1000 ml", price: 87165, tag: "",         img: "img/ron-esencia.jpg",        desc: "Licor de ron viejo de Caldas." },
   { id: 7,  name: "Ron Viejo de Caldas 15",      cat: "ron",         size: "750 ml", price: 171750, tag: "Reserva",  img: "",                           desc: "Gran reserva, para ocasión especial." },
