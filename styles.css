@@ -258,6 +258,28 @@ button, input, select, textarea { font: inherit; color: inherit; }
   .sello { transform: none; transition: opacity .5s ease; }
 }
 
+/* Sello de envío gratis: cae y se estampa al abrir la página */
+.estampa {
+  position: absolute; z-index: 3;
+  right: clamp(10px, 4vw, 40px); bottom: clamp(14px, 4vw, 34px);
+  width: clamp(118px, 30vw, 176px); height: auto;
+  pointer-events: none;
+  opacity: 0;
+  filter: drop-shadow(0 12px 22px rgba(0, 0, 0, .5));
+  transform-origin: 50% 55%;
+  animation: estampar .78s cubic-bezier(.22, .9, .24, 1) .45s both;
+}
+@keyframes estampar {
+  0%   { opacity: 0; transform: translateY(-28px) rotate(-18deg) scale(1.85); }
+  38%  { opacity: 1; transform: translateY(0) rotate(-9deg) scale(1.02); }
+  47%  { transform: translateY(0) rotate(-9deg) scale(.93); }
+  60%  { transform: translateY(0) rotate(-9deg) scale(1.03); }
+  72%, 100% { opacity: 1; transform: translateY(0) rotate(-9deg) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .estampa { animation: none; opacity: 1; transform: rotate(-9deg); }
+}
+
 @media (min-width: 880px) {
   .hero { grid-template-columns: minmax(0, 1.02fr) minmax(0, .98fr); max-width: none; }
   .hero-copy { max-width: 620px; justify-self: end; padding-left: 0; }
