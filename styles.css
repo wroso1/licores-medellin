@@ -254,18 +254,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 }
 .sello svg { display: block; width: 100%; height: auto; }
 .sello.is-in { opacity: 1; transform: none; }
-
-/* Ciclo de aparición: entra, se queda medio segundo y se va, cada 1 s */
-.sello.is-live { animation: sello-ciclo 1s ease-in-out infinite; }
-@keyframes sello-ciclo {
-  0%   { opacity: 0; transform: translateY(-8px) scale(.86); }
-  24%  { opacity: 1; transform: none; }
-  72%  { opacity: 1; transform: none; }
-  100% { opacity: 0; transform: translateY(-3px) scale(.95); }
-}
 @media (prefers-reduced-motion: reduce) {
   .sello { transform: none; transition: opacity .5s ease; }
-  .sello.is-live { animation: none; opacity: 1; transform: none; }
 }
 
 @media (min-width: 880px) {

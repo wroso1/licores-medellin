@@ -792,10 +792,7 @@
   function setupSello() {
     var sello = document.querySelector(".sello");
     if (!sello) return;
-    var sinMovimiento = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setTimeout(function () {
-      sello.classList.add(sinMovimiento ? "is-in" : "is-live");
-    }, 5000);
+    setTimeout(function () { sello.classList.add("is-in"); }, 2000);
   }
 
   if (document.readyState === "loading") {
