@@ -46,7 +46,12 @@ var PRODUCTS = [
       { key: "verde", name: "Verde", color: "#1F7A46", img: "img/guardo-media-verde.jpg" },
       { key: "azul",  name: "Azul",  color: "#1B4FA0", img: "img/guardo-media-azul.jpg" }
     ] },
-  { id: 4,  name: "Aguardiente Litro",           cat: "aguardiente", size: "1000 ml", price: 87525, tag: "Litro",    img: "",                           desc: "Azul o verde, la referencia que prefieras." },
+  { id: 4,  name: "Aguardiente Litro",           cat: "aguardiente", size: "1000 ml", price: 87525, tag: "Litro",    img: "img/guardo-litro-rojo.jpg",  desc: "Botella de litro, 1000 ml.",
+    variants: [
+      { key: "rojo",  name: "Rojo",  color: "#C0392B", img: "img/guardo-litro-rojo.jpg" },
+      { key: "verde", name: "Verde", color: "#1F7A46", img: "img/guardo-litro-verde.jpg" },
+      { key: "azul",  name: "Azul",  color: "#1B4FA0", img: "img/guardo-litro-azul.jpg" }
+    ] },
 
   { id: 6,  name: "Ron Medellín 5 Años",         cat: "ron",         size: "750 ml", price: 85440,  tag: "",         img: "",                           desc: "Suave, para mezclar o solo." },
   { id: 5,  name: "Ron Medellín 8 Años",         cat: "ron",         size: "750 ml", price: 108603, tag: "Premium",  img: "",                           desc: "El clásico añejo de la casa." },
