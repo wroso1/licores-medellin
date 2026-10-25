@@ -269,7 +269,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
   transform-origin: 50% 55%;
   animation: estampar .78s cubic-bezier(.22, .9, .24, 1) .45s both;
 }
-.estampa svg { display: block; width: 100%; height: auto; }
+.estampa img { display: block; width: 100%; height: auto; }
 @keyframes estampar {
   0%   { opacity: 0; transform: translateY(-28px) rotate(-18deg) scale(1.85); }
   38%  { opacity: 1; transform: translateY(0) rotate(-9deg) scale(1.02); }
