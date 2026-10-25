@@ -63,7 +63,7 @@ var PRODUCTS = [
   { id: 11, name: "Buchanan's 12 Años",          cat: "whisky",      size: "750 ml", price: 134558, tag: "Premium",  img: "img/buchanans.jpg",          desc: "Deluxe, 12 años." },
   { id: 14, name: "Black & White",               cat: "whisky",      size: "750 ml", price: 105000, tag: "Clásico",  img: "img/black-white.jpg",        desc: "El de siempre, buen precio." },
   { id: 15, name: "Black & White Media",         cat: "whisky",      size: "375 ml", price: 48000,  tag: "Media",    img: "img/black-white-media.png",  desc: "Media botella." },
-  { id: 12, name: "Jack Daniel's Nº7",           cat: "whisky",      size: "750 ml", price: 162000, tag: "Destacado", img: "",                          desc: "Tennessee whiskey." },
+  { id: 12, name: "Jack Daniel's Nº7",           cat: "whisky",      size: "750 ml", price: 162000, tag: "Destacado", img: "img/jack-daniels-7.jpg",     desc: "Tennessee whiskey." },
   { id: 13, name: "Jack Daniel's Honey",         cat: "whisky",      size: "750 ml", price: 162000, tag: "Miel",     img: "",                           desc: "Whisky con miel." },
   { id: 16, name: "Bailey's",                    cat: "whisky",      size: "750 ml", price: 123000, tag: "Crema",    img: "",                           desc: "Crema de whisky, para el postre." },
 
