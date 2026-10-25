@@ -76,13 +76,18 @@ var PRODUCTS = [
   // Precio pendiente de confirmar con el dueño: en el catálogo anterior estaba a $11.250.
   { id: 22, name: "Smirnoff N°21",               cat: "vodka",       size: "700 ml", price: null,   tag: "Consultar", img: "img/smirnoff.png",           desc: "Vodka, precio por confirmar.", hidden: true },
 
-  { id: 24, name: "Heineken Sixpack",            cat: "cerveza",     size: "6 × 250 ml", price: 42000, tag: "Premium", img: "img/heineken.png",          desc: "Seis latas bien frías." },
-  { id: 23, name: "Poker Sixpack",               cat: "cerveza",     size: "6 × 330 ml", price: 28750, tag: "Frío",    img: "img/cerveza-poker-sixpack.png",         desc: "Seis latas de Poker bien frías." },
-  { id: 31, name: "Águila Sixpack",              cat: "cerveza",     size: "6 × 330 ml", price: 28750, tag: "Frío",    img: "img/cerveza-aguila-sixpack.png",        desc: "Seis latas de Águila original." },
-  { id: 32, name: "Águila Light Sixpack",        cat: "cerveza",     size: "6 × 330 ml", price: 28750, tag: "Frío",    img: "img/cerveza-aguila-light-sixpack.png",  desc: "Seis latas de Águila Light." },
-  { id: 33, name: "Pilsen Sixpack",              cat: "cerveza",     size: "6 × 330 ml", price: 28750, tag: "Frío",    img: "img/cerveza-pilsen-sixpack.png",        desc: "Seis latas de Pilsen." },
-  { id: 34, name: "Corona Sixpack",              cat: "cerveza",     size: "6 × 355 ml", price: 28750, tag: "Importada", img: "img/cerveza-corona-sixpack.png",      desc: "Seis botellas de Corona Extra." },
-  { id: 35, name: "Andina Sixpack",              cat: "cerveza",     size: "6 × 330 ml", price: 28750, tag: "Frío",    img: "img/cerveza-andina-sixpack.png",        desc: "Seis latas de Andina." },
+  { id: 23, name: "Cervezas Sixpack", cat: "cerveza", size: "6 unidades", price: 28750, tag: "Frío",
+    img: "img/cerveza-poker-sixpack.png", desc: "Seis latas o botellas bien frías.",
+    variants: [
+      { key: "poker",        name: "Poker",        color: "#E8B53C", price: 28750, size: "6 × 330 ml", img: "img/cerveza-poker-sixpack.png" },
+      { key: "aguila",       name: "Águila",       color: "#1B3C8C", price: 28750, size: "6 × 330 ml", img: "img/cerveza-aguila-sixpack.png" },
+      { key: "aguila-light", name: "Águila Light", color: "#6FC3E8", price: 28750, size: "6 × 330 ml", img: "img/cerveza-aguila-light-sixpack.png" },
+      { key: "pilsen",       name: "Pilsen",       color: "#C8202F", price: 28750, size: "6 × 330 ml", img: "img/cerveza-pilsen-sixpack.png" },
+      { key: "corona",       name: "Corona",       color: "#12295B", price: 28750, size: "6 × 355 ml", img: "img/cerveza-corona-sixpack.png" },
+      { key: "andina",       name: "Andina",       color: "#C9A227", price: 28750, size: "6 × 330 ml", img: "img/cerveza-andina-sixpack.png" },
+      { key: "heineken",     name: "Heineken",     color: "#0E7A3C", price: 42000, size: "6 × 250 ml", img: "img/heineken.png" }
+    ]
+  },
 
   { id: 25, name: "Hielo en bolsa",              cat: "hielo",       size: "5 kg",   price: 8000,   tag: "Esencial", img: "img/hielo.png", desc: "Listo para el plan." },
 

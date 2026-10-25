@@ -51,7 +51,8 @@
         catalog[sk] = {
           id: p.id, key: sk, short: v.name, color: v.color || "",
           name: p.name + " · " + v.name,
-          cat: p.cat, size: p.size, price: p.price,
+          cat: p.cat, size: v.size || p.size,
+          price: v.price != null ? v.price : p.price,
           desc: p.desc, img: v.img || ""
         };
       });
@@ -181,9 +182,18 @@
   }
 
   function cardHTML(p) {
-    var priceHTML = p.price == null
-      ? '<span class="ask">Consultar</span>'
-      : '<span class="price">' + money(p.price) + '<small> c/u</small></span>';
+    var desde = null;
+    if (p.variants) {
+      var precios = p.variants.map(function (v) { return v.price != null ? v.price : p.price; });
+      if (Math.max.apply(null, precios) !== Math.min.apply(null, precios)) {
+        desde = Math.min.apply(null, precios);
+      }
+    }
+    var priceHTML = desde != null
+      ? '<span class="price">desde ' + money(desde) + '</span>'
+      : p.price == null
+        ? '<span class="ask">Consultar</span>'
+        : '<span class="price">' + money(p.price) + '<small> c/u</small></span>';
 
     return '<article class="card">' +
       '<div class="card-media" data-quick="' + p.key + '" role="button" tabindex="0" ' +
@@ -246,6 +256,7 @@
 
   function specsOf(p) {
     var out = [];
+    if (p.short) out.push("Opción: " + p.short);
     if (p.size) out.push("Contenido: " + p.size);
     var cat = (CATEGORIES.filter(function (c) { return c.id === p.cat; })[0] || {}).name;
     if (cat) out.push("Categoría: " + cat);
@@ -265,6 +276,7 @@
           '"></i><b>' + sel.short + "</b></div>"
         : '<div class="ph-lg" aria-hidden="true">' + initialOf(sel.name) + "</div>";
 
+    $("#quickName").textContent = p.short ? p.name.split(" · ")[0] + " · " + p.short : p.name;
     $("#quickPrice").textContent = sel.price != null ? money(sel.price) : "Consultar precio";
 
     $$("#quickVariants .swatch").forEach(function (b) {
