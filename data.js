@@ -61,7 +61,7 @@ var PRODUCTS = [
   { id: 9,  name: "Garrafa Caldas 1.75 L",       cat: "ron",         size: "1750 ml", price: 196875, tag: "Compartir", img: "img/garrafa-caldas.jpg",    desc: "Rinde para toda la reunión." },
 
   { id: 11, name: "Buchanan's 12 Años",          cat: "whisky",      size: "750 ml", price: 134558, tag: "Premium",  img: "img/buchanans.jpg",          desc: "Deluxe, 12 años." },
-  { id: 14, name: "Black & White",               cat: "whisky",      size: "750 ml", price: 105000, tag: "Clásico",  img: "",                           desc: "El de siempre, buen precio." },
+  { id: 14, name: "Black & White",               cat: "whisky",      size: "750 ml", price: 105000, tag: "Clásico",  img: "img/black-white.jpg",        desc: "El de siempre, buen precio." },
   { id: 15, name: "Black & White Media",         cat: "whisky",      size: "375 ml", price: 48000,  tag: "Media",    img: "",                           desc: "Media botella." },
   { id: 12, name: "Jack Daniel's Nº7",           cat: "whisky",      size: "750 ml", price: 162000, tag: "Destacado", img: "",                          desc: "Tennessee whiskey." },
   { id: 13, name: "Jack Daniel's Honey",         cat: "whisky",      size: "750 ml", price: 162000, tag: "Miel",     img: "",                           desc: "Whisky con miel." },
