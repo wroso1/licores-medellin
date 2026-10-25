@@ -64,10 +64,10 @@ var PRODUCTS = [
   { id: 14, name: "Black & White",               cat: "whisky",      size: "750 ml", price: 105000, tag: "Clásico",  img: "img/black-white.jpg",        desc: "El de siempre, buen precio." },
   { id: 15, name: "Black & White Media",         cat: "whisky",      size: "375 ml", price: 48000,  tag: "Media",    img: "img/black-white-media.png",  desc: "Media botella." },
   { id: 12, name: "Jack Daniel's Nº7",           cat: "whisky",      size: "750 ml", price: 162000, tag: "Destacado", img: "img/jack-daniels-7.jpg",     desc: "Tennessee whiskey." },
-  { id: 13, name: "Jack Daniel's Honey",         cat: "whisky",      size: "750 ml", price: 162000, tag: "Miel",     img: "",                           desc: "Whisky con miel." },
-  { id: 16, name: "Bailey's",                    cat: "whisky",      size: "750 ml", price: 123000, tag: "Crema",    img: "",                           desc: "Crema de whisky, para el postre." },
+  { id: 13, name: "Jack Daniel's Honey",         cat: "whisky",      size: "750 ml", price: 162000, tag: "Miel",     img: "img/jack-daniels-honey.jpg", desc: "Whisky con miel." },
+  { id: 16, name: "Bailey's",                    cat: "whisky",      size: "750 ml", price: 123000, tag: "Crema",    img: "img/baileys.webp", desc: "Crema de whisky, para el postre." },
 
-  { id: 17, name: "José Cuervo Especial",        cat: "tequila",     size: "750 ml", price: 135000, tag: "",         img: "img/jose-cuervo.jpg",        desc: "Tequila dorado." },
+  { id: 17, name: "José Cuervo Especial",        cat: "tequila",     size: "750 ml", price: 135000, tag: "",         img: "img/jose-cuervo-especial.jpg",        desc: "Tequila dorado." },
   { id: 20, name: "Don Julio Blanco",            cat: "tequila",     size: "700 ml", price: 274300, tag: "",         img: "img/don-julio-blanco.jpg",   desc: "Tequila 100% agave." },
   { id: 19, name: "Don Julio Reposado",          cat: "tequila",     size: "700 ml", price: 364000, tag: "",         img: "img/don-julio-reposado.jpg", desc: "Reposado, ocho meses en barrica." },
   { id: 18, name: "Don Julio Añejo",             cat: "tequila",     size: "700 ml", price: 396500, tag: "Lujo",     img: "img/don-julio-anejo.jpg",    desc: "Añejo, para brindar." },
