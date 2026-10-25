@@ -749,7 +749,25 @@ body.ready .display .line:nth-child(4) > * { transition-delay: .29s; }
   font-size: 20px; line-height: 1; cursor: pointer;
 }
 .install-no:hover { color: var(--ink); }
-body.install-on .cart-bar { transform: translateY(-72px); }
+body.install-on /* foto que vuela de la tarjeta al pedido */
+.fly {
+  position: fixed; z-index: 95;
+  object-fit: contain;
+  pointer-events: none;
+  filter: drop-shadow(0 12px 20px rgba(0, 0, 0, .55));
+  will-change: transform, opacity;
+}
+.cart-bar.is-hit .cart-bar-inner { animation: bar-hit .52s ease; }
+@keyframes bar-hit {
+  0%, 100% { transform: none; }
+  38% { transform: scale(1.035); }
+  70% { transform: scale(.996); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .cart-bar.is-hit .cart-bar-inner { animation: none; }
+}
+
+.cart-bar { transform: translateY(-72px); }
 body.install-on .cart-bar { transition: transform .34s var(--ease); }
 
 /* ------------------------------ barra pedido ----------------------------- */

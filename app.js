@@ -411,12 +411,49 @@
   }
 
   /* ---------------------------- acciones carrito ---------------------------- */
-  function addToCart(id) {
+  function addToCart(id, origen) {
     var p = catalog[id];
     if (!p) return;
     cart.set(id, (cart.get(id) || 0) + 1);
     renderAll();
+    if (origen) volarAlPedido(origen);
     toast(p.name + " agregado");
+  }
+
+  /* la foto del producto vuela hasta la barra del pedido */
+  function volarAlPedido(origen) {
+    if (!origen || !origen.rect || !origen.src) return;
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    var meta = $("#openCart") || $("#cartBar");
+    if (!meta) return;
+    var r = origen.rect, d = meta.getBoundingClientRect();
+    var img = new Image();
+    img.src = origen.src;
+    img.alt = "";
+    img.className = "fly";
+    img.style.left = r.left + "px";
+    img.style.top = r.top + "px";
+    img.style.width = r.width + "px";
+    img.style.height = r.height + "px";
+    document.body.appendChild(img);
+    if (typeof img.animate !== "function") { img.remove(); return; }
+    var dx = d.left + d.width / 2 - (r.left + r.width / 2);
+    var dy = d.top + d.height / 2 - (r.top + r.height / 2);
+    var anim = img.animate([
+      { transform: "translate(0, 0) scale(1)", opacity: 1 },
+      { transform: "translate(" + dx * 0.6 + "px, " + (dy * 0.6 - 46) + "px) scale(.55)", opacity: .95, offset: .6 },
+      { transform: "translate(" + dx + "px, " + dy + "px) scale(.06)", opacity: 0 }
+    ], { duration: 620, easing: "cubic-bezier(.3, .8, .3, 1)" });
+    var fin = function () { img.remove(); golpeBarra(); };
+    anim.onfinish = fin;
+    anim.oncancel = function () { img.remove(); };
+  }
+
+  function golpeBarra() {
+    var bar = $("#cartBar");
+    if (!bar) return;
+    bar.classList.add("is-hit");
+    setTimeout(function () { bar.classList.remove("is-hit"); }, 620);
   }
 
   function changeQty(id, delta) {
@@ -517,7 +554,11 @@
       }
       var t = e.target.closest("[data-add],[data-inc],[data-dec]");
       if (!t) return;
-      if (t.dataset.add) return addToCart(t.dataset.add);
+      if (t.dataset.add) {
+        var card = t.closest(".card");
+        var foto = card && card.querySelector(".card-media img");
+        return addToCart(t.dataset.add, foto ? { rect: foto.getBoundingClientRect(), src: foto.currentSrc || foto.src } : null);
+      }
       if (t.dataset.inc) return changeQty(t.dataset.inc, 1);
       if (t.dataset.dec) return changeQty(t.dataset.dec, -1);
     });
@@ -545,7 +586,8 @@
     $("#quickAdd").addEventListener("click", function () {
       var p = catalog[quickPick];
       if (!p) return;
-      addToCart(quickPick);
+      var grande = $("#quickMedia img");
+      addToCart(quickPick, grande ? { rect: grande.getBoundingClientRect(), src: grande.currentSrc || grande.src } : null);
       closeQuick();
     });
 
