@@ -6,8 +6,8 @@
 
 var CONFIG = {
   // 57 + número, sin +, sin espacios, sin guiones
-  whatsapp: "573004515809",
-  whatsappLabel: "300 451 5809",
+  whatsapp: "573160974204",
+  whatsappLabel: "316 097 4204",
 
   deliveryFee: 0,
   // Entrega gratis desde este subtotal. 0 = nunca.
