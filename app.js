@@ -126,14 +126,12 @@
 
   /* ---------------------------- registro de visitas ---------------------------- */
   function setupStats() {
-    var cfg = (CONFIG.statcounter || {});
-    if (!cfg.project || !cfg.security) return;
-    window.sc_project = cfg.project;
-    window.sc_invisible = 1;
-    window.sc_security = cfg.security;
+    var id = (CONFIG.visitas || {}).umami;
+    if (!id) return;
     var s = document.createElement("script");
     s.async = true;
-    s.src = "https://www.statcounter.com/counter/counter.js";
+    s.src = "https://cloud.umami.is/script.js";
+    s.setAttribute("data-website-id", id);
     document.head.appendChild(s);
   }
 

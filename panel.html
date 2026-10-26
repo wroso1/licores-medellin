@@ -36,18 +36,18 @@
 
   <div class="panel-card" id="listo" hidden>
     <h2>Registro encendido</h2>
-    <p style="margin:0 0 14px">Proyecto <span class="panel-code" id="proyecto"></span>. Abre tu tablero para ver el detalle de cada visita.</p>
-    <a class="panel-btn" id="abrir" href="https://statcounter.com/" target="_blank" rel="noopener">Abrir el registro de visitantes</a>
-    <a class="panel-btn ghost" href="https://statcounter.com/m/" target="_blank" rel="noopener">Abrir la app del celular</a>
+    <p style="margin:0 0 14px">Sitio <span class="panel-code" id="proyecto"></span>. Abre tu tablero para ver cada visita: hora, ciudad, equipo, de dónde llegó y qué miró.</p>
+    <a class="panel-btn" id="abrir" href="https://cloud.umami.is/" target="_blank" rel="noopener">Ver quién está mirando ahora</a>
+    <a class="panel-btn ghost" id="detalle" href="https://cloud.umami.is/" target="_blank" rel="noopener">Abrir el registro completo</a>
   </div>
 
   <div class="panel-card" id="falta">
     <h2>Todavía falta un paso</h2>
     <ol>
-      <li>Entra a <b>statcounter.com</b> y crea la cuenta con tu correo.</li>
-      <li>Crea un proyecto con la dirección de la tienda.</li>
-      <li>Copia el código de instalación (trae dos datos: <span class="panel-code">sc_project</span> y <span class="panel-code">sc_security</span>) y mándamelo.</li>
-      <li>Yo lo dejo funcionando y este panel queda encendido.</li>
+      <li>Entra a <b>cloud.umami.is</b> y crea la cuenta gratis con tu correo.</li>
+      <li>Agrega un sitio con la dirección <b>wroso1.github.io/licores-medellin</b>.</li>
+      <li>Umami te da un identificador largo (algo como <span class="panel-code">8f3c1d2e-....</span>). Mándamelo.</li>
+      <li>Yo lo conecto y este panel queda encendido.</li>
     </ol>
   </div>
 
@@ -57,13 +57,16 @@
 <script src="data.js"></script>
 <script>
 (function () {
-  var cfg = (window.CONFIG && CONFIG.statcounter) || {};
+  var cfg = (window.CONFIG && CONFIG.visitas) || {};
   var listo = document.getElementById("listo");
   var falta = document.getElementById("falta");
-  if (cfg.project && cfg.security) {
+  if (cfg.umami) {
     listo.hidden = false;
     falta.hidden = true;
-    document.getElementById("proyecto").textContent = cfg.project;
+    document.getElementById("proyecto").textContent = cfg.umami;
+    var base = "https://cloud.umami.is/websites/" + encodeURIComponent(cfg.umami);
+    document.getElementById("abrir").href = base;
+    document.getElementById("detalle").href = base;
   }
 })();
 </script>
