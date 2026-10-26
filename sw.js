@@ -2,7 +2,7 @@
    Guarda el armazón de la tienda para que abra sin señal
    y para que el navegador la ofrezca como aplicación. */
 
-var CACHE = "lm-v2";
+var CACHE = "lm-v3";
 var SHELL = [
   "./",
   "./index.html",
@@ -13,7 +13,9 @@ var SHELL = [
   "./manifest.json",
   "./img/icon-192.png",
   "./img/icon-512.png",
-  "./img/hero-black-label.webp"
+  "./img/hero-black-label.webp",
+  "./logo/marca-copa.png",
+  "./logo/logo-blanco.png"
 ];
 
 self.addEventListener("install", function (e) {

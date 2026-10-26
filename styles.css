@@ -152,11 +152,8 @@ button, input, select, textarea { font: inherit; color: inherit; }
 
 .brand { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; }
 .brand-mark {
-  width: 30px; height: 30px; flex: none;
-  display: grid; place-items: center;
-  background: var(--wine); color: var(--on-solid);
-  font-family: var(--serif); font-size: 17px; font-weight: 700;
-  border-radius: 3px;
+  width: 32px; height: 32px; flex: none;
+  display: block; object-fit: contain;
 }
 .brand-name {
   font-family: var(--serif);
@@ -603,8 +600,7 @@ body.ready .display .line:nth-child(4) > * { transition-delay: .29s; }
 }
 @media (min-width: 720px) { .foot-top { grid-template-columns: 1fr 1fr; align-items: start; gap: 40px; } }
 
-.brand-foot .brand-mark { background: #fff; color: #D93428; }
-.brand-foot .brand-name, .brand-foot .brand-name b { color: #fff; }
+.foot-logo { display: block; width: min(150px, 44vw); height: auto; }
 .foot-line { font-size: 13px; color: rgba(255, 255, 255, .92); max-width: 40ch; }
 
 .legal {
