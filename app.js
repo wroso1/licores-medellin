@@ -124,19 +124,6 @@
     return clean.charAt(0).toUpperCase();
   }
 
-  /* ---------------------------- registro de visitas ---------------------------- */
-  function setupStats() {
-    var id = (CONFIG.visitas || {}).clicky;
-    if (!id) return;
-    window.clicky_site_ids = window.clicky_site_ids || [];
-    window.clicky_site_ids.push(Number(id));
-    window.clicky_custom = { site_name: "Licores Medellín" };
-    var s = document.createElement("script");
-    s.async = true;
-    s.src = "https://static.getclicky.com/js";
-    document.head.appendChild(s);
-  }
-
   /* ---------------------------- toast ---------------------------- */
   var toastEl = $("#toast");
   var toastTimer;
@@ -797,7 +784,6 @@
     setupInstall();
     startGridRotate();
     setupSello();
-    setupStats();
   }
 
   function setupSello() {
