@@ -124,6 +124,19 @@
     return clean.charAt(0).toUpperCase();
   }
 
+  /* ---------------------------- registro de visitas ---------------------------- */
+  function setupStats() {
+    var cfg = (CONFIG.statcounter || {});
+    if (!cfg.project || !cfg.security) return;
+    window.sc_project = cfg.project;
+    window.sc_invisible = 1;
+    window.sc_security = cfg.security;
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.statcounter.com/counter/counter.js";
+    document.head.appendChild(s);
+  }
+
   /* ---------------------------- toast ---------------------------- */
   var toastEl = $("#toast");
   var toastTimer;
@@ -784,6 +797,7 @@
     setupInstall();
     startGridRotate();
     setupSello();
+    setupStats();
   }
 
   function setupSello() {

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Panel de visitas · Licores Medellín</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  .panel-wrap { max-width: 640px; margin: 0 auto; padding: 28px 20px 60px; }
+  .panel-wrap h1 { font-size: clamp(24px, 6vw, 32px); margin: 8px 0 6px; }
+  .panel-wrap p { color: var(--ink-2); line-height: 1.65; }
+  .panel-card {
+    border: 1px solid var(--line); border-radius: 18px; padding: 18px;
+    background: rgba(255, 255, 255, .03); margin: 18px 0;
+  }
+  .panel-card h2 { font-size: 15px; margin: 0 0 8px; letter-spacing: .02em; }
+  .panel-card ol { margin: 0; padding-left: 20px; color: var(--ink-2); line-height: 1.7; font-size: 14px; }
+  .panel-btn {
+    display: inline-flex; align-items: center; gap: 8px; justify-content: center;
+    width: 100%; padding: 15px 20px; border: 0; border-radius: 999px;
+    background: var(--gold); color: #14100a; font: inherit; font-weight: 700; font-size: 15.5px;
+    text-decoration: none; margin-top: 6px;
+  }
+  .panel-btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+  .panel-state { font-size: 13px; color: var(--ink-2); margin-top: 14px; }
+  .panel-state b { color: var(--ink); }
+  .panel-code { font-family: ui-monospace, monospace; background: rgba(0,0,0,.35); padding: 2px 6px; border-radius: 6px; }
+</style>
+</head>
+<body>
+<main class="panel-wrap">
+  <p class="panel-state">Licores Medellín</p>
+  <h1>Panel de visitas</h1>
+  <p>Aquí ves quién está mirando la página: hora, ciudad, dispositivo y si es visita nueva o repetida.</p>
+
+  <div class="panel-card" id="listo" hidden>
+    <h2>Registro encendido</h2>
+    <p style="margin:0 0 14px">Proyecto <span class="panel-code" id="proyecto"></span>. Abre tu tablero para ver el detalle de cada visita.</p>
+    <a class="panel-btn" id="abrir" href="https://statcounter.com/" target="_blank" rel="noopener">Abrir el registro de visitantes</a>
+    <a class="panel-btn ghost" href="https://statcounter.com/m/" target="_blank" rel="noopener">Abrir la app del celular</a>
+  </div>
+
+  <div class="panel-card" id="falta">
+    <h2>Todavía falta un paso</h2>
+    <ol>
+      <li>Entra a <b>statcounter.com</b> y crea la cuenta con tu correo.</li>
+      <li>Crea un proyecto con la dirección de la tienda.</li>
+      <li>Copia el código de instalación (trae dos datos: <span class="panel-code">sc_project</span> y <span class="panel-code">sc_security</span>) y mándamelo.</li>
+      <li>Yo lo dejo funcionando y este panel queda encendido.</li>
+    </ol>
+  </div>
+
+  <p class="panel-state">Esta página no aparece en Google ni en el menú de la tienda.</p>
+</main>
+
+<script src="data.js"></script>
+<script>
+(function () {
+  var cfg = (window.CONFIG && CONFIG.statcounter) || {};
+  var listo = document.getElementById("listo");
+  var falta = document.getElementById("falta");
+  if (cfg.project && cfg.security) {
+    listo.hidden = false;
+    falta.hidden = true;
+    document.getElementById("proyecto").textContent = cfg.project;
+  }
+})();
+</script>
+</body>
+</html>
