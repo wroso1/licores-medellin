@@ -2,7 +2,7 @@
    Guarda el armazón de la tienda para que abra sin señal
    y para que el navegador la ofrezca como aplicación. */
 
-var CACHE = "lm-v1";
+var CACHE = "lm-v2";
 var SHELL = [
   "./",
   "./index.html",
