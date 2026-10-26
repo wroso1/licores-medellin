@@ -36,17 +36,17 @@
 
   <div class="panel-card" id="listo" hidden>
     <h2>Registro encendido</h2>
-    <p style="margin:0 0 14px">Sitio <span class="panel-code" id="proyecto"></span>. Abre tu tablero para ver cada visita: hora, ciudad, equipo, de dónde llegó y qué miró.</p>
-    <a class="panel-btn" id="abrir" href="https://cloud.umami.is/" target="_blank" rel="noopener">Ver quién está mirando ahora</a>
-    <a class="panel-btn ghost" id="detalle" href="https://cloud.umami.is/" target="_blank" rel="noopener">Abrir el registro completo</a>
+    <p style="margin:0 0 14px">Sitio <span class="panel-code" id="proyecto"></span>. Mira quién está en la página ahora mismo o el registro de cada visita.</p>
+    <a class="panel-btn" id="abrir" href="https://clicky.com/" target="_blank" rel="noopener">Ver quién está mirando ahora</a>
+    <a class="panel-btn ghost" id="detalle" href="https://clicky.com/" target="_blank" rel="noopener">Abrir el registro completo</a>
   </div>
 
   <div class="panel-card" id="falta">
     <h2>Todavía falta un paso</h2>
     <ol>
-      <li>Entra a <b>cloud.umami.is</b> y crea la cuenta gratis con tu correo.</li>
+      <li>Entra a <b>clicky.com</b> y crea la cuenta gratis (<i>Register</i>) con tu correo.</li>
       <li>Agrega un sitio con la dirección <b>wroso1.github.io/licores-medellin</b>.</li>
-      <li>Umami te da un identificador largo (algo como <span class="panel-code">8f3c1d2e-....</span>). Mándamelo.</li>
+      <li>Clicky te da un número de sitio (8 o 9 cifras, tipo <span class="panel-code">131234567</span>). Mándamelo.</li>
       <li>Yo lo conecto y este panel queda encendido.</li>
     </ol>
   </div>
@@ -60,13 +60,13 @@
   var cfg = (window.CONFIG && CONFIG.visitas) || {};
   var listo = document.getElementById("listo");
   var falta = document.getElementById("falta");
-  if (cfg.umami) {
+  if (cfg.clicky) {
     listo.hidden = false;
     falta.hidden = true;
-    document.getElementById("proyecto").textContent = cfg.umami;
-    var base = "https://cloud.umami.is/websites/" + encodeURIComponent(cfg.umami);
-    document.getElementById("abrir").href = base;
-    document.getElementById("detalle").href = base;
+    document.getElementById("proyecto").textContent = cfg.clicky;
+    var id = encodeURIComponent(cfg.clicky);
+    document.getElementById("abrir").href = "https://clicky.com/stats/spy?site_id=" + id;
+    document.getElementById("detalle").href = "https://clicky.com/stats/?site_id=" + id;
   }
 })();
 </script>

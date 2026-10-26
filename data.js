@@ -9,8 +9,8 @@ var CONFIG = {
   whatsapp: "573160974204",
   whatsappLabel: "316 097 4204",
 
-  // Registro de visitas (Umami Cloud). Pega aquí el identificador del sitio.
-  visitas: { umami: "" },
+  // Registro de visitas (Clicky). Pega aquí el número de sitio de Clicky.
+  visitas: { clicky: "" },
 
   deliveryFee: 0,
   // Entrega gratis desde este subtotal. 0 = nunca.
