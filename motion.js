@@ -37,7 +37,7 @@
     io.observe(el);
   }
 
-  document.querySelectorAll("[data-reveal]").forEach(watch);
+  document.querySelectorAll("[data-reveal]").forEach(function (el) { watch(el); });
 
   /* Las fichas se re-pintan al buscar u ordenar: hay que volver a observarlas */
   var grid = document.getElementById("grid");

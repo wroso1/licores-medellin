@@ -540,7 +540,10 @@ body.ready .display .line:nth-child(4) > * { transition-delay: .29s; }
   padding: clamp(56px, 9vw, 112px) 0 clamp(56px, 9vw, 104px);
   border-top: 1px solid rgba(231, 178, 95, .42);
   border-bottom: 1px solid rgba(231, 178, 95, .42);
-  background: #0A0A0C url("img/barra-whisky.jpg") 68% 44% / cover no-repeat;
+  background:
+    radial-gradient(120% 90% at 82% 38%, rgba(231, 178, 95, .20) 0%, rgba(231, 178, 95, .05) 40%, transparent 64%),
+    radial-gradient(90% 70% at 96% 74%, rgba(217, 52, 40, .13) 0%, transparent 62%),
+    linear-gradient(160deg, #14111A 0%, #0A0A0C 58%, #0A0A0C 100%);
   isolation: isolate;
 }
 
