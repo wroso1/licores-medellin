@@ -95,9 +95,8 @@ var PRODUCTS = [
   { id: 27, name: "Coca-Cola",                   cat: "fiesta",      size: "400 ml", price: 3750,   tag: "Mezclador", img: "img/coca-cola.png", desc: "El mezclador clásico." },
   { id: 29, name: "Agua",                        cat: "fiesta",      size: "600 ml", price: 2000,   tag: "",         img: "img/agua-cristal.png", desc: "Para hidratarse." },
   { id: 30, name: "Micheladas", cat: "fiesta", size: "5 unidades", price: 12000, tag: "Novedad",
-    img: "img/micheladas-fresa.png", desc: "Micheladas al estilo del mercado colombiano: cerveza de sobreprecio, jugo natural, chile, sal y un toque de limón. Escoge el sabor.",
+    img: "img/micheladas-frutos-rojos.png", desc: "Micheladas al estilo del mercado colombiano: cerveza de sobreprecio, jugo natural, chile, sal y un toque de limón. Escoge el sabor.",
     variants: [
-      { key: "fresa",         name: "Fresa",         color: "#E24A2A", price: 12000, size: "5 unidades", img: "img/micheladas-fresa.png" },
       { key: "frutos-rojos",  name: "Frutos rojos",  color: "#A3152E", price: 12000, size: "5 unidades", img: "img/micheladas-frutos-rojos.png" },
       { key: "maracuya",      name: "Maracuyá",      color: "#F2B01E", price: 12000, size: "5 unidades", img: "img/micheladas-maracuya.png" },
       { key: "mango-biche",   name: "Mango biche",   color: "#8FBF2F", price: 12000, size: "5 unidades", img: "img/micheladas-mango-biche.png" }
