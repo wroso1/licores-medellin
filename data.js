@@ -93,4 +93,5 @@ var PRODUCTS = [
 
   { id: 27, name: "Coca-Cola",                   cat: "fiesta",      size: "400 ml", price: 3750,   tag: "Mezclador", img: "img/coca-cola.png", desc: "El mezclador clásico." },
   { id: 29, name: "Agua",                        cat: "fiesta",      size: "600 ml", price: 2000,   tag: "",         img: "img/agua-cristal.png", desc: "Para hidratarse." },
+  { id: 30, name: "Micheladas", cat: "fiesta", size: "5 unidades", price: 12000, tag: "Novedad", img: "", desc: "Micheladas al estilo del mercado colombiano: cerveza de sobreprecio, jugo natural, chile, sal y un toque de limón." }
 ];
