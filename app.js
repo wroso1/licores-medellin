@@ -251,6 +251,7 @@
 
   /* ---------------------------- vista rápida ------------------------------ */
   var quickBack = $("#quickBack");
+  var quickPanel = quickBack ? quickBack.querySelector(".quick") : null;
   var quickId = "";   // producto que se está mirando
   var quickPick = ""; // presentación elegida (color)
 
@@ -361,6 +362,10 @@
     setTimeout(function () {
       quickBack.hidden = true;
       quickBack.classList.remove("is-out");
+      if (quickPanel) {
+        quickPanel.style.transform = "";
+        quickPanel.style.transition = "";
+      }
       document.body.style.overflow = "";
     }, 250);
   }
@@ -560,6 +565,86 @@
       addToCart(quickPick);
       closeQuick();
     });
+
+    /* Deslizar la ficha hacia abajo para cerrarla.
+       Solo engancha cuando el contenido está arriba del todo, para no
+       quitarle el scroll normal a las fichas con descripción larga. */
+    if (quickPanel) {
+      var qy0 = 0, qT0 = 0, qDy = 0, activo = false, moviendo = false;
+
+      function empezar(y) {
+        if (quickBack.hidden) return;
+        qy0 = y;
+        qT0 = Date.now();
+        qDy = 0;
+        activo = true;
+        moviendo = false;
+      }
+
+      function mover(y, ev) {
+        if (!activo) return;
+        var d = y - qy0;
+        if (!moviendo) {
+          if (Math.abs(d) < 10) return;
+          // hacia arriba, o el contenido está desplazado: que scrollee
+          if (d < 0 || quickPanel.scrollTop > 0) { activo = false; return; }
+          moviendo = true;
+          stopRotate();
+          quickPanel.style.transition = "none";
+        }
+        if (ev && ev.cancelable) ev.preventDefault();
+        qDy = d < 0 ? 0 : d;
+        // resistencia: los primeros 70px acompañan 1:1, luego pesa más
+        var t = qDy < 70 ? qDy : 70 + (qDy - 70) * 0.55;
+        quickPanel.style.transform = "translateY(" + t + "px)";
+      }
+
+      function soltar() {
+        if (!activo) return;
+        activo = false;
+        if (!moviendo) return;
+        moviendo = false;
+        var ms = Math.max(1, Date.now() - qT0);
+        // cierra si arrastró lo suficiente o si fue un gesto rápido
+        var cerrar = qDy > 110 || (qDy / ms > 0.5 && qDy > 40);
+        quickPanel.style.transition = "";
+        if (cerrar) {
+          closeQuick();
+        } else {
+          quickPanel.style.transition = "transform .22s cubic-bezier(.2, .7, .3, 1)";
+          quickPanel.style.transform = "";
+          setTimeout(function () { quickPanel.style.transition = ""; }, 240);
+        }
+        qDy = 0;
+      }
+
+      // Dedo: touch, así podemos frenar el scroll del navegador mientras arrastramos
+      quickPanel.addEventListener("touchstart", function (e) {
+        if (e.touches.length !== 1) return;
+        empezar(e.touches[0].clientY);
+      }, { passive: true });
+
+      quickPanel.addEventListener("touchmove", function (e) {
+        mover(e.touches[0].clientY, e);
+      }, { passive: false });
+
+      quickPanel.addEventListener("touchend", soltar);
+      quickPanel.addEventListener("touchcancel", soltar);
+
+      // Ratón (escritorio): el mismo gesto
+      quickPanel.addEventListener("pointerdown", function (e) {
+        if (e.pointerType === "touch" || e.button !== 0) return;
+        empezar(e.clientY);
+      });
+      quickPanel.addEventListener("pointermove", function (e) {
+        if (e.pointerType === "touch") return;
+        mover(e.clientY, e);
+      });
+      quickPanel.addEventListener("pointerup", function (e) {
+        if (e.pointerType === "touch") return;
+        soltar();
+      });
+    }
 
     // Delegación en el carrito
     cartItemsEl.addEventListener("click", function (e) {
