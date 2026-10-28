@@ -30,7 +30,8 @@ var CATEGORIES = [
   { id: "vodka",      name: "Vodka",       ico: "🥂" },
   { id: "cerveza",    name: "Cervezas",    ico: "🍺" },
   { id: "hielo",      name: "Hielo",       ico: "🧊" },
-  { id: "fiesta",     name: "Fiesta",      ico: "🎉" }
+  { id: "fiesta",     name: "Fiesta",      ico: "🎉" },
+  { id: "cigarrillos", name: "Cigarrillos", ico: "🚬" }
 ];
 
 /* price: null = precio por cotizar
@@ -93,5 +94,15 @@ var PRODUCTS = [
 
   { id: 27, name: "Coca-Cola",                   cat: "fiesta",      size: "400 ml", price: 3750,   tag: "Mezclador", img: "img/coca-cola.png", desc: "El mezclador clásico." },
   { id: 29, name: "Agua",                        cat: "fiesta",      size: "600 ml", price: 2000,   tag: "",         img: "img/agua-cristal.png", desc: "Para hidratarse." },
-  { id: 30, name: "Micheladas", cat: "fiesta", size: "5 unidades", price: 12000, tag: "Novedad", img: "", desc: "Micheladas al estilo del mercado colombiano: cerveza de sobreprecio, jugo natural, chile, sal y un toque de limón." }
+  { id: 30, name: "Micheladas", cat: "fiesta", size: "5 unidades", price: 12000, tag: "Novedad", img: "", desc: "Micheladas al estilo del mercado colombiano: cerveza de sobreprecio, jugo natural, chile, sal y un toque de limón." },
+
+  { id: 31, name: "Cigarrillos", cat: "cigarrillos", size: "Cajetilla", price: 10000, tag: "Nuevo",
+    img: "img/cigarrillos-marlboro-rojo.png", desc: "Cajetillas de cigarrillos. Venta exclusiva a mayores de 18 años, se pide documento al recibir.",
+    variants: [
+      { key: "star-lite",             name: "Star Lite",             color: "#1B3A93", price: 10000, size: "20 cigarrillos", img: "img/cigarrillos-star-lite.png" },
+      { key: "marlboro-rojo",         name: "Marlboro Rojo",         color: "#D3202A", price: 10000, size: "20 cigarrillos", img: "img/cigarrillos-marlboro-rojo.png" },
+      { key: "marlboro-vista",        name: "Marlboro Vista",        color: "#2F7D3A", price: 10000, size: "20 cigarrillos", img: "img/cigarrillos-marlboro-vista.png" },
+      { key: "marlboro-vista-morado", name: "Marlboro Vista Morado", color: "#6A3FA0", price: 10000, size: "10 cigarrillos", img: "img/cigarrillos-marlboro-vista-morado.png" }
+    ]
+  }
 ];
