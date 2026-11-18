@@ -1089,3 +1089,40 @@ body.motion .card.in-view {
 .intro-legal { margin: 14px 0 0; font-size: 10.5px; letter-spacing: .02em; color: #6B6862; }
 @keyframes intro-in { from { opacity: 0; transform: translateY(16px) scale(.965); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .intro-bottle { animation: none; } }
+/* -------------------------------- llamas --------------------------------- */
+.intro-fire {
+  position: absolute; left: 0; right: 0; bottom: 15%; height: 46%;
+  pointer-events: none; z-index: 0; overflow: hidden;
+  mask-image: linear-gradient(to top, #000 24%, rgba(0,0,0,.65) 60%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to top, #000 24%, rgba(0,0,0,.65) 60%, rgba(0,0,0,0) 100%);
+}
+.intro-fire::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 24%;
+  background: radial-gradient(46% 88% at 50% 100%, rgba(255, 140, 35, .9), rgba(255, 60, 0, 0) 72%);
+  filter: blur(16px);
+}
+.intro-fire span {
+  position: absolute; bottom: 0; width: 15%; height: 74%;
+  border-radius: 50% 50% 42% 42%;
+  background: radial-gradient(50% 62% at 50% 86%, #FFF6DC 0%, #FFB347 24%, #F4590F 54%, rgba(150, 30, 0, 0) 100%);
+  filter: blur(7px); opacity: .82; transform-origin: 50% 100%;
+  mix-blend-mode: screen; will-change: transform, opacity;
+  animation: flame 3s ease-in-out infinite;
+}
+.intro-fire span:nth-child(1) { left: 2%;  height: 52%;  animation-duration: 2.6s; animation-delay: -.3s; }
+.intro-fire span:nth-child(2) { left: 17%; height: 84%;  animation-duration: 3.1s; animation-delay: -1s; }
+.intro-fire span:nth-child(3) { left: 31%; height: 62%;  animation-duration: 2.4s; animation-delay: -1.7s; }
+.intro-fire span:nth-child(4) { left: 45%; height: 100%; animation-duration: 3.4s; animation-delay: -.6s; }
+.intro-fire span:nth-child(5) { left: 59%; height: 68%;  animation-duration: 2.8s; animation-delay: -1.3s; }
+.intro-fire span:nth-child(6) { left: 73%; height: 88%;  animation-duration: 3.2s; animation-delay: -2.1s; }
+.intro-fire span:nth-child(7) { left: 38%; width: 24%; height: 56%; opacity: .45; animation-duration: 3.8s; animation-delay: -2.6s; }
+@keyframes flame {
+  0%, 100% { transform: translateY(9%) scale(.93, .9) rotate(-2deg); opacity: .6; }
+  35%      { transform: translateY(-5%) scale(1.02, 1.12) rotate(1.5deg); opacity: .9; }
+  70%      { transform: translateY(-10%) scale(1.06, 1.2) rotate(2.5deg); opacity: .72; }
+}
+.intro-inner { position: relative; z-index: 1; }
+.intro-stage::before {
+  background: radial-gradient(50% 45% at 50% 84%, rgba(255, 150, 60, .18), rgba(255, 120, 0, 0) 74%);
+}
+@media (prefers-reduced-motion: reduce) { .intro-fire span { animation: none; } }
