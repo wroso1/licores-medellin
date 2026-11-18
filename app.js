@@ -785,6 +785,26 @@
     });
   }
 
+  /* --------------------------- portada de entrada --------------------------- */
+  var K_INTRO = "lm.intro.v1";
+  function setupIntro() {
+    var intro = $("#intro");
+    if (!intro) return;
+    var yaVista = false;
+    try { yaVista = sessionStorage.getItem(K_INTRO) === "1"; } catch (e) {}
+    if (yaVista) return;
+    intro.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+    var btn = $("#introEnter");
+    function cerrar() {
+      try { sessionStorage.setItem(K_INTRO, "1"); } catch (e) {}
+      intro.classList.remove("is-open");
+      var gate = $("#ageGate");
+      document.body.style.overflow = (gate && !gate.hidden) ? "hidden" : "";
+    }
+    if (btn) { btn.addEventListener("click", cerrar); try { btn.focus({ preventScroll: true }); } catch (e) {} }
+  }
+
   /* ------------------------ instalar como app ------------------------ */
   function esStandalone() {
     var pantalla = window.matchMedia && window.matchMedia("(display-mode: standalone)").matches;
@@ -865,6 +885,7 @@
     bindStatic();
     renderAll();
     setupAgeGate();
+    setupIntro();
     setupServiceWorker();
     setupInstall();
     startGridRotate();

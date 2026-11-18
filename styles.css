@@ -1037,3 +1037,55 @@ body.motion .card.in-view {
   .btn-sm span { display: none; }
   .display { letter-spacing: -.03em; font-size: clamp(2.05rem, 8vw, 2.6rem); }
 }
+
+/* ------------------------------- portada --------------------------------- */
+.intro {
+  position: fixed; inset: 0; z-index: 200;
+  display: none; place-items: center;
+  background: #000;
+  padding: max(20px, env(safe-area-inset-top)) 22px max(16px, env(safe-area-inset-bottom));
+  overflow-y: auto;
+}
+.intro.is-open { display: grid; }
+.intro-inner { width: 100%; max-width: 430px; text-align: center; display: flex; flex-direction: column; align-items: center; }
+.intro-title {
+  margin: 0; font-family: var(--sans); text-transform: uppercase;
+  font-size: clamp(30px, 9.2vw, 44px); line-height: .96;
+  letter-spacing: -.02em; font-weight: 800; color: #fff;
+}
+.intro-sub { margin: 10px 0 0; font-size: 16px; line-height: 1.35; color: #D7D4CD; }
+.intro-stage { position: relative; margin: clamp(10px, 3vh, 26px) 0 clamp(12px, 3.2vh, 28px); display: grid; place-items: center; width: 100%; }
+.intro-stage::before {
+  content: ""; position: absolute; inset: -8% -14%;
+  background: radial-gradient(50% 45% at 50% 58%, rgba(255, 255, 255, .16), rgba(255, 255, 255, 0) 72%);
+  filter: blur(6px); pointer-events: none;
+}
+.intro-bottle {
+  position: relative; width: auto; height: clamp(170px, 37vh, 330px); max-width: 100%; object-fit: contain;
+  filter: drop-shadow(0 24px 38px rgba(0, 0, 0, .95));
+  animation: intro-in .7s var(--ease) both;
+}
+.intro-wa {
+  width: 100%; display: flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 60px; border-radius: 14px; background: #25D366; color: #06301A;
+  font-weight: 700; font-size: 16.5px; text-decoration: none;
+  box-shadow: 0 16px 34px -16px rgba(37, 211, 102, .75);
+  transition: transform .15s var(--ease), background .15s var(--ease);
+}
+.intro-wa:active { transform: scale(.985); background: #1FBE5B; }
+.intro-enter {
+  width: 100%; margin-top: 14px; min-height: 56px; border-radius: 14px;
+  background: transparent; color: #fff; border: 1.5px solid rgba(255, 255, 255, .78);
+  font-family: inherit; font-weight: 600; font-size: 16px; cursor: pointer;
+}
+.intro-enter:active { background: rgba(255, 255, 255, .08); }
+.intro-perks {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 20px;
+  margin: clamp(16px, 3.6vh, 28px) 0 0; padding: 0; list-style: none;
+  font-size: 12.5px; color: #B4B0A8;
+}
+.intro-perks li { display: inline-flex; align-items: center; gap: 6px; }
+.intro-perks svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.intro-legal { margin: 14px 0 0; font-size: 10.5px; letter-spacing: .02em; color: #6B6862; }
+@keyframes intro-in { from { opacity: 0; transform: translateY(16px) scale(.965); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .intro-bottle { animation: none; } }
