@@ -870,7 +870,9 @@
     var rx = 0, ry = 0, baseRx = 0, baseRy = 0, x0 = 0, y0 = 0, arrastrando = false;
 
     function aplicar() {
-      botella.style.transform = "rotateX(" + rx.toFixed(2) + "deg) rotateY(" + ry.toFixed(2) + "deg)";
+      var escala = arrastrando ? 1.035 : 1;
+      botella.style.transform = "rotateX(" + rx.toFixed(2) + "deg) rotateY(" + ry.toFixed(2) + "deg) scale(" + escala + ")";
+      botella.style.filter = "drop-shadow(" + (-ry * 0.6).toFixed(1) + "px 22px 30px rgba(0, 0, 0, .92))";
       if (shine) shine.style.backgroundPosition = (50 - ry * 1.6).toFixed(1) + "% 0";
     }
     aplicar();
@@ -888,8 +890,8 @@
     function mover(e) {
       if (!arrastrando) return;
       var dx = e.clientX - x0, dy = e.clientY - y0;
-      ry = Math.max(-38, Math.min(38, baseRy + dx * 0.55));
-      rx = Math.max(-16, Math.min(16, baseRx - dy * 0.35));
+      ry = Math.max(-26, Math.min(26, baseRy + dx * 0.5));
+      rx = Math.max(-12, Math.min(12, baseRx - dy * 0.3));
       aplicar();
       e.preventDefault();
     }
