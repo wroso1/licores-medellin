@@ -1078,6 +1078,8 @@ body.motion .card.in-view {
   background: transparent; color: #fff; border: 1.5px solid rgba(255, 255, 255, .78);
   font-family: inherit; font-weight: 600; font-size: 16px; cursor: pointer;
 }
+.intro-enter:focus { outline: none; }
+.intro-enter:focus-visible { outline: 2px solid rgba(255, 255, 255, .92); outline-offset: 3px; }
 .intro-enter:active { background: rgba(255, 255, 255, .08); }
 .intro-perks {
   display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 20px;
