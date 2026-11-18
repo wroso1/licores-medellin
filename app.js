@@ -858,6 +858,58 @@
     };
   }
 
+  /* --------------------------- botella con arrastre 3D ---------------------- */
+  function setupBottle3D() {
+    var wrap = document.querySelector(".intro-bottle-wrap");
+    if (!wrap) return;
+    var botella = wrap.querySelector(".intro-bottle");
+    var shine = wrap.querySelector(".intro-bottle-shine");
+    if (!botella) return;
+    var reducido = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    var rx = 0, ry = 0, baseRx = 0, baseRy = 0, x0 = 0, y0 = 0, arrastrando = false;
+
+    function aplicar() {
+      botella.style.transform = "rotateX(" + rx.toFixed(2) + "deg) rotateY(" + ry.toFixed(2) + "deg)";
+      if (shine) shine.style.backgroundPosition = (50 - ry * 1.6).toFixed(1) + "% 0";
+    }
+    aplicar();
+
+    function abajo(e) {
+      arrastrando = true;
+      wrap.classList.add("is-drag");
+      botella.style.transition = "none";
+      x0 = e.clientX; y0 = e.clientY; baseRx = rx; baseRy = ry;
+      if (wrap.setPointerCapture && e.pointerId != null) {
+        try { wrap.setPointerCapture(e.pointerId); } catch (err) {}
+      }
+      if (navigator.vibrate) { try { navigator.vibrate(8); } catch (err2) {} }
+    }
+    function mover(e) {
+      if (!arrastrando) return;
+      var dx = e.clientX - x0, dy = e.clientY - y0;
+      ry = Math.max(-38, Math.min(38, baseRy + dx * 0.55));
+      rx = Math.max(-16, Math.min(16, baseRx - dy * 0.35));
+      aplicar();
+      e.preventDefault();
+    }
+    function soltar() {
+      if (!arrastrando) return;
+      arrastrando = false;
+      wrap.classList.remove("is-drag");
+      if (reducido) { rx = 0; ry = 0; aplicar(); return; }
+      botella.style.transition = "transform .55s cubic-bezier(.22,.68,.3,1)";
+      rx = 0; ry = 0; aplicar();
+    }
+
+    wrap.addEventListener("pointerdown", abajo);
+    wrap.addEventListener("pointermove", mover, { passive: false });
+    wrap.addEventListener("pointerup", soltar);
+    wrap.addEventListener("pointercancel", soltar);
+    wrap.addEventListener("pointerleave", soltar);
+    wrap.addEventListener("lostpointercapture", soltar);
+  }
+
   /* --------------------------- portada de entrada --------------------------- */
   var K_INTRO = "lm.intro.v1";
   function setupIntro() {
@@ -961,6 +1013,7 @@
     setupAgeGate();
     setupIntro();
     setupFire();
+    setupBottle3D();
     setupServiceWorker();
     setupInstall();
     startGridRotate();

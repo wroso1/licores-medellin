@@ -1117,3 +1117,31 @@ body.motion .card.in-view {
   .intro-fire canvas { display: none; }
   .intro-fire { background: radial-gradient(60% 100% at 50% 100%, rgba(255, 120, 20, .45), rgba(255, 60, 0, 0) 70%); }
 }
+
+/* --------------------------- botella 3D (arrastre) ------------------------ */
+.intro-stage { perspective: 1000px; }
+.intro-bottle-wrap {
+  position: relative; display: grid; place-items: center;
+  touch-action: none; cursor: grab; user-select: none; -webkit-user-select: none;
+}
+.intro-bottle-wrap:active { cursor: grabbing; }
+.intro-bottle-wrap .intro-bottle {
+  transform-style: preserve-3d; will-change: transform;
+  transform: rotateX(0deg) rotateY(0deg);
+  backface-visibility: hidden;
+}
+.intro-bottle-shine {
+  position: absolute; inset: 0; pointer-events: none; opacity: 0;
+  transition: opacity .25s var(--ease), background-position .05s linear;
+  background-image: linear-gradient(100deg,
+    rgba(255, 255, 255, 0) 34%,
+    rgba(255, 255, 255, .5) 48%,
+    rgba(255, 255, 255, .12) 56%,
+    rgba(255, 255, 255, 0) 68%);
+  background-size: 240% 100%; background-position: 50% 0;
+  mix-blend-mode: screen; border-radius: 40% 40% 30% 30%;
+}
+.intro-bottle-wrap.is-drag .intro-bottle-shine { opacity: 1; }
+@media (prefers-reduced-motion: reduce) {
+  .intro-bottle-wrap .intro-bottle { transition: none !important; }
+}
