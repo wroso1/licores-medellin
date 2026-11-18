@@ -822,7 +822,7 @@
           if (!px) continue;
           var dy = -1 - ((Math.random() * 2) | 0);
           var dst = src + dy * W + (((Math.random() * 3) | 0) - 1);
-          if (dst >= 0 && dst < W * H) buf[dst] = Math.max(0, px - (3 + ((Math.random() * 7) | 0)));
+          if (dst >= 0 && dst < W * H) buf[dst] = Math.max(0, px - (2 + ((Math.random() * 5) | 0)));
         }
       }
       for (var x2 = 0; x2 < W; x2++) {

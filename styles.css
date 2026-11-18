@@ -1091,14 +1091,14 @@ body.motion .card.in-view {
 @media (prefers-reduced-motion: reduce) { .intro-bottle { animation: none; } }
 /* -------------------------------- llamas --------------------------------- */
 .intro-fire {
-  position: absolute; left: 0; right: 0; bottom: 0; height: 46%;
+  position: absolute; left: 0; right: 0; bottom: 0; height: 50%;
   z-index: 0; pointer-events: none; overflow: hidden;
   mask-image: linear-gradient(to top, #000 70%, rgba(0, 0, 0, .8) 88%, rgba(0, 0, 0, 0) 100%);
   -webkit-mask-image: linear-gradient(to top, #000 70%, rgba(0, 0, 0, .8) 88%, rgba(0, 0, 0, 0) 100%);
 }
 .intro-fire canvas {
   position: absolute; inset: auto 0 0 0; width: 100%; height: 100%;
-  display: block; filter: blur(2.2px) saturate(1.15);
+  display: block; filter: blur(3.6px) saturate(1.12);
 }
 .intro-fire-glow {
   position: absolute; left: -10%; right: -10%; bottom: -14%; height: 42%;
@@ -1109,7 +1109,8 @@ body.motion .card.in-view {
 .intro-stage::before {
   background: radial-gradient(50% 45% at 50% 84%, rgba(255, 150, 60, .18), rgba(255, 120, 0, 0) 74%);
 }
-.intro-perks li, .intro-legal { text-shadow: 0 1px 6px rgba(0, 0, 0, .95), 0 0 14px rgba(0, 0, 0, .85); }
+.intro-perks li { text-shadow: 0 1px 6px rgba(0, 0, 0, .95), 0 0 14px rgba(0, 0, 0, .85); }
+.intro-legal { color: #8E8A82; text-shadow: 0 1px 5px #000, 0 0 10px rgba(0, 0, 0, .95); }
 @media (prefers-reduced-motion: reduce) {
   .intro-fire canvas { display: none; }
   .intro-fire { background: radial-gradient(60% 100% at 50% 100%, rgba(255, 120, 20, .45), rgba(255, 60, 0, 0) 70%); }
