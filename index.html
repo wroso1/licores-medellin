@@ -28,7 +28,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="preload" as="image" href="img/hero-black-label.webp" type="image/webp">
 <link rel="preload" as="image" href="img/buchanans.webp?v=2" type="image/webp">
-<link rel="stylesheet" href="styles.css?v=8">
+<link rel="stylesheet" href="styles.css?v=10">
 </head>
 <body>
 
@@ -36,7 +36,10 @@
 
 <!-- Portada de entrada -->
 <div class="intro" id="intro">
-  <div class="intro-fire" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="intro-fire" aria-hidden="true">
+    <canvas id="fireCanvas"></canvas>
+    <span class="intro-fire-glow"></span>
+  </div>
   <div class="intro-inner">
     <h2 class="intro-title">Distribuidora<br>a domicilio</h2>
     <p class="intro-sub">Tu licor favorito, sin salir de casa</p>
@@ -307,7 +310,7 @@
 }
 </script>
 <script src="data.js?v=5"></script>
-<script src="app.js?v=6"></script>
+<script src="app.js?v=10"></script>
 <script src="motion.js?v=5"></script>
 </body>
 </html>
